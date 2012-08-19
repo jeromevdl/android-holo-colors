@@ -5,43 +5,99 @@
 
   require_once($context.'common.php');
   
-  $toggle_classes = array('Toggle', 'ToggleOff', 'ToggleOnPress', 'ToggleOffPress', 'ToggleOnFocus', 'ToggleOffFocus', 'ToggleOnDisabledFocus', 'ToggleOffDisabledFocus');
+  $toggle_classes = array('Toggle', 'ToggleOff', 'ToggleOnPress', 'ToggleOffPress', 'ToggleOnFocus', 'ToggleOffFocus', 'ToggleOnDisabled', 'ToggleOnDisabledFocus', 'ToggleOffDisabledFocus');
 
   /******************************************/
   /*                 TOGGLE                 */
   /******************************************/
-  class Button extends Component {
+  class Toggle extends Component {
   	
   	function __construct($ctx="") {
-  		parent:: __construct("btn_default_normal_holo_{{holo}}.9.png", $ctx);
+  		parent:: __construct("btn_toggle_on_normal_holo_{{holo}}.9.png", $ctx);
   	}
   	
     function generate_image($color, $size, $holo) {			   
-	  $image_name = "btn_default_normal_holo.png";
+	  $image_name = "btn_toggle_on_normal_holo.png";
 	
 	  // load picture
 	  $button_img = $this->loadTransparentPNG($image_name, $size);
 	  
+	  // color picture
+	  $color_img = $this->loadTransparentPNG("btn_toggle_on_normal_holo_color.png", $size);
+	  
+	  // update colors
+	  $rgb = $this->hex2RGB($color);
+	  imagefilter($color_img, IMG_FILTER_COLORIZE, $rgb['red'], $rgb['green'], $rgb['blue']);
+	  
+	  // add nine patch
+	  $border_img =  $this->loadTransparentPNG("btn_toggle_nine_patch.png", $size);
+	  
+	  $result = $this->create_dest_image($image_name, $size);
+	    
+	  imagecopy($result[0], $button_img, 0, 0, 0, 0, $result[1], $result[2]);
+	  imagecopy($result[0], $color_img, 0, 0, 0, 0, $result[1], $result[2]);
+	  imagecopy($result[0], $border_img, 0, 0, 0, 0, $result[1], $result[2]);
+	  
 	  // output to browser
 	  if (isset($_GET['action']) && $_GET['action'] == 'display') {
- 			  $this->displayImage($button_img);
+ 			  $this->displayImage($result[0]);
 		  } else {
-		  	 $this->generateImageFile($button_img, $size, $holo);
+		  	 $this->generateImageFile($result[0], $size, $holo);
+		  }
+    }
+  }
+  
+  /******************************************/
+  /*         TOGGLE ON FOCUS                */
+  /******************************************/
+  class ToggleOnFocus extends Component {
+  	
+  	function __construct($ctx="") {
+  		parent:: __construct("btn_toggle_on_focused_holo_{{holo}}.9.png", $ctx);
+  	}
+  	
+    function generate_image($color, $size, $holo) {			   
+	  $image_name = "btn_toggle_on_focused_holo.png";
+	
+	  // load picture
+	  $button_img = $this->loadTransparentPNG($image_name, $size);
+	  	  
+	  // update colors
+	  $rgb = $this->hex2RGB($color);
+	  imagefilter($button_img, IMG_FILTER_COLORIZE, $rgb['red'], $rgb['green'], $rgb['blue']);
+	  
+	  // add nine patch
+	  $border_img =  $this->loadTransparentPNG("btn_toggle_nine_patch.png", $size);
+	  
+	  // add shadow
+	  $shadow_img =  $this->loadTransparentPNG("btn_toggle_shadow_dark.png", $size);
+	  
+	  $result = $this->create_dest_image($image_name, $size);
+	    
+	  imagecopy($result[0], $button_img, 0, 0, 0, 0, $result[1], $result[2]);
+	  imagecopy($result[0], $border_img, 0, 0, 0, 0, $result[1], $result[2]);
+	  imagecopy($result[0], $shadow_img, 0, 0, 0, 0, $result[1], $result[2]);
+	  
+	  // output to browser
+	  if (isset($_GET['action']) && $_GET['action'] == 'display') {
+ 			  $this->displayImage($result[0]);
+		  } else {
+		  	 $this->generateImageFile($result[0], $size, $holo);
 		  }
     }
   }
   
   /************************************************/
-  /*                 BUTTON FOCUS                 */
+  /*              TOGGLE ON PRESS                 */
   /***********************************************/
-  class ButtonFocus extends Component {
+  class ToggleOnPress extends Component {
   	
   	function __construct($ctx="") {
-  		parent:: __construct("btn_default_focused_holo_{{holo}}.9.png", $ctx);
+  		parent:: __construct("btn_toggle_on_pressed_holo_{{holo}}.9.png", $ctx);
   	}
   	
     function generate_image($color, $size, $holo) {			   
-	  $image_name = "btn_default_focused_holo.png";
+	  $image_name = "btn_toggle_on_pressed_holo.png";
 	
 	  // load picture
 	  $button_img = $this->loadTransparentPNG($image_name, $size);
@@ -51,80 +107,7 @@
 	  imagefilter($button_img, IMG_FILTER_COLORIZE, $rgb['red'], $rgb['green'], $rgb['blue']);
 	  
 	  // add border
-	  $border_img =  $this->loadTransparentPNG("nine_patch.png", $size);
-	  
-	  $result = $this->create_dest_image($image_name, $size);
-	    
-	  imagecopy($result[0], $button_img, 0, 0, 0, 0, $result[1], $result[2]);
-	  imagecopy($result[0], $border_img, 0, 0, 0, 0, $result[1], $result[2]);
-	  
-	  // output to browser
-	  if (isset($_GET['action']) && $_GET['action'] == 'display') {
- 			  $this->displayImage($result[0]);
-		  } else {
-		  	 $this->generateImageFile($result[0], $size, $holo);
-		  }
-    }
-  }
-
-  /************************************************/
-  /*         BUTTON DISABLED FOCUS               */
-  /***********************************************/
-  class ButtonDisabledFocus extends Component {
-  	
-  	function __construct($ctx="") {
-  		parent:: __construct("btn_default_disabled_focused_holo_{{holo}}.9.png", $ctx);
-  	}
-  	
-    function generate_image($color, $size, $holo) {			   
-	  $image_name = "btn_default_disabled_focused_holo.png";
-	
-	  // load picture
-	  $button_img = $this->loadTransparentPNG($image_name, $size);
-	 
-	  // update colors
-	  $rgb = $this->hex2RGB($color);
-	  imagefilter($button_img, IMG_FILTER_COLORIZE, $rgb['red'], $rgb['green'], $rgb['blue']);
-	  
-	  // add border
-	  $border_img =  $this->loadTransparentPNG("nine_patch.png", $size);
-	  
-	  $result = $this->create_dest_image($image_name, $size);
-	    
-	  imagecopy($result[0], $button_img, 0, 0, 0, 0, $result[1], $result[2]);
-	  imagecopy($result[0], $border_img, 0, 0, 0, 0, $result[1], $result[2]);
-	  
-	  // output to browser
-	  if (isset($_GET['action']) && $_GET['action'] == 'display') {
- 			  $this->displayImage($result[0]);
-		  } else {
-		  	 $this->generateImageFile($result[0], $size, $holo);
-		  }
-    }
-  }
-
-
-  /************************************************/
-  /*                 BUTTON PRESS                 */
-  /***********************************************/
-  class ButtonPress extends Component {
-  	
-  	function __construct($ctx="") {
-  		parent:: __construct("btn_default_pressed_holo_{{holo}}.9.png", $ctx);
-  	}
-  	
-    function generate_image($color, $size, $holo) {			   
-	  $image_name = "btn_default_pressed_holo.png";
-	
-	  // load picture
-	  $button_img = $this->loadTransparentPNG($image_name, $size);
-	 
-	  // update colors
-	  $rgb = $this->hex2RGB($color);
-	  imagefilter($button_img, IMG_FILTER_COLORIZE, $rgb['red'], $rgb['green'], $rgb['blue']);
-	  
-	  // add border
-	  $nine_patch_img =  $this->loadTransparentPNG("nine_patch.png", $size);
+	  $nine_patch_img =  $this->loadTransparentPNG("btn_toggle_nine_patch.png", $size);
 
 	  // add ninepatch
 	  $border_img =  $this->loadTransparentPNG("btn_border_shadow.png", $size);

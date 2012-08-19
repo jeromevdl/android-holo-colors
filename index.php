@@ -26,6 +26,7 @@
 </head>
   <body>
     <div id="main-container">
+    <a href="https://github.com/jeromevdl/android-holo-colors"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
       <div id="header">
         <h1>Android Holo Colors Generator</h1>
       </div>
@@ -38,7 +39,7 @@
         <p id="page-intro">
           The <strong>Android Holo Colors Generator</strong> allows you to easily create Android components such as editext or spinner with your own colours for your Android application. It will generate all necessary nine patch assets plus associated XML drawables and styles which you can copy straight into your project. 
         </p>
-        <p>If you have any question, please refer to the <a href="faq.html">FAQ</a> or <a href="mailto:jeromevdl@android-holo-colors.com">send me an email</a>.</p>
+        <p>If you have any question, please refer to the <a href="faq.html">FAQ</a> or <a href="https://github.com/jeromevdl/android-holo-colors/issues">see issues</a>.</p>
         <br />
       </div>
       
@@ -222,6 +223,23 @@
 	      </table>
 	      <br />
 	    </div>
+	    
+	    <div id="block-output-toggle">
+          Toggle:
+          <table class="bloc-output-table">
+          	  <tr>
+                <td>toggle_on_normal</td>
+                <td>toggle_on_focused</td>
+                <td>toggle_on_pressed</td>
+              </tr>
+	          <tr>
+	            <td><div id="output-toggle"> </div></td>
+	            <td><div id="output-toggle-on-focus"> </div></td>
+	            <td><div id="output-toggle-on-pressed"> </div></td>
+	          </tr>
+	      </table>
+	      <br />
+	    </div>
       </div>
       
       <!--
@@ -263,7 +281,8 @@
       					'spinner':1, 'spinner-pressed':1, 'spinner-focus':1,
       					'spinnerab':1, 'spinnerab-pressed':1, 'spinnerab-focus':1,
       					'progressbar':1, 'progressbar-primary':1, 'progressbar-secondary':1, 
-      					'seekbar':1, 'seekbar-pressed':1, 'seekbar-focus':1, 'seekbar-disabled':1, 'seekbar-primary':1, 'seekbar-secondary':1 };
+      					'seekbar':1, 'seekbar-pressed':1, 'seekbar-focus':1, 'seekbar-disabled':1, 'seekbar-primary':1, 'seekbar-secondary':1,
+      					'toggle':1, 'toggle-on-focus':1, 'toggle-on-pressed':1 };
       
 	  for (var component in components) {
 	  	var group = studio.ui.createImageOutputGroup({
@@ -293,6 +312,7 @@
 	  	   	if (values['spinnerab']) url+='&spinnerab=true';
 	  	   	if (values['progressbar']) url+='&progressbar=true';
 	  	   	if (values['seekbar']) url+='&seekbar=true';
+	  	   	if (values['toggle']) url+='&toggle=true';
 			
 			alert(url);
 			
@@ -308,7 +328,7 @@
 		var table = comp.split(reg);
 		component = table[0];
 	  	if (values[component]) {
-	            $('#out-' + comp + '-' + density).attr('src', component+"/"+comp+".php?color="+ color +"&size=" + density + "&holo=" + values['theme'] + "&action=display");
+	            $('#out-' + comp + '-' + density).attr('src', component+"/"+component+".php?color="+ color +"&size=" + density + "&holo=" + values['theme'] + "&action=display&component=" + comp);
 	            $('#out-' + comp + '-' + density).css('display', 'inline-block');
 	            $('#block-output-' + comp).css('display', 'inline-block');
 	          } else {
@@ -414,6 +434,13 @@
 	       
 	       new studio.forms.BooleanField('seekbar', {
 	            title: 'SeekBar',
+	            defaultValue: false,
+	            offText: 'No',
+	            onText: 'Yes'
+	       }),
+	       
+	       new studio.forms.BooleanField('toggle', {
+	            title: 'Toggle',
 	            defaultValue: false,
 	            offText: 'No',
 	            onText: 'Yes'
