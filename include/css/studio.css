@@ -57,7 +57,29 @@ a {
 }
 
 #header {
-  background-color: #33B5E5;
+  background-color: #33b5e5;  	
+/*
+  background-image:-webkit-gradient(linear,
+	left top, right top,
+	color-stop(0.01,purple),
+	color-stop(0.1,indigo),
+	color-stop(0.2,blue),
+	color-stop(0.4,green),
+	color-stop(0.5,yellow),
+	color-stop(0.7,orange),
+	color-stop(0.8,red),
+	color-stop(0.99,purple));
+	
+  background: -moz-linear-gradient( left, 
+  		purple 0%,
+		indigo 10%,
+		blue 20%,
+		green 40%,
+		yellow 50%,
+		orange 70%,
+		red 80%,
+		purple 100%);
+*/
   color: #fff;
 }
 
@@ -71,8 +93,6 @@ a {
     text-decoration: none;
     color: #fff;
   }
-
-#page-header, #page-links {}
 
   #page-header p,
   #page-links p {

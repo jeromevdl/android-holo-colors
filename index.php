@@ -7,22 +7,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title>Android Holo Colors</title>
     
-    <link rel="stylesheet" href="include/lib/cssreset-3.4.1.min.css">
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
-    <link rel="stylesheet" href="include/css/studio.css">
-    <link rel="stylesheet" href="include/lib/spectrum/spectrum-assetstudio.css">
+    <link rel="stylesheet" href="include/lib/cssreset-3.4.1.min.css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto" />
+    <link rel="stylesheet" href="include/css/studio.css" />
+    <link rel="stylesheet" href="include/lib/spectrum/spectrum-assetstudio.css" />
 
-    <script src="include/lib/canvg/rgbcolor.js"></script> 
-    <script src="include/lib/canvg/canvg.js"></script>
     <script src="include/lib/jquery.min.js"></script>
     <script src="include/lib/spectrum/spectrum.js"></script>
     <script src="include/js/asset-studio.pack.js"></script>
     
-</head>
 </head>
   <body>
     <div id="main-container">
@@ -36,11 +32,10 @@
       	    <a href="http://android-ui-utils.googlecode.com/hg/asset-studio/dist/index.html">&lt;&lt; Android Asset Studio</a>
       	  </p>
       	</div>
-        <p id="page-intro">
+        <p id="page-intro" style="width:820px">
           The <strong>Android Holo Colors Generator</strong> allows you to easily create Android components such as editext or spinner with your own colours for your Android application. It will generate all necessary nine patch assets plus associated XML drawables and styles which you can copy straight into your project. 
-        </p>
-        <p>If you have any question, please refer to the <a href="faq.html">FAQ</a> or <a href="https://github.com/jeromevdl/android-holo-colors/issues">see issues</a>.</p>
-        <br />
+        <br/>
+        If you have any question, please refer to the <a href="faq.html">FAQ</a> or <a href="https://github.com/jeromevdl/android-holo-colors/issues">report issues</a>.</p>
       </div>
       
       <div id="inputs">
@@ -164,23 +159,6 @@
 	      </table>
 	      <br />
 	    </div>
-	      
-	    <div id="block-output-spinnerab" class="bloc-output">
-          Spinner Action Bar :
-          <table class="bloc-output-table">
-          	  <tr>
-                <td>spinner_ab_default</td>
-                <td>spinner_ab_focused</td>
-                <td>spinner_ab_pressed</td>
-              </tr>
-	          <tr>
-	            <td><div id="output-spinnerab"> </div></td>
-	            <td><div id="output-spinnerab-focus"> </div></td>
-	            <td><div id="output-spinnerab-pressed"> </div></td>
-	          </tr>
-	      </table>
-	      <br />
-	    </div>
 	    
 	    <div id="block-output-progressbar" class="bloc-output">
           ProgressBar :
@@ -218,10 +196,14 @@
 	          <tr>
                 <td>seekbar_primary</td>
                 <td>seekbar_secondary</td>
+                <td></td>
+                <td></td>
               </tr>
 	          <tr>
 	            <td><div id="output-seekbar-primary"> </div></td>
 	            <td><div id="output-seekbar-secondary"> </div></td>
+                <td></td>
+                <td></td>
 	          </tr>
 	      </table>
 	      <br />
@@ -266,30 +248,19 @@
       </div>
       
       <!--
-	
 	  ratingstar
-	  star	
-	  toggle
+	  star
+	  rate star
 	  listselector ?
 	  numberpicker (up/down)
-	  rate star
 	  switch
-	  
 	  -->
  
     
 	    <div id="footer">
-		<p>
-		Created by <a href="mailto:jeromevdl@android-holo-colors.com">Jérôme Van Der Linden</a>.
-		</p>
-		<p>
-		Built upon the
-		<a href="http://code.google.com/p/android-ui-utils">android-ui-utils</a> asset studio framework created by <a href="http://roman.nurik.net/">Roman Nurik</a>, copyright Google Inc.
-		</p>
-		<br/>
-		<p>All generated art is licensed under a
-		<a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>.
-		</p>
+		<p>Created by <a href="mailto:jeromevdl@android-holo-colors.com">Jérôme Van Der Linden</a>.</p>
+		<p>Built upon the <a href="http://code.google.com/p/android-ui-utils">android-ui-utils</a> asset studio framework created by <a href="http://roman.nurik.net/">Roman Nurik</a>, copyright Google Inc.</p><br/>
+		<p>All generated art is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>.</p>
 		</div>
 	</div>
     
@@ -302,7 +273,6 @@
       					'checkbox':1, 'checkbox-off':1, 'checkbox-off-pressed':1, 'checkbox-on-pressed':1, 'checkbox-off-focus':1, 'checkbox-on-focus':1, 'checkbox-on-disabled-focus':1, 'checkbox-off-disabled-focus':1, 
       					'radio':1, 'radio-off':1, 'radio-off-pressed':1, 'radio-on-pressed':1, 'radio-off-focus':1, 'radio-on-focus':1, 'radio-on-disabled-focus':1, 'radio-off-disabled-focus':1,
       					'spinner':1, 'spinner-pressed':1, 'spinner-focus':1,
-      					'spinnerab':1, 'spinnerab-pressed':1, 'spinnerab-focus':1,
       					'progressbar':1, 'progressbar-primary':1, 'progressbar-secondary':1, 
       					'seekbar':1, 'seekbar-pressed':1, 'seekbar-focus':1, 'seekbar-disabled':1, 'seekbar-primary':1, 'seekbar-secondary':1,
       					'toggle':1, 'toggle-on-focus':1, 'toggle-on-pressed':1, 'toggle-off-focus':1, 'toggle-off-pressed':1, 'toggle-disabled':1, 'toggle-disabled-focus':1, 'toggle-off-disabled-focus':1,  };
@@ -332,7 +302,6 @@
 	  	   	if (values['checkbox']) url+='&checkbox=true';
 	  	   	if (values['radio']) url+='&radio=true';
 	  	   	if (values['spinner']) url+='&spinner=true';
-	  	   	if (values['spinnerab']) url+='&spinnerab=true';
 	  	   	if (values['progressbar']) url+='&progressbar=true';
 	  	   	if (values['seekbar']) url+='&seekbar=true';
 	  	   	if (values['toggle']) url+='&toggle=true';
@@ -375,6 +344,13 @@
 	          dogenerate(component, density, color);
 	       }
     	}
+	    
+	    $('#header').css('background-color', values['color'].color);
+	    
+	    if (values['theme'] == 'light')
+		    $('#header').css('color', '#fff');
+		else
+		    $('#header').css('color', '#000');
 	  }
       
       var form = new studio.forms.Form('holocomponents', {
@@ -435,14 +411,6 @@
            
            new studio.forms.BooleanField('spinner', {
 	            title: 'Spinner',
-	            defaultValue: false,
-	            offText: 'No',
-	            onText: 'Yes'
-	       }),
-           
-           new studio.forms.BooleanField('spinnerab', {
-	            title: 'Spinner Action Bar',
-	            helpText: 'See also <a href="http://jgilfelt.github.com/android-actionbarstylegenerator/">actionbarstylegenerator</a>',
 	            defaultValue: false,
 	            offText: 'No',
 	            onText: 'Yes'
