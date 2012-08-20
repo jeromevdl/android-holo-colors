@@ -50,7 +50,7 @@
 		<h3>
 		<a class="dragout form-button" onclick="javascript:downloadFile();">Download .ZIP</a>
 		</h3>
-        <div id="block-output-edittext">
+        <div id="block-output-edittext" class="bloc-output">
           EditText :
           <table class="bloc-output-table">
               <tr>
@@ -67,7 +67,7 @@
           <br />
         </div>
         
-        <div id="block-output-button">
+        <div id="block-output-button" class="bloc-output">
           Button :
           <table class="bloc-output-table">
               <tr>
@@ -86,7 +86,7 @@
           <br />
         </div>
         
-        <div id="block-output-checkbox">
+        <div id="block-output-checkbox" class="bloc-output">
           CheckBox :
           <table class="bloc-output-table">
               <tr>
@@ -117,7 +117,7 @@
           <br />
         </div>
         
-        <div id="block-output-radio">
+        <div id="block-output-radio" class="bloc-output">
           Radio :
           <table class="bloc-output-table">
           	  <tr>
@@ -148,7 +148,7 @@
 	      <br />
 	    </div>
         	    
-	    <div id="block-output-spinner">
+	    <div id="block-output-spinner" class="bloc-output">
           Spinner:
           <table class="bloc-output-table">
           	  <tr>
@@ -165,7 +165,7 @@
 	      <br />
 	    </div>
 	      
-	    <div id="block-output-spinnerab">
+	    <div id="block-output-spinnerab" class="bloc-output">
           Spinner Action Bar :
           <table class="bloc-output-table">
           	  <tr>
@@ -182,22 +182,25 @@
 	      <br />
 	    </div>
 	    
-	    <div id="block-output-progressbar">
-          ProgressBar:
+	    <div id="block-output-progressbar" class="bloc-output">
+          ProgressBar :
           <table class="bloc-output-table">
-          	  <tr>
+              <tr>
                 <td>progressbar_primary</td>
                 <td>progressbar_secondary</td>
+                <td style="width:120px">&nbsp;</td>
               </tr>
 	          <tr>
 	            <td><div id="output-progressbar-primary"> </div></td>
 	            <td><div id="output-progressbar-secondary"> </div></td>
+	            <td></td>
 	          </tr>
-	       </table>
-	       <br />
-	    </div>
+          </table>
+          <br />
+        </div>
+
 	    
-	    <div id="block-output-seekbar">
+	    <div id="block-output-seekbar" class="bloc-output">
           SeekBar:
           <table class="bloc-output-table">
           	  <tr>
@@ -224,7 +227,7 @@
 	      <br />
 	    </div>
 	    
-	    <div id="block-output-toggle">
+	    <div id="block-output-toggle" class="bloc-output">
           Toggle:
           <table class="bloc-output-table">
           	  <tr>
@@ -236,6 +239,26 @@
 	            <td><div id="output-toggle"> </div></td>
 	            <td><div id="output-toggle-on-focus"> </div></td>
 	            <td><div id="output-toggle-on-pressed"> </div></td>
+	          </tr>
+	          <tr>
+                <td></td>
+                <td>toggle_off_focused</td>
+                <td>toggle_off_pressed</td>
+              </tr>
+	          <tr>
+	            <td></td>
+	            <td><div id="output-toggle-off-focus"> </div></td>
+	            <td><div id="output-toggle-off-pressed"> </div></td>
+	          </tr>
+	          <tr>
+                <td>toggle_on_disabled</td>
+                <td>toggle_on_disabled_focused</td>
+                <td>toggle_off_disabled_focused</td>
+              </tr>
+	          <tr>
+	            <td><div id="output-toggle-disabled"> </div></td>
+	            <td><div id="output-toggle-disabled-focus"> </div></td>
+	            <td><div id="output-toggle-off-disabled-focus"> </div></td>
 	          </tr>
 	      </table>
 	      <br />
@@ -282,7 +305,7 @@
       					'spinnerab':1, 'spinnerab-pressed':1, 'spinnerab-focus':1,
       					'progressbar':1, 'progressbar-primary':1, 'progressbar-secondary':1, 
       					'seekbar':1, 'seekbar-pressed':1, 'seekbar-focus':1, 'seekbar-disabled':1, 'seekbar-primary':1, 'seekbar-secondary':1,
-      					'toggle':1, 'toggle-on-focus':1, 'toggle-on-pressed':1 };
+      					'toggle':1, 'toggle-on-focus':1, 'toggle-on-pressed':1, 'toggle-off-focus':1, 'toggle-off-pressed':1, 'toggle-disabled':1, 'toggle-disabled-focus':1, 'toggle-off-disabled-focus':1,  };
       
 	  for (var component in components) {
 	  	var group = studio.ui.createImageOutputGroup({

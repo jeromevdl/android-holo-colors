@@ -452,6 +452,10 @@ button:not([disabled]):active {
   border-color: #069;
 }
 
+.bloc-output {
+	display:none;
+}
+
 .bloc-output-table td {
   font-size:12px;
   text-align:center;
