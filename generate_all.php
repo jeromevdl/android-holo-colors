@@ -21,6 +21,7 @@
  $spinner = $_GET['spinner'];
  $progressbar = $_GET['progressbar'];
  $seekbar = $_GET['seekbar'];
+ $toggle = $_GET['toggle'];
  
  $style = "<!-- Generated with http://android-holo-colors.com -->\n";
  $style .= '<resources xmlns:android="http://schemas.android.com/apk/res/android">'."\n\n";
@@ -199,7 +200,7 @@
 	    $stylev11 .= '  <style name="ProgressBar'.$name.'" parent="android:Widget.Holo.Light.ProgressBar.Horizontal">'."\n";
 	}
     $stylev11 .= '      <item name="android:progressDrawable">@drawable/progress_horizontal_holo_'.$holo.'</item>'."\n";
-    $stylev11 .= '      <item name="android:indeterminateDrawable">@drawable/progress_indeterminate_horizontal_holo'.$holo.'</item>'."\n";
+    $stylev11 .= '      <item name="android:indeterminateDrawable">@drawable/progress_indeterminate_horizontal_holo_'.$holo.'</item>'."\n";
     $stylev11 .= '  </style>'."\n\n";
     
     $style_available = true;
@@ -232,6 +233,30 @@
     $style_available = true;
     
     $themev11 .= '    <item name="android:seekBarStyle">@style/SeekBar'.$name.'</item>'."\n\n";    
+  }
+  
+  //  ============== toggle ================ //
+   if (isset($toggle) && $toggle == true) {
+    require_once('toggle/common-toggle.php');
+    $logger->debug("generate toggle");
+  
+    foreach ($toggle_classes as $clazz) {
+      generateImageOnDisk($clazz, $color, $holo, "toggle/");
+    }
+    
+    copy_directory("toggle/res/", $folder."/res/", $holo);
+
+	if ($holo == "dark") {
+		$stylev11 .= '  <style name="Toggle'.$name.'" parent="android:Widget.Holo.Button.Toggle">'."\n";
+	} else {
+		$stylev11 .= '  <style name="Toggle'.$name.'" parent="android:Widget.Holo.Light.Button.Toggle">'."\n";
+	}
+    $stylev11 .= '      <item name="android:background">@drawable/btn_toggle_holo_'.$holo.'</item>'."\n";
+	$stylev11 .= '  </style>'."\n\n";
+    
+    $style_available = true;
+    
+    $themev11 .= '    <item name="android:buttonStyleToggle">@style/Toggle'.$name.'</item>'."\n\n";    
   }
   
     

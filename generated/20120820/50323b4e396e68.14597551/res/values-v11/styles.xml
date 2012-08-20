@@ -1,0 +1,27 @@
+<!-- Generated with http://android-holo-colors.com -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <style name="ButtonAppTheme" parent="android:Widget.Holo.Light.Button">
+	  <item name="android:background">@drawable/btn_default_holo_light</item>
+  </style>
+
+  <style name="SpinnerAppTheme" parent="android:Widget.Holo.Light.Spinner">
+      <item name="android:background">@drawable/spinner_background_holo_light</item>
+  </style>
+
+  <style name="ProgressBarAppTheme" parent="android:Widget.Holo.Light.ProgressBar.Horizontal">
+      <item name="android:progressDrawable">@drawable/progress_horizontal_holo_light</item>
+      <item name="android:indeterminateDrawable">@drawable/progress_indeterminate_horizontal_hololight</item>
+  </style>
+
+  <style name="SeekBarAppTheme" parent="android:Widget.Holo.Light.SeekBar">
+      <item name="android:progressDrawable">@drawable/scrubber_progress_horizontal_holo_light</item>
+      <item name="android:indeterminateDrawable">@drawable/scrubber_progress_horizontal_holo_light</item>
+      <item name="android:thumb">@drawable/scrubber_control_selector_holo_light</item>
+  </style>
+
+  <style name="ToggleAppTheme" parent="android:Widget.Holo.Light.Button.Toggle">
+      <item name="android:background">@drawable/btn_toggle_holo_light</item>
+  </style>
+
+</resources>
