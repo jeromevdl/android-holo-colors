@@ -160,6 +160,23 @@
 	      <br />
 	    </div>
 	    
+	    <div id="block-output-cspinner" class="bloc-output">
+          Colored Spinner:
+          <table class="bloc-output-table">
+          	  <tr>
+                <td>spinner_default</td>
+                <td>spinner_focused</td>
+                <td>spinner_pressed</td>
+              </tr>
+	          <tr>
+	            <td><div id="output-cspinner"> </div></td>
+	            <td><div id="output-cspinner-focus"> </div></td>
+	            <td><div id="output-cspinner-pressed"> </div></td>
+	          </tr>
+	      </table>
+	      <br />
+	    </div>
+	    
 	    <div id="block-output-progressbar" class="bloc-output">
           ProgressBar :
           <table class="bloc-output-table">
@@ -273,6 +290,7 @@
       					'checkbox':1, 'checkbox-off':1, 'checkbox-off-pressed':1, 'checkbox-on-pressed':1, 'checkbox-off-focus':1, 'checkbox-on-focus':1, 'checkbox-on-disabled-focus':1, 'checkbox-off-disabled-focus':1, 
       					'radio':1, 'radio-off':1, 'radio-off-pressed':1, 'radio-on-pressed':1, 'radio-off-focus':1, 'radio-on-focus':1, 'radio-on-disabled-focus':1, 'radio-off-disabled-focus':1,
       					'spinner':1, 'spinner-pressed':1, 'spinner-focus':1,
+      					'cspinner':1, 'cspinner-pressed':1, 'cspinner-focus':1,
       					'progressbar':1, 'progressbar-primary':1, 'progressbar-secondary':1, 
       					'seekbar':1, 'seekbar-pressed':1, 'seekbar-focus':1, 'seekbar-disabled':1, 'seekbar-primary':1, 'seekbar-secondary':1,
       					'toggle':1, 'toggle-on-focus':1, 'toggle-on-pressed':1, 'toggle-off-focus':1, 'toggle-off-pressed':1, 'toggle-disabled':1, 'toggle-disabled-focus':1, 'toggle-off-disabled-focus':1,  };
@@ -411,6 +429,14 @@
            
            new studio.forms.BooleanField('spinner', {
 	            title: 'Spinner',
+	            defaultValue: false,
+	            offText: 'No',
+	            onText: 'Yes'
+	       }),
+	       
+	        new studio.forms.BooleanField('cspinner', {
+	            title: 'Colored Spinner',
+	            helpText: 'Like spinner, but colored',
 	            defaultValue: false,
 	            offText: 'No',
 	            onText: 'Yes'
