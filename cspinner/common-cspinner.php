@@ -8,7 +8,7 @@
   $spinner_classes = array('ColoredSpinner', 'ColoredSpinnerFocus', 'ColoredSpinnerPress');
 
   /********************************************/
-  /*                 SPINNER AB               */
+  /*                 SPINNER COLOR            */
   /********************************************/
   class ColoredSpinner extends Component {
   	
@@ -42,9 +42,9 @@
 		  }
     }
   }
-  
+    
   /************************************************/
-  /*            SPINNER AB FOCUS                 */
+  /*            SPINNER COLOR FOCUS              */
   /***********************************************/
   class ColoredSpinnerFocus extends Component {
 
@@ -88,7 +88,7 @@
 
 
   /************************************************/
-  /*             SPINNER AB PRESS                 */
+  /*             SPINNER COLOR PRESS              */
   /***********************************************/
   class ColoredSpinnerPress extends Component {
   	
