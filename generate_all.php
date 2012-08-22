@@ -19,6 +19,7 @@
  $radio = $_GET['radio'];
  $button = $_GET['button'];
  $spinner = $_GET['spinner'];
+ $cspinner = $_GET['cspinner'];
  $progressbar = $_GET['progressbar'];
  $seekbar = $_GET['seekbar'];
  $toggle = $_GET['toggle'];
@@ -122,8 +123,34 @@
 
   }
   
+  // ============== cspinner =================== //
+  if (isset($cspinner) && $cspinner == true) {
+    require_once('cspinner/common-cspinner.php');
+    $logger->debug("generate colored spinner");
+  
+    foreach ($cspinner_classes as $clazz) {
+      generateImageOnDisk($clazz, $color, $holo, "cspinner/");
+    }
+    
+    copy_directory("cspinner/res/", $folder."/res/", $holo);
+
+	if ($holo == "dark") {
+		$stylev11 .= '  <style name="Spinner'.$name.'" parent="android:Widget.Holo.Spinner">'."\n";
+        $stylev11 .= '      <item name="android:background">@drawable/spinner_background_holo_dark</item>'."\n";
+        $stylev11 .= '  </style>'."\n\n";
+	} else {
+		$stylev11 .= '  <style name="Spinner'.$name.'" parent="android:Widget.Holo.Light.Spinner">'."\n";
+        $stylev11 .= '      <item name="android:background">@drawable/spinner_background_holo_light</item>'."\n";
+        $stylev11 .= '  </style>'."\n\n";
+	}
+		
+	$style_available = true;
+    
+    $themev11 .= '    <item name="android:dropDownSpinnerStyle">@style/Spinner'.$name.'</item>'."\n\n";    
+  }
+  
   // ============== spinner =================== //
-  if (isset($spinner) && $spinner == true) {
+  if (isset($spinner) && $spinner == true && !isset($cspinner)) {
     require_once('spinner/common-spinner.php');
     $logger->debug("generate spinner");
   
@@ -147,10 +174,9 @@
     
     $themev11 .= '    <item name="android:dropDownSpinnerStyle">@style/Spinner'.$name.'</item>'."\n\n";    
   }
-  
-  
 
   // ============== spinner ab =================== //
+  /*
   if (isset($spinnerab) && $spinnerab == true) {
     require_once('spinnerab/common-spinnerab.php');
     $logger->debug("generate spinner ab");
@@ -169,6 +195,7 @@
     
     $themev11 .= '    <item name="android:actionDropDownStyle">@style/SpinnerActionBar'.$name.'</item>'."\n\n";    
   }
+  */
 
   
   // ============= progressbar ================ //

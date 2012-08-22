@@ -22,7 +22,6 @@
 </head>
   <body>
     <div id="main-container">
-    <a href="https://github.com/jeromevdl/android-holo-colors"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
       <div id="header">
         <h1>Android Holo Colors Generator</h1>
       </div>
@@ -35,7 +34,7 @@
         <p id="page-intro" style="width:820px">
           The <strong>Android Holo Colors Generator</strong> allows you to easily create Android components such as editext or spinner with your own colours for your Android application. It will generate all necessary nine patch assets plus associated XML drawables and styles which you can copy straight into your project. 
         <br/>
-        If you have any question, please refer to the <a href="faq.html">FAQ</a> or <a href="https://github.com/jeromevdl/android-holo-colors/issues">report issues</a>.</p>
+        If you have any question, please refer to the <a href="faq.html">FAQ</a> or <a href="https://github.com/jeromevdl/android-holo-colors/issues" target="_blank">report an issue</a>.</p>
       </div>
       
       <div id="inputs">
@@ -262,6 +261,23 @@
 	      </table>
 	      <br />
 	    </div>
+	    
+	    <div id="block-output-switch" class="bloc-output">
+          Switch :
+          <table class="bloc-output-table">
+              <tr>
+                <td>switch_thumb_activated</td>
+                <td>switch_thumb_pressed</td>
+                <td>switch_bg_focused</td>
+              </tr>
+	          <tr>
+	            <td><div id="output-switch"> </div></td>
+	            <td><div id="output-switch-pressed"> </div></td>
+	            <td><div id="output-switch-bg"> </div></td>
+	          </tr>
+          </table>
+          <br />
+        </div>
       </div>
       
       <!--
@@ -276,8 +292,8 @@
     
 	    <div id="footer">
 		<p>Created by <a href="mailto:jeromevdl@android-holo-colors.com">Jérôme Van Der Linden</a>.</p>
-		<p>Built upon the <a href="http://code.google.com/p/android-ui-utils">android-ui-utils</a> asset studio framework created by <a href="http://roman.nurik.net/">Roman Nurik</a>, copyright Google Inc.</p><br/>
-		<p>All generated art is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>.</p>
+		<p>Built upon the <a href="http://code.google.com/p/android-ui-utils" target="_blank">android-ui-utils</a> asset studio framework created by <a href="http://roman.nurik.net/" target="_blank">Roman Nurik</a>, copyright Google Inc.</p><br/>
+		<p>All generated art is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons Attribution 3.0 Unported License</a>.</p>
 		</div>
 	</div>
     
@@ -293,7 +309,8 @@
       					'cspinner':1, 'cspinner-pressed':1, 'cspinner-focus':1,
       					'progressbar':1, 'progressbar-primary':1, 'progressbar-secondary':1, 
       					'seekbar':1, 'seekbar-pressed':1, 'seekbar-focus':1, 'seekbar-disabled':1, 'seekbar-primary':1, 'seekbar-secondary':1,
-      					'toggle':1, 'toggle-on-focus':1, 'toggle-on-pressed':1, 'toggle-off-focus':1, 'toggle-off-pressed':1, 'toggle-disabled':1, 'toggle-disabled-focus':1, 'toggle-off-disabled-focus':1,  };
+      					'toggle':1, 'toggle-on-focus':1, 'toggle-on-pressed':1, 'toggle-off-focus':1, 'toggle-off-pressed':1, 'toggle-disabled':1, 'toggle-disabled-focus':1, 'toggle-off-disabled-focus':1,
+      					'switch':1, 'switch-pressed':1, 'switch-bg':1  };
       
 	  for (var component in components) {
 	  	var group = studio.ui.createImageOutputGroup({
@@ -320,9 +337,11 @@
 	  	   	if (values['checkbox']) url+='&checkbox=true';
 	  	   	if (values['radio']) url+='&radio=true';
 	  	   	if (values['spinner']) url+='&spinner=true';
+	  	   	if (values['cspinner']) url+='&cspinner=true';
 	  	   	if (values['progressbar']) url+='&progressbar=true';
 	  	   	if (values['seekbar']) url+='&seekbar=true';
 	  	   	if (values['toggle']) url+='&toggle=true';
+	  	   	if (values['switch']) url+='&switch=true';
 			
 			alert(url);
 			
@@ -349,7 +368,7 @@
 
 	  function regenerate() {
 	  	var values = form.getValues();
-	  	
+	  
 	  	$('.out-image-group').toggleClass('dark', values['theme'] == 'dark');
 	    
         var color = values['color'].color;
@@ -458,6 +477,13 @@
 	       
 	       new studio.forms.BooleanField('toggle', {
 	            title: 'Toggle',
+	            defaultValue: false,
+	            offText: 'No',
+	            onText: 'Yes'
+	       }),
+	       
+	       new studio.forms.BooleanField('switch', {
+	            title: 'Switch',
 	            defaultValue: false,
 	            offText: 'No',
 	            onText: 'Yes'

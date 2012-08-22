@@ -5,7 +5,7 @@
 
   require_once($context.'common.php');
   
-  $spinner_classes = array('ColoredSpinner', 'ColoredSpinnerFocus', 'ColoredSpinnerPress');
+  $cspinner_classes = array('ColoredSpinner', 'ColoredSpinnerFocus', 'ColoredSpinnerPress');
 
   /********************************************/
   /*                 SPINNER COLOR            */
