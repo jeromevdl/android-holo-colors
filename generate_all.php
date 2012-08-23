@@ -23,12 +23,14 @@
  $progressbar = $_GET['progressbar'];
  $seekbar = $_GET['seekbar'];
  $toggle = $_GET['toggle'];
+ $switch = $_GET['switch'];
  
  $style = "<!-- Generated with http://android-holo-colors.com -->\n";
  $style .= '<resources xmlns:android="http://schemas.android.com/apk/res/android">'."\n\n";
  
  $stylev11 = $style;
  $style_available = false;
+ $style14_available = false;
  
  if ($holo == 'light') {
  	$themev11 = $style.'  <style name="'.$name.'" parent="android:Theme.Holo.Light">'."\n\n";
@@ -286,26 +288,67 @@
     $themev11 .= '    <item name="android:buttonStyleToggle">@style/Toggle'.$name.'</item>'."\n\n";    
   }
   
+  //  ============== switch ================ //
+   if (isset($switch) && $switch == true) {
+    require_once('switch/common-switch.php');
+    $logger->debug("generate switch");
+  
+    foreach ($switch_classes as $clazz) {
+      generateImageOnDisk($clazz, $color, $holo, "switch/");
+    }
+    
+    copy_directory("switch/res/", $folder."/res/", $holo);
+    
+    $stylev14 = $stylev11;
+	$themev14 = $themev11;
+	
+	if ($holo == "dark") {
+		$stylev14 .= '  <style name="Switch'.$name.'" parent="android:Widget.Holo.CompoundButton.Switch">'."\n";
+	} else {
+		$stylev14 .= '  <style name="Switch'.$name.'" parent="android:Widget.Holo.Light.CompoundButton.Switch">'."\n";
+	}
+    $stylev14 .= '      <item name="android:track">@drawable/switch_track_holo_'.$holo.'</item>'."\n";
+    $stylev14 .= '      <item name="android:thumb">@drawable/switch_inner_holo_'.$holo.'</item>'."\n";
+	$stylev14 .= '  </style>'."\n\n";
+    
+    $style14_available = true;
+    
+    $themev14 .= '    <item name="android:switchStyle">@style/Switch'.$name.'</item>'."\n\n";    
+  }
+  
     
   // ============== theme & style ================ //
   
   $themev11 .= "  </style>\n\n</resources>";
   $stylev11 .= "</resources>";
+  $themev14 .= "  </style>\n\n</resources>";
+  $stylev14 .= "</resources>";
   
   $theme_file = "generated/".$date."/".$_SESSION['id']."/res/values-v11/themes.xml";
-  $logger->debug("generate themes : ".$theme_file);
   $fp = fopen($theme_file, 'w');
   fwrite($fp, $themev11);
   fclose($fp);
-  $logger->debug("generate themes OK");
   
   if ($style_available == true) {
 	  $style_file = "generated/".$date."/".$_SESSION['id']."/res/values-v11/styles.xml";
-	  $logger->debug("generate styles : ".$style_file);
 	  $fp = fopen($style_file, 'w');
 	  fwrite($fp, $stylev11);
 	  fclose($fp);
-	  $logger->debug("generate styles OK");
+  }
+  
+  if ($style14_available == true) {
+	  	$values14 = "generated/".$date."/".$_SESSION['id']."/res/values-v14";
+ 		if (file_exists($values14) == FALSE) {
+  			mkdir($values14, 0777, true);
+  		} 
+  		  $theme_file = "generated/".$date."/".$_SESSION['id']."/res/values-v14/themes.xml";
+		  $fp = fopen($theme_file, 'w');
+		  fwrite($fp, $themev14);
+		  fclose($fp);	
+		  $style_file = "generated/".$date."/".$_SESSION['id']."/res/values-v14/styles.xml";
+		  $fp = fopen($style_file, 'w');
+		  fwrite($fp, $stylev14);
+		  fclose($fp);
   }
   
   // ============== ZIP ====================== //

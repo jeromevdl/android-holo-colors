@@ -5,7 +5,7 @@
 
   require_once($context.'common.php');
   
-  $toggle_classes = array('SwitchThumbActivated', 'SwitchThumbPress', 'SwitchBackground');
+  $switch_classes = array('SwitchThumbActivated', 'SwitchThumbPress', 'SwitchBackground');
 
   /******************************************/
   /*       SWITCH THUMB ACTIVATED          */

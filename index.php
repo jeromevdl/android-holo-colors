@@ -482,12 +482,14 @@
 	            onText: 'Yes'
 	       }),
 	       
+	       /*
 	       new studio.forms.BooleanField('switch', {
 	            title: 'Switch',
 	            defaultValue: false,
 	            offText: 'No',
 	            onText: 'Yes'
 	       }),
+	       */
         ]
       });
       
