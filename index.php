@@ -262,6 +262,23 @@
 	      <br />
 	    </div>
 	    
+	    <div id="block-output-list" class="bloc-output">
+          List selector :
+          <table class="bloc-output-table">
+              <tr>
+                <td>list_pressed</td>
+                <td>list_longpressed</td>
+                <td>list_focused</td>
+              </tr>
+	          <tr>
+	            <td><div id="output-list"> </div></td>
+	            <td><div id="output-list-longpress"> </div></td>
+	            <td><div id="output-list-focus"> </div></td>
+	          </tr>
+          </table>
+          <br />
+        </div>
+	    
 	    <div id="block-output-switch" class="bloc-output">
           Switch :
           <table class="bloc-output-table">
@@ -284,9 +301,7 @@
 	  ratingstar
 	  star
 	  rate star
-	  listselector ?
 	  numberpicker (up/down)
-	  switch
 	  -->
  
     
@@ -310,6 +325,7 @@
       					'progressbar':1, 'progressbar-primary':1, 'progressbar-secondary':1, 
       					'seekbar':1, 'seekbar-pressed':1, 'seekbar-focus':1, 'seekbar-disabled':1, 'seekbar-primary':1, 'seekbar-secondary':1,
       					'toggle':1, 'toggle-on-focus':1, 'toggle-on-pressed':1, 'toggle-off-focus':1, 'toggle-off-pressed':1, 'toggle-disabled':1, 'toggle-disabled-focus':1, 'toggle-off-disabled-focus':1,
+      					'list':1, 'list-longpress':1, 'list-focus':1,
       					'switch':1, 'switch-pressed':1, 'switch-bg':1  };
       
 	  for (var component in components) {
@@ -341,6 +357,7 @@
 	  	   	if (values['progressbar']) url+='&progressbar=true';
 	  	   	if (values['seekbar']) url+='&seekbar=true';
 	  	   	if (values['toggle']) url+='&toggle=true';
+	  	   	if (values['list']) url+='&list=true';
 	  	   	if (values['switch']) url+='&switch=true';
 			
 			alert(url);
@@ -477,6 +494,13 @@
 	       
 	       new studio.forms.BooleanField('toggle', {
 	            title: 'Toggle',
+	            defaultValue: false,
+	            offText: 'No',
+	            onText: 'Yes'
+	       }),
+	       
+	       new studio.forms.BooleanField('list', {
+	            title: 'List Selector',
 	            defaultValue: false,
 	            offText: 'No',
 	            onText: 'Yes'

@@ -23,6 +23,7 @@
  $progressbar = $_GET['progressbar'];
  $seekbar = $_GET['seekbar'];
  $toggle = $_GET['toggle'];
+ $list = $_GET['list'];
  $switch = $_GET['switch'];
  
  $style = "<!-- Generated with http://android-holo-colors.com -->\n";
@@ -286,6 +287,20 @@
     $style_available = true;
     
     $themev11 .= '    <item name="android:buttonStyleToggle">@style/Toggle'.$name.'</item>'."\n\n";    
+  }
+  
+  //  ============== list selector ================ //
+   if (isset($list) && $list == true) {
+    require_once('list/common-list.php');
+    $logger->debug("generate list");
+  
+    foreach ($list_classes as $clazz) {
+      generateImageOnDisk($clazz, $color, $holo, "list/");
+    }
+    
+    copy_directory("list/res/", $folder."/res/", $holo);
+    
+    $themev11 .= '     <item name="android:listChoiceBackgroundIndicator">@drawable/list_selector_holo_'.$holo.'</item>'."\n\n";    
   }
   
   //  ============== switch ================ //
