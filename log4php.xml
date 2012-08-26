@@ -3,7 +3,7 @@
         <param name="file" value="/Users/jva/Developpement/php/android-holo-colors/logs/myLog.log" />
     </appender>
     <root>
-        <level value="DEBUG" />
+        <level value="WARN" />
         <appender_ref ref="myAppender" />
     </root>
 </configuration>
