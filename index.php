@@ -10,6 +10,12 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title>Android Holo Colors</title>
     
+    <meta name="keywords" content="android,holo,holo colors,widget colors,custom spinner,custom edittext,custom checkbox,custom radio,custom progressbar,custom seekbar" />
+	<meta name="description" content="The Android Holo Colors Generator allows you to easily create Android widgets with your own colours for your Android application." />
+	<meta name="robots" content="index, no follow" />
+	<meta name="author" content="Jerome Van Der Linden" />
+    
+    <link rel="shortcut icon" href="favicon.ico" />
     <link rel="stylesheet" href="include/lib/cssreset-3.4.1.min.css" />
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto" />
     <link rel="stylesheet" href="include/css/studio.css" />
@@ -19,6 +25,26 @@
     <script src="include/lib/spectrum/spectrum.js"></script>
     <script src="include/js/asset-studio.pack.js"></script>
     
+    <!-- Analytics -->
+    <script type="text/javascript">
+	
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-34362324-1']);
+	  _gaq.push(['_trackPageview']);
+	
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	
+	</script>
+	
+	<!-- Share This -->
+	<script type="text/javascript">var switchTo5x=true;</script>
+	<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+	<script type="text/javascript">stLight.options({publisher: "ed3a7034-081d-4179-9fad-3ea83de87da2"}); </script>
+
 </head>
   <body>
     <div id="main-container">
@@ -42,7 +68,7 @@
       </div>
       <div id="outputs">
 		<h3>
-		<a class="dragout form-button" onclick="javascript:downloadFile();">Download .ZIP</a>
+			<a class="dragout form-button" onclick="javascript:downloadFile();">Download .ZIP</a>
 		</h3>
         <div id="block-output-edittext" class="bloc-output">
           EditText :
@@ -309,6 +335,17 @@
 		<p>Created by <a href="mailto:jeromevdl@android-holo-colors.com">Jérôme Van Der Linden</a>.</p>
 		<p>Built upon the <a href="http://code.google.com/p/android-ui-utils" target="_blank">android-ui-utils</a> asset studio framework created by <a href="http://roman.nurik.net/" target="_blank">Roman Nurik</a>, copyright Google Inc.</p><br/>
 		<p>All generated art is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons Attribution 3.0 Unported License</a>.</p>
+		<br/><br/>
+			<div align="center" >
+				<span class='st_twitter_hcount' displayText='Tweet'></span>
+				<span class='st_plusone_hcount' displayText='Google +1'></span>
+				<span class='st_googleplus_hcount' displayText='Google +'></span>
+				<span class='st_facebook_hcount' displayText='Facebook'></span>
+				<span class='st_linkedin_hcount' displayText='LinkedIn'></span>
+				<span class='st_yammer_hcount' displayText='Yammer'></span>
+				<span class='st_delicious_hcount' displayText='Delicious'></span>
+				<span class='st_email_hcount' displayText='Email'></span>
+			</div>
 		</div>
 	</div>
     
