@@ -1,6 +1,6 @@
 <?
   if (!isset($context))
-    $context = "../";
+    $context = "../../";
   
   require_once($context.'common.php');
   

@@ -411,7 +411,7 @@
 		var table = comp.split(reg);
 		component = table[0];
 	  	if (values[component]) {
-	            $('#out-' + comp + '-' + density).attr('src', component+"/"+component+".php?color="+ color +"&size=" + density + "&holo=" + values['theme'] + "&action=display&component=" + comp);
+	            $('#out-' + comp + '-' + density).attr('src', "widgets/"+component+"/"+component+".php?color="+ color +"&size=" + density + "&holo=" + values['theme'] + "&action=display&component=" + comp);
 	            $('#out-' + comp + '-' + density).css('display', 'inline-block');
 	            $('#block-output-' + comp).css('display', 'inline-block');
 	          } else {

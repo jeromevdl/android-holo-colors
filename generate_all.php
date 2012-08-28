@@ -58,57 +58,57 @@
 
   // ============== edittext =================== //
   if (isset($edittext) && $edittext == true) {
-    require_once('edittext/common-edittext.php');
+    require_once('widgets/edittext/common-edittext.php');
     $logger->debug("generate edittext");
   
     foreach ($edittext_classes as $clazz) {
-      generateImageOnDisk($clazz, $color, $holo, "edittext/");
+      generateImageOnDisk($clazz, $color, $holo, "widgets/edittext/");
     }
     
-    copy_directory("edittext/res/", $folder."/res/", $holo);
+    copy_directory("widgets/edittext/res/", $folder."/res/", $holo);
     
     $themev11 .= '    <item name="android:editTextBackground">@drawable/edit_text_holo_'.$holo.'</item>'."\n\n";
   }
   
   // ============== checkbox =================== //
   if (isset($checkbox) && $checkbox == true) {
-    require_once('checkbox/common-checkbox.php');
+    require_once('widgets/checkbox/common-checkbox.php');
     $logger->debug("generate checkbox");
   
     foreach ($checkbox_classes as $clazz) {
-      generateImageOnDisk($clazz, $color, $holo, "checkbox/");
+      generateImageOnDisk($clazz, $color, $holo, "widgets/checkbox/");
     }
     
-    copy_directory("checkbox/res/", $folder."/res/", $holo);
+    copy_directory("widgets/checkbox/res/", $folder."/res/", $holo);
     
     $themev11 .= '    <item name="android:listChoiceIndicatorMultiple">@drawable/btn_check_holo_'.$holo.'</item>'."\n\n";    
   }
 
   // ============== radio =================== //
   if (isset($radio) && $radio == true) {
-    require_once('radio/common-radio.php');
+    require_once('widgets/radio/common-radio.php');
     $logger->debug("generate radio");
   
   
     foreach ($radio_classes as $clazz) {
-      generateImageOnDisk($clazz, $color, $holo, "radio/");
+      generateImageOnDisk($clazz, $color, $holo, "widgets/radio/");
     }
     
-    copy_directory("radio/res/", $folder."/res/", $holo);
+    copy_directory("widgets/radio/res/", $folder."/res/", $holo);
     
     $themev11 .= '     <item name="android:listChoiceIndicatorSingle">@drawable/btn_radio_holo_'.$holo.'</item>'."\n\n"; 
   }
   
   // ============== button =================== //
   if (isset($button) && $button == true) {
-    require_once('button/common-button.php');
+    require_once('widgets/button/common-button.php');
     $logger->debug("generate button");
   
     foreach ($button_classes as $clazz) {
-      generateImageOnDisk($clazz, $color, $holo, "button/");
+      generateImageOnDisk($clazz, $color, $holo, "widgets/button/");
     }
     
-    copy_directory("button/res/", $folder."/res/", $holo);
+    copy_directory("widgets/button/res/", $folder."/res/", $holo);
         
     if ($holo == "dark") {
 		$stylev11 .= '  <style name="Button'.$name.'" parent="android:Widget.Holo.Button">'."\n";
@@ -128,14 +128,14 @@
   
   // ============== cspinner =================== //
   if (isset($cspinner) && $cspinner == true) {
-    require_once('cspinner/common-cspinner.php');
+    require_once('widgets/cspinner/common-cspinner.php');
     $logger->debug("generate colored spinner");
   
     foreach ($cspinner_classes as $clazz) {
-      generateImageOnDisk($clazz, $color, $holo, "cspinner/");
+      generateImageOnDisk($clazz, $color, $holo, "widgets/cspinner/");
     }
     
-    copy_directory("cspinner/res/", $folder."/res/", $holo);
+    copy_directory("widgets/cspinner/res/", $folder."/res/", $holo);
 
 	if ($holo == "dark") {
 		$stylev11 .= '  <style name="Spinner'.$name.'" parent="android:Widget.Holo.Spinner">'."\n";
@@ -154,14 +154,14 @@
   
   // ============== spinner =================== //
   if (isset($spinner) && $spinner == true && !isset($cspinner)) {
-    require_once('spinner/common-spinner.php');
+    require_once('widgets/spinner/common-spinner.php');
     $logger->debug("generate spinner");
   
     foreach ($spinner_classes as $clazz) {
-      generateImageOnDisk($clazz, $color, $holo, "spinner/");
+      generateImageOnDisk($clazz, $color, $holo, "widgets/spinner/");
     }
     
-    copy_directory("spinner/res/", $folder."/res/", $holo);
+    copy_directory("widgets/spinner/res/", $folder."/res/", $holo);
 
 	if ($holo == "dark") {
 		$stylev11 .= '  <style name="Spinner'.$name.'" parent="android:Widget.Holo.Spinner">'."\n";
@@ -188,7 +188,7 @@
       generateImageOnDisk($clazz, $color, $holo, "spinnerab/");
     }
     
-    copy_directory("spinnerab/res/", $folder."/res/", $holo);
+    copy_directory("widgets/spinnerab/res/", $folder."/res/", $holo);
 
 	$stylev11 .= '  <style name="SpinnerActionBar'.$name.'">'."\n";
 	$stylev11 .= '      <item name="android:background">@adrawable/spinner_ab_holo_'.$holo.'</item>'."\n";
@@ -203,14 +203,14 @@
   
   // ============= progressbar ================ //
   if (isset($progressbar) && $progressbar == true) {
-  	require_once('progressbar/common-progressbar.php');
+  	require_once('widgets/progressbar/common-progressbar.php');
   	
   	$logger->debug("generate progressbar");
   
   	$img_sizes = array('mdpi', 'hdpi', 'xhdpi');
   	
   	for ($i = 1; $i <= 8 ; $i++) {  	  
-	  $pb = new ProgressBar("progressbar/", $i);
+	  $pb = new ProgressBar("widgets/progressbar/", $i);
 	 	  	  
 	  foreach ($img_sizes as $img_size) {
 	  	 $pb->generate_image($color, $img_size, $holo);
@@ -218,10 +218,10 @@
   	}
   	
   	foreach ($progressbar_classes as $clazz) {
-      generateImageOnDisk($clazz, $color, $holo, "progressbar/");
+      generateImageOnDisk($clazz, $color, $holo, "widgets/progressbar/");
     }
   	
-  	copy_directory("progressbar/res/", $folder."/res/", $holo);
+  	copy_directory("widgets/progressbar/res/", $folder."/res/", $holo);
     
     
 	if ($holo == "dark") {
@@ -241,14 +241,14 @@
   
   //  ============== seekbar ================ //
    if (isset($seekbar) && $seekbar == true) {
-    require_once('seekbar/common-seekbar.php');
+    require_once('widgets/seekbar/common-seekbar.php');
     $logger->debug("generate seekbar");
   
     foreach ($seekbar_classes as $clazz) {
-      generateImageOnDisk($clazz, $color, $holo, "seekbar/");
+      generateImageOnDisk($clazz, $color, $holo, "widgets/seekbar/");
     }
     
-    copy_directory("seekbar/res/", $folder."/res/", $holo);
+    copy_directory("widgets/seekbar/res/", $folder."/res/", $holo);
 
 	if ($holo == "dark") {
 		$stylev11 .= '  <style name="SeekBar'.$name.'" parent="android:Widget.Holo.SeekBar">'."\n";
@@ -267,14 +267,14 @@
   
   //  ============== toggle ================ //
    if (isset($toggle) && $toggle == true) {
-    require_once('toggle/common-toggle.php');
+    require_once('widgets/toggle/common-toggle.php');
     $logger->debug("generate toggle");
   
     foreach ($toggle_classes as $clazz) {
-      generateImageOnDisk($clazz, $color, $holo, "toggle/");
+      generateImageOnDisk($clazz, $color, $holo, "widgets/toggle/");
     }
     
-    copy_directory("toggle/res/", $folder."/res/", $holo);
+    copy_directory("widgets/toggle/res/", $folder."/res/", $holo);
 
 	if ($holo == "dark") {
 		$stylev11 .= '  <style name="Toggle'.$name.'" parent="android:Widget.Holo.Button.Toggle">'."\n";
@@ -291,28 +291,28 @@
   
   //  ============== list selector ================ //
    if (isset($list) && $list == true) {
-    require_once('list/common-list.php');
+    require_once('widgets/list/common-list.php');
     $logger->debug("generate list");
   
     foreach ($list_classes as $clazz) {
-      generateImageOnDisk($clazz, $color, $holo, "list/");
+      generateImageOnDisk($clazz, $color, $holo, "widgets/list/");
     }
     
-    copy_directory("list/res/", $folder."/res/", $holo);
+    copy_directory("widgets/list/res/", $folder."/res/", $holo);
     
     $themev11 .= '     <item name="android:listChoiceBackgroundIndicator">@drawable/list_selector_holo_'.$holo.'</item>'."\n\n";    
   }
   
   //  ============== switch ================ //
    if (isset($switch) && $switch == true) {
-    require_once('switch/common-switch.php');
+    require_once('widgets/switch/common-switch.php');
     $logger->debug("generate switch");
   
     foreach ($switch_classes as $clazz) {
-      generateImageOnDisk($clazz, $color, $holo, "switch/");
+      generateImageOnDisk($clazz, $color, $holo, "widgets/switch/");
     }
     
-    copy_directory("switch/res/", $folder."/res/", $holo);
+    copy_directory("widgets/switch/res/", $folder."/res/", $holo);
     
     $stylev14 = $stylev11;
 	$themev14 = $themev11;
