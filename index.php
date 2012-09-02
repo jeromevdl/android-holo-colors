@@ -68,7 +68,7 @@
       </div>
       <div id="outputs">
 		<h3>
-			<a class="dragout form-button" onclick="javascript:downloadFile();">Download .ZIP</a>
+			Output resources: <a class="dragout form-button" onclick="javascript:downloadFile();">Download .ZIP</a>
 		</h3>
         <div id="block-output-edittext" class="bloc-output">
           EditText :
@@ -304,6 +304,42 @@
           </table>
           <br />
         </div>
+        
+         <div id="block-output-numberpicker" class="bloc-output">
+          Numberpicker :
+          <table class="bloc-output-table">
+              <tr>
+                <td>numberpicker_up_pressed</td>
+                <td>numberpicker_up_longpressed</td>
+                <td>numberpicker_up_focused</td>
+                <td>numberpicker_up_disabled_focused</td>
+                <td>numberpicker_divider</td>
+              </tr>
+	          <tr>
+	            <td><div id="output-numberpicker-up"> </div></td>
+	            <td><div id="output-numberpicker-up-longpressed"> </div></td>
+	            <td><div id="output-numberpicker-up-focus"> </div></td>
+	            <td><div id="output-numberpicker-up-disabled-focus"> </div></td>
+	            <td><div id="output-numberpicker-divider"> </div></td>
+	          </tr>
+	          <tr>
+                <td>numberpicker_down_pressed</td>
+                <td>numberpicker_down_longpressed</td>
+                <td>numberpicker_down_focused</td>
+                <td>numberpicker_down_disabled_focused</td>
+                 <td></td>
+              </tr>
+	          <tr>
+	            <td><div id="output-numberpicker"> </div></td>
+	            <td><div id="output-numberpicker-down-longpressed"> </div></td>
+	            <td><div id="output-numberpicker-down-focus"> </div></td>
+	            <td><div id="output-numberpicker-down-disabled-focus"> </div></td>
+	             <td></td>
+	          </tr>
+          </table>
+          <br />
+        </div>
+        
 	    
 	    <div id="block-output-switch" class="bloc-output">
           Switch :
@@ -324,12 +360,13 @@
       </div>
       
       <!--
+      TODO:
 	  ratingstar
 	  star
 	  rate star
 	  numberpicker (up/down)
+	  textview_search
 	  -->
- 
     
 	    <div id="footer">
 		<p>Created by <a href="mailto:jeromevdl@android-holo-colors.com">Jérôme Van Der Linden</a>.</p>
@@ -363,6 +400,7 @@
       					'seekbar':1, 'seekbar-pressed':1, 'seekbar-focus':1, 'seekbar-disabled':1, 'seekbar-primary':1, 'seekbar-secondary':1,
       					'toggle':1, 'toggle-on-focus':1, 'toggle-on-pressed':1, 'toggle-off-focus':1, 'toggle-off-pressed':1, 'toggle-disabled':1, 'toggle-disabled-focus':1, 'toggle-off-disabled-focus':1,
       					'list':1, 'list-longpress':1, 'list-focus':1,
+      					'numberpicker':1, 'numberpicker-down-longpressed':1, 'numberpicker-down-focus':1, 'numberpicker-down-disabled-focus':1, 'numberpicker-up':1, 'numberpicker-up-longpressed':1, 'numberpicker-up-focus':1, 'numberpicker-up-disabled-focus':1, 'numberpicker-divider':1,
       					'switch':1, 'switch-pressed':1, 'switch-bg':1  };
       
 	  for (var component in components) {
@@ -395,6 +433,7 @@
 	  	   	if (values['seekbar']) url+='&seekbar=true';
 	  	   	if (values['toggle']) url+='&toggle=true';
 	  	   	if (values['list']) url+='&list=true';
+	  	   	if (values['numberpicker']) url+='&numberpicker=true';
 	  	   	if (values['switch']) url+='&switch=true';
 			
 			alert(url);
@@ -542,6 +581,15 @@
 	            offText: 'No',
 	            onText: 'Yes'
 	       }),
+	       
+	       /*
+	       new studio.forms.BooleanField('numberpicker', {
+	            title: 'Numberpicker',
+	            defaultValue: false,
+	            offText: 'No',
+	            onText: 'Yes'
+	       }),
+	       */
 	       
 	       /*
 	       new studio.forms.BooleanField('switch', {

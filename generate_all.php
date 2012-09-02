@@ -24,6 +24,7 @@
  $seekbar = $_GET['seekbar'];
  $toggle = $_GET['toggle'];
  $list = $_GET['list'];
+ $numberpicker = $_GET['numberpicker'];
  $switch = $_GET['switch'];
  
  $style = "<!-- Generated with http://android-holo-colors.com -->\n";
@@ -303,6 +304,48 @@
     $themev11 .= '     <item name="android:listChoiceBackgroundIndicator">@drawable/list_selector_holo_'.$holo.'</item>'."\n\n";    
   }
   
+    //  ============== numberpicker ================ //
+   if (isset($numberpicker) && $numberpicker == true) {
+    require_once('widgets/numberpicker/common-numberpicker.php');
+    $logger->debug("generate numberpicker");
+  
+    foreach ($numberpicker_classes as $clazz) {
+      generateImageOnDisk($clazz, $color, $holo, "widgets/numberpicker/");
+    }
+    
+    copy_directory("widgets/numberpicker/res/", $folder."/res/", $holo);
+
+	if ($holo == "dark") {
+		$stylev11 .= '  <style name="NumberPicker'.$name.'" parent="android:Widget.Holo.NumberPicker">'."\n";
+	} else {
+		$stylev11 .= '  <style name="NumberPicker'.$name.'" parent="android:Widget.Holo.Light.NumberPicker">'."\n";
+	}
+    $stylev11 .= '      <item name="android:selectionDivider">@drawable/numberpicker_selection_divider</item>'."\n";
+	$stylev11 .= '  </style>'."\n\n";
+	
+	if ($holo == "dark") {
+		$stylev11 .= '  <style name="NumberPickerButtonUp'.$name.'" parent="android:Widget.Holo.ImageButton.NumberPickerUpButton">'."\n";
+	} else {
+		$stylev11 .= '  <style name="NumberPickerButtonUp'.$name.'" parent="android:Widget.Holo.Light.ImageButton.NumberPickerUpButton">'."\n";
+	}
+    $stylev11 .= '      <item name="android:src">@drawable/numberpicker_up_btn_holo_'.$holo.'</item>'."\n";
+	$stylev11 .= '  </style>'."\n\n";
+    
+    if ($holo == "dark") {
+		$stylev11 .= '  <style name="NumberPickerButtonDown'.$name.'" parent="android:Widget.Holo.ImageButton.NumberPickerDownButton">'."\n";
+	} else {
+		$stylev11 .= '  <style name="NumberPickerButtonDown'.$name.'" parent="android:Widget.Holo.Light.ImageButton.NumberPickerDownButton">'."\n";
+	}
+    $stylev11 .= '      <item name="android:src">@drawable/numberpicker_down_btn_holo_'.$holo.'</item>'."\n";
+	$stylev11 .= '  </style>'."\n\n";
+    
+    $style_available = true;
+    
+    $themev11 .= '    <item name="numberPickerUpButtonStyle">@style/NumberPickerButtonUp'.$name.'</item>'."\n";   
+    $themev11 .= '    <item name="numberPickerDownButtonStyle">@style/NumberPickerButtonDown'.$name.'</item>'."\n";
+    $themev11 .= '    <item name="numberPickerStyle">@style/NumberPicker'.$name.'</item>'."\n\n";
+  }
+  
   //  ============== switch ================ //
    if (isset($switch) && $switch == true) {
     require_once('widgets/switch/common-switch.php');
@@ -410,6 +453,15 @@
 	   **********************************/	  
 	  function generateFolders($date) {
 	  		$drawable = "generated/".$date."/".$_SESSION['id']."/res/drawable";
+	  		if (file_exists($drawable."-mdpi") == FALSE) {
+	  			mkdir($drawable."-mdpi", 0777, true);
+	  		}
+	  		if (file_exists($drawable."-xhdpi") == FALSE) {
+	  			mkdir($drawable."-xhdpi", 0777, true);
+	  		}
+	  		if (file_exists($drawable."-hdpi") == FALSE) {
+	  			mkdir($drawable."-hdpi", 0777, true);
+	  		}
 	  		if (file_exists($drawable) == FALSE) {
 	  			mkdir($drawable, 0777, true);
 	  		}
