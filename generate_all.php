@@ -418,7 +418,7 @@
   if (Zip($folder, $zipname)) {
   	header('Set-Cookie: fileDownload=true'); 
   	header("Content-type: application/zip" );
-  	header('Content-Disposition: attachment; filename="android-holo-colors.zip"');
+  	header('Content-Disposition: attachment; filename="android-holo-colors-'.$name.'.zip"');
 	header('Content-Length: ' . filesize($zipname));
 	header("Expires: 0");
 	header("Cache-Control: no-cache, must-revalidate");
