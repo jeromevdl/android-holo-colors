@@ -70,6 +70,7 @@
 		<h3>
 			Output resources: <a class="dragout form-button" onclick="javascript:downloadFile();">Download .ZIP</a>
 		</h3>
+		<i>(zip file contains a "res" folder)</i><br/><br/>
         <div id="block-output-edittext" class="bloc-output">
           EditText :
           <table class="bloc-output-table">
