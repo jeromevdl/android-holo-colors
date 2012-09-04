@@ -75,7 +75,7 @@
 	  		$id = $_SESSION['id'];
 	  		date_default_timezone_set('UTC');
 	  		$date = date("Ymd");
-	  		$folder = $_SERVER['DOCUMENT_ROOT']."/generated/".$date."/".$_SESSION['id']."/res/drawable-".$size;
+	  		$folder = getcwd()."/generated/".$date."/".$_SESSION['id']."/res/drawable-".$size;
 	  		if (file_exists($folder) == FALSE) {
 	  			mkdir($folder, 0777, true);
 	  		}

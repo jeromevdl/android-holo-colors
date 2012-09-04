@@ -45,7 +45,7 @@
 	// empty folders
 	date_default_timezone_set('UTC');
 	$date = date("Ymd"); 
-	$root_folder = $_SERVER['DOCUMENT_ROOT']."/generated/".$date."/".$_SESSION['id'];
+	$root_folder = getcwd()."/generated/".$date."/".$_SESSION['id'];
 	if (file_exists($root_folder.".zip")) {
 		unlink($root_folder.".zip");
 	}
@@ -53,7 +53,7 @@
 	
 	date_default_timezone_set('UTC');
     $date = date("Ymd"); 
-    $folder = $_SERVER['DOCUMENT_ROOT']."/generated/".$date."/".$_SESSION['id'];
+    $folder = getcwd()."/generated/".$date."/".$_SESSION['id'];
 	
 	generateFolders($date);
 
@@ -412,7 +412,7 @@
   }
   
   // ============== ZIP ====================== //
-  $zipname = $_SERVER['DOCUMENT_ROOT']."/generated/".$date."/".$_SESSION['id'].".zip";
+  $zipname = getcwd()."/generated/".$date."/".$_SESSION['id'].".zip";
   $logger->debug("preparing zip ".$zipname);
   		  
   if (Zip($folder, $zipname)) {
@@ -454,7 +454,7 @@
 	   *
 	   **********************************/	  
 	  function generateFolders($date) {
-	  		$drawable = $_SERVER['DOCUMENT_ROOT']."/generated/".$date."/".$_SESSION['id']."/res/drawable";
+	  		$drawable = getcwd()."/generated/".$date."/".$_SESSION['id']."/res/drawable";
 	  		if (file_exists($drawable."-mdpi") == FALSE) {
 	  			mkdir($drawable."-mdpi", 0777, true);
 	  		}
@@ -467,7 +467,7 @@
 	  		if (file_exists($drawable) == FALSE) {
 	  			mkdir($drawable, 0777, true);
 	  		}
-	  		$values11 = $_SERVER['DOCUMENT_ROOT']."/generated/".$date."/".$_SESSION['id']."/res/values-v11";
+	  		$values11 = getcwd()."/generated/".$date."/".$_SESSION['id']."/res/values-v11";
 	  		if (file_exists($values11) == FALSE) {
 	  			mkdir($values11, 0777, true);
 	  		}  
