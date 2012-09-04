@@ -424,23 +424,26 @@
 	    	}
 
 	  	    var url = 'generate_all.php?color='+color+'&holo='+values['theme']+'&name='+values['name'];
-	  	   	if (values['edittext']) url+='&edittext=true';
-	  	   	if (values['button']) url+='&button=true';
-	  	   	if (values['checkbox']) url+='&checkbox=true';
-	  	   	if (values['radio']) url+='&radio=true';
-	  	   	if (values['spinner']) url+='&spinner=true';
-	  	   	if (values['cspinner']) url+='&cspinner=true';
-	  	   	if (values['progressbar']) url+='&progressbar=true';
-	  	   	if (values['seekbar']) url+='&seekbar=true';
-	  	   	if (values['toggle']) url+='&toggle=true';
-	  	   	if (values['list']) url+='&list=true';
-	  	   	if (values['numberpicker']) url+='&numberpicker=true';
-	  	   	if (values['switch']) url+='&switch=true';
+	  	    var okForDownload = false;
+	  	   	if (values['edittext']) { url+='&edittext=true'; okForDownload= true}
+	  	   	if (values['button']) { url+='&button=true'; okForDownload= true}
+	  	   	if (values['checkbox']) { url+='&checkbox=true'; okForDownload= true}
+	  	   	if (values['radio']) { url+='&radio=true'; okForDownload= true}
+	  	   	if (values['spinner']) { url+='&spinner=true'; okForDownload= true}
+	  	   	if (values['cspinner']) { url+='&cspinner=true'; okForDownload= true}
+	  	   	if (values['progressbar']) { url+='&progressbar=true'; okForDownload= true}
+	  	   	if (values['seekbar']) { url+='&seekbar=true'; okForDownload= true}
+	  	   	if (values['toggle']) { url+='&toggle=true'; okForDownload= true}
+	  	   	if (values['list']) { url+='&list=true'; okForDownload= true}
+	  	   	if (values['numberpicker']) { url+='&numberpicker=true'; okForDownload= true}
+	  	   	if (values['switch']) { url+='&switch=true'; okForDownload= true}
 			
-			// alert(url);
-			
-			$("#frame_download").attr("src", url);
-	  	    
+			//alert(url);
+			if (okForDownload) {
+				$("#frame_download").attr("src", url);
+			} else {
+				alert('Please select at least one widget to generate (click YES above)');
+			}  	    
 	        return false;
 	    }
 	    
