@@ -45,7 +45,7 @@
 	// empty folders
 	date_default_timezone_set('UTC');
 	$date = date("Ymd"); 
-	$root_folder = "generated/".$date."/".$_SESSION['id'];
+	$root_folder = $_SERVER['DOCUMENT_ROOT']."/generated/".$date."/".$_SESSION['id'];
 	if (file_exists($root_folder.".zip")) {
 		unlink($root_folder.".zip");
 	}
@@ -53,7 +53,7 @@
 	
 	date_default_timezone_set('UTC');
     $date = date("Ymd"); 
-    $folder = "generated/".$date."/".$_SESSION['id'];
+    $folder = $_SERVER['DOCUMENT_ROOT']."/generated/".$date."/".$_SESSION['id'];
 	
 	generateFolders($date);
 
@@ -372,6 +372,9 @@
     $style14_available = true;
     
     $themev14 .= '    <item name="android:switchStyle">@style/Switch'.$name.'</item>'."\n\n";    
+    
+    $themev14 .= "  </style>\n\n</resources>";
+    $stylev14 .= "</resources>";
   }
   
     
@@ -379,8 +382,7 @@
   
   $themev11 .= "  </style>\n\n</resources>";
   $stylev11 .= "</resources>";
-  $themev14 .= "  </style>\n\n</resources>";
-  $stylev14 .= "</resources>";
+
   
   $theme_file = "generated/".$date."/".$_SESSION['id']."/res/values-v11/themes.xml";
   $fp = fopen($theme_file, 'w');
@@ -410,7 +412,7 @@
   }
   
   // ============== ZIP ====================== //
-  $zipname = "generated/".$date."/".$_SESSION['id'].".zip";
+  $zipname = $_SERVER['DOCUMENT_ROOT']."/generated/".$date."/".$_SESSION['id'].".zip";
   $logger->debug("preparing zip ".$zipname);
   		  
   if (Zip($folder, $zipname)) {
@@ -452,7 +454,7 @@
 	   *
 	   **********************************/	  
 	  function generateFolders($date) {
-	  		$drawable = "generated/".$date."/".$_SESSION['id']."/res/drawable";
+	  		$drawable = $_SERVER['DOCUMENT_ROOT']."/generated/".$date."/".$_SESSION['id']."/res/drawable";
 	  		if (file_exists($drawable."-mdpi") == FALSE) {
 	  			mkdir($drawable."-mdpi", 0777, true);
 	  		}
@@ -465,7 +467,7 @@
 	  		if (file_exists($drawable) == FALSE) {
 	  			mkdir($drawable, 0777, true);
 	  		}
-	  		$values11 = "generated/".$date."/".$_SESSION['id']."/res/values-v11";
+	  		$values11 = $_SERVER['DOCUMENT_ROOT']."/generated/".$date."/".$_SESSION['id']."/res/values-v11";
 	  		if (file_exists($values11) == FALSE) {
 	  			mkdir($values11, 0777, true);
 	  		}  
@@ -521,15 +523,18 @@
 		        foreach ($files as $file)
 		        {
 		            $file = str_replace('\\', '/', realpath($file));
+		            
+		            if (strstr($file, "res/")) {
 		
-		            if (is_dir($file) === true)
-		            {
-		                $zip->addEmptyDir(str_replace($source . '/', '', $file . '/'));
-		            }
-		            else if (is_file($file) === true)
-		            {
-		                $zip->addFromString(str_replace($source . '/', '', $file), file_get_contents($file));
-		            }
+			            if (is_dir($file) === true)
+			            {
+			                $zip->addEmptyDir(str_replace($source . '/', '', $file . '/'));
+			            }
+			            else if (is_file($file) === true)
+			            {
+			                $zip->addFromString(str_replace($source . '/', '', $file), file_get_contents($file));
+			            }
+		        	}
 		        }
 		    }
 		    else if (is_file($source) === true)

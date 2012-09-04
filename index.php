@@ -436,7 +436,7 @@
 	  	   	if (values['numberpicker']) url+='&numberpicker=true';
 	  	   	if (values['switch']) url+='&switch=true';
 			
-			alert(url);
+			// alert(url);
 			
 			$("#frame_download").attr("src", url);
 	  	    
