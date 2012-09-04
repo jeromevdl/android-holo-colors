@@ -97,7 +97,7 @@
     
     copy_directory("widgets/radio/res/", $folder."/res/", $holo);
     
-    $themev11 .= '     <item name="android:listChoiceIndicatorSingle">@drawable/btn_radio_holo_'.$holo.'</item>'."\n\n"; 
+    $themev11 .= '    <item name="android:listChoiceIndicatorSingle">@drawable/btn_radio_holo_'.$holo.'</item>'."\n\n"; 
   }
   
   // ============== button =================== //
@@ -123,7 +123,7 @@
     
 	$style_available = true;
 	
-	$themev11 .= '     <item name="android:buttonStyle">@style/Button'.$name.'</item>'."\n\n";
+	$themev11 .= '    <item name="android:buttonStyle">@style/Button'.$name.'</item>'."\n\n";
 
   }
   
@@ -236,7 +236,7 @@
     
     $style_available = true;
     
-    $themev11 .= '     <item name="android:progressBarStyleHorizontal">@style/ProgressBar'.$name.'</item>'."\n\n";
+    $themev11 .= '    <item name="android:progressBarStyleHorizontal">@style/ProgressBar'.$name.'</item>'."\n\n";
     
   }
   
@@ -301,7 +301,7 @@
     
     copy_directory("widgets/list/res/", $folder."/res/", $holo);
     
-    $themev11 .= '     <item name="android:listChoiceBackgroundIndicator">@drawable/list_selector_holo_'.$holo.'</item>'."\n\n";    
+    $themev11 .= '    <item name="android:listChoiceBackgroundIndicator">@drawable/list_selector_holo_'.$holo.'</item>'."\n\n";    
   }
   
     //  ============== numberpicker ================ //
