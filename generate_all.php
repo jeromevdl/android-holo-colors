@@ -115,15 +115,24 @@
 		$stylev11 .= '  <style name="Button'.$name.'" parent="android:Widget.Holo.Button">'."\n";
 		$stylev11 .= '	  <item name="android:background">@drawable/btn_default_holo_dark</item>'."\n";
 		$stylev11 .= '  </style>'."\n\n";
+		
+		$stylev11 .= '  <style name="ImageButton'.$name.'" parent="android:Widget.Holo.ImageButton">'."\n";
+	    $stylev11 .= '	  <item name="android:background">@drawable/btn_default_holo_dark</item>'."\n";
+	    $stylev11 .= '  </style>'."\n\n";
     } else {
     	$stylev11 .= '  <style name="Button'.$name.'" parent="android:Widget.Holo.Light.Button">'."\n";
 		$stylev11 .= '	  <item name="android:background">@drawable/btn_default_holo_light</item>'."\n";
 		$stylev11 .= '  </style>'."\n\n";
+		
+		$stylev11 .= '  <style name="ImageButton'.$name.'" parent="android:Widget.Holo.Light.ImageButton">'."\n";
+	    $stylev11 .= '	  <item name="android:background">@drawable/btn_default_holo_light</item>'."\n";
+	    $stylev11 .= '  </style>'."\n\n";
     }
     
 	$style_available = true;
 	
 	$themev11 .= '    <item name="android:buttonStyle">@style/Button'.$name.'</item>'."\n\n";
+	$themev11 .= '    <item name="android:imageButtonStyle">@style/ImageButton'.$name.'</item>'."\n\n";
 
   }
   
