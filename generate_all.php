@@ -27,18 +27,25 @@
  $numberpicker = $_GET['numberpicker'];
  $switch = $_GET['switch'];
  
- $style = "<!-- Generated with http://android-holo-colors.com -->\n";
+ $style = '<?xml version="1.0" encoding="utf-8"?>'."\n\n";
+ $style .= "<!-- Generated with http://android-holo-colors.com -->\n";
  $style .= '<resources xmlns:android="http://schemas.android.com/apk/res/android">'."\n\n";
  
  $stylev11 = $style;
- $style_available = false;
+ $stylev8 = $style;
+ 
+ $style8_available = false;
+ $style11_available = false;
  $style14_available = false;
  
  if ($holo == 'light') {
  	$themev11 = $style.'  <style name="'.$name.'" parent="android:Theme.Holo.Light">'."\n\n";
+ 	$themev8 = $style.'  <style name="'.$name.'" parent="android:Theme.Light">'."\n\n";
  } else {
  	$themev11 = $style.'  <style name="'.$name.'" parent="android:Theme.Holo">'."\n\n";
+ 	$themev8 = $style.'  <style name="'.$name.'" parent="android:Theme">'."\n\n";
  }
+ 
 	// empty input
 	$_GET = array();
 	 
@@ -68,8 +75,15 @@
     
     copy_directory("widgets/edittext/res/", $folder."/res/", $holo);
     
+    $stylev8 .= '  <style name="EditText'.$name.'" parent="android:Widget.EditText">'."\n";
+    $stylev8 .= '	  <item name="android:background">@drawable/edit_text_holo_'.$holo.'</item>'."\n";
+    $stylev8 .= '  </style>'."\n\n"; 
+    
+	$style8_available = true;
+    
     $themev11 .= '    <item name="android:editTextBackground">@drawable/edit_text_holo_'.$holo.'</item>'."\n\n";
-  }
+    $themev8 .= '    <item name="android:editTextStyle">@style/EditText'.$name.'</item>'."\n\n";
+   }
   
   // ============== checkbox =================== //
   if (isset($checkbox) && $checkbox == true) {
@@ -82,7 +96,14 @@
     
     copy_directory("widgets/checkbox/res/", $folder."/res/", $holo);
     
-    $themev11 .= '    <item name="android:listChoiceIndicatorMultiple">@drawable/btn_check_holo_'.$holo.'</item>'."\n\n";    
+    $stylev8 .= '  <style name="CheckBox'.$name.'" parent="android:Widget.CompoundButton.CheckBox">'."\n";
+    $stylev8 .= '      <item name="android:button">@drawable/btn_check_holo_'.$holo.'</item>'."\n";
+    $stylev8 .= '  </style>'."\n\n";
+    
+    $style8_available = true;
+    
+    $themev11 .= '    <item name="android:listChoiceIndicatorMultiple">@drawable/btn_check_holo_'.$holo.'</item>'."\n\n";
+    $themev8 .= '    <item name="android:checkboxStyle">@style/CheckBox'.$name.'</item>'."\n\n";  
   }
 
   // ============== radio =================== //
@@ -97,7 +118,14 @@
     
     copy_directory("widgets/radio/res/", $folder."/res/", $holo);
     
-    $themev11 .= '    <item name="android:listChoiceIndicatorSingle">@drawable/btn_radio_holo_'.$holo.'</item>'."\n\n"; 
+    $stylev8 .= '  <style name="RadioButton'.$name.'" parent="android:Widget.CompoundButton.RadioButton">'."\n";
+    $stylev8 .= '      <item name="android:button">@drawable/btn_radio_holo_'.$holo.'</item>'."\n";
+    $stylev8 .= '  </style>'."\n\n";
+    
+    $style8_available = true;
+    
+    $themev11 .= '    <item name="android:listChoiceIndicatorSingle">@drawable/btn_radio_holo_'.$holo.'</item>'."\n\n";
+    $themev8 .= '    <item name="android:radioButtonStyle">@style/RadioButton'.$name.'</item>'."\n\n"; 
   }
   
   // ============== button =================== //
@@ -119,6 +147,8 @@
 		$stylev11 .= '  <style name="ImageButton'.$name.'" parent="android:Widget.Holo.ImageButton">'."\n";
 	    $stylev11 .= '	  <item name="android:background">@drawable/btn_default_holo_dark</item>'."\n";
 	    $stylev11 .= '  </style>'."\n\n";
+	    
+	    $button_image = "btn_default_holo_dark";
     } else {
     	$stylev11 .= '  <style name="Button'.$name.'" parent="android:Widget.Holo.Light.Button">'."\n";
 		$stylev11 .= '	  <item name="android:background">@drawable/btn_default_holo_light</item>'."\n";
@@ -127,12 +157,28 @@
 		$stylev11 .= '  <style name="ImageButton'.$name.'" parent="android:Widget.Holo.Light.ImageButton">'."\n";
 	    $stylev11 .= '	  <item name="android:background">@drawable/btn_default_holo_light</item>'."\n";
 	    $stylev11 .= '  </style>'."\n\n";
+	    
+	    $button_image = "btn_default_holo_light";
     }
     
-	$style_available = true;
+    $stylev8 .= '  <style name="Button'.$name.'" parent="android:Widget.Button">'."\n";
+    $stylev8 .= '	  <item name="android:background">@drawable/'.$button_image.'</item>'."\n";
+    $stylev8 .= '	  <item name="android:minHeight">48dip</item>'."\n";
+    $stylev8 .= '	  <item name="android:minWidth">64dip</item>'."\n";
+    $stylev8 .= '  </style>'."\n\n";
+    
+    $stylev8 .= '  <style name="ImageButton'.$name.'" parent="android:Widget.ImageButton">'."\n";
+	$stylev8 .= '	  <item name="android:background">@drawable/'.$button_image.'</item>'."\n";
+	$stylev8 .= '  </style>'."\n\n"; 
+    
+	$style11_available = true;
+	$style8_available = true;
 	
 	$themev11 .= '    <item name="android:buttonStyle">@style/Button'.$name.'</item>'."\n\n";
 	$themev11 .= '    <item name="android:imageButtonStyle">@style/ImageButton'.$name.'</item>'."\n\n";
+	
+	$themev8 .= '    <item name="android:buttonStyle">@style/Button'.$name.'</item>'."\n\n";
+	$themev8 .= '    <item name="android:imageButtonStyle">@style/ImageButton'.$name.'</item>'."\n\n";
 
   }
   
@@ -146,20 +192,6 @@
     }
     
     copy_directory("widgets/cspinner/res/", $folder."/res/", $holo);
-
-	if ($holo == "dark") {
-		$stylev11 .= '  <style name="Spinner'.$name.'" parent="android:Widget.Holo.Spinner">'."\n";
-        $stylev11 .= '      <item name="android:background">@drawable/spinner_background_holo_dark</item>'."\n";
-        $stylev11 .= '  </style>'."\n\n";
-	} else {
-		$stylev11 .= '  <style name="Spinner'.$name.'" parent="android:Widget.Holo.Light.Spinner">'."\n";
-        $stylev11 .= '      <item name="android:background">@drawable/spinner_background_holo_light</item>'."\n";
-        $stylev11 .= '  </style>'."\n\n";
-	}
-		
-	$style_available = true;
-    
-    $themev11 .= '    <item name="android:dropDownSpinnerStyle">@style/Spinner'.$name.'</item>'."\n\n";    
   }
   
   // ============== spinner =================== //
@@ -173,42 +205,38 @@
     
     copy_directory("widgets/spinner/res/", $folder."/res/", $holo);
 
-	if ($holo == "dark") {
+  }
+  
+  // ============ cspinnner & spinner ============= //
+  if ((isset($spinner) && $spinner == true) || (isset($cspinner) && $cspinner == true)) {
+    if ($holo == "dark") {
 		$stylev11 .= '  <style name="Spinner'.$name.'" parent="android:Widget.Holo.Spinner">'."\n";
-        $stylev11 .= '      <item name="android:background">@drawable/spinner_background_holo_dark</item>'."\n";
+        $stylev11 .= '      <item name="android:background">@drawable/spinner_background_holo_'.$holo.'</item>'."\n";
+        // <item name="android:dropDownSelector">@android:drawable/list_selector_holo_dark</item>
         $stylev11 .= '  </style>'."\n\n";
 	} else {
 		$stylev11 .= '  <style name="Spinner'.$name.'" parent="android:Widget.Holo.Light.Spinner">'."\n";
-        $stylev11 .= '      <item name="android:background">@drawable/spinner_background_holo_light</item>'."\n";
+        $stylev11 .= '      <item name="android:background">@drawable/spinner_background_holo_'.$holo.'</item>'."\n";
+        // <item name="android:dropDownSelector">@android:drawable/list_selector_holo_light</item>
         $stylev11 .= '  </style>'."\n\n";
 	}
-		
-	$style_available = true;
+	
+	$stylev8 .= '  <style name="Spinner'.$name.'" parent="android:Widget.Spinner">'."\n";
+    $stylev8 .= '      <item name="android:background">@drawable/spinner_background_holo_'.$holo.'</item>'."\n";
+    // <item name="android:dropDownSelector">@android:drawable/list_selector_holo_light</item>
+    $stylev8 .= '  </style>'."\n\n";
     
-    $themev11 .= '    <item name="android:dropDownSpinnerStyle">@style/Spinner'.$name.'</item>'."\n\n";    
-  }
+    $stylev8 .= '  <style name="Spinner'.$name.'.DropDown">'."\n";
+    $stylev8 .= '      <item name="android:spinnerMode">dropdown</item>'."\n";
+    $stylev8 .= '  </style>'."\n\n";
 
-  // ============== spinner ab =================== //
-  /*
-  if (isset($spinnerab) && $spinnerab == true) {
-    require_once('spinnerab/common-spinnerab.php');
-    $logger->debug("generate spinner ab");
-  
-    foreach ($spinnerab_classes as $clazz) {
-      generateImageOnDisk($clazz, $color, $holo, "spinnerab/");
-    }
+	$style11_available = true;
+	$style8_available = true;
     
-    copy_directory("widgets/spinnerab/res/", $folder."/res/", $holo);
-
-	$stylev11 .= '  <style name="SpinnerActionBar'.$name.'">'."\n";
-	$stylev11 .= '      <item name="android:background">@adrawable/spinner_ab_holo_'.$holo.'</item>'."\n";
-	$stylev11 .= '  </style>'."\n\n";
-    
-    $style_available = true;
-    
-    $themev11 .= '    <item name="android:actionDropDownStyle">@style/SpinnerActionBar'.$name.'</item>'."\n\n";    
-  }
-  */
+    $themev11 .= '    <item name="android:dropDownSpinnerStyle">@style/Spinner'.$name.'</item>'."\n\n";
+    $themev8 .= '    <item name="android:spinnerStyle">@style/Spinner'.$name.'</item>'."\n\n";
+    $themev8 .= '    <item name="android:dropDownSpinnerStyle">@style/Spinner'.$name.'.DropDown</item>'."\n\n";
+  }  
 
   
   // ============= progressbar ================ //
@@ -243,10 +271,18 @@
     $stylev11 .= '      <item name="android:indeterminateDrawable">@drawable/progress_indeterminate_horizontal_holo_'.$holo.'</item>'."\n";
     $stylev11 .= '  </style>'."\n\n";
     
-    $style_available = true;
+    $stylev8 .= '  <style name="ProgressBar'.$name.'" parent="android:Widget.ProgressBar.Horizontal">'."\n";
+    $stylev8 .= '      <item name="android:progressDrawable">@drawable/progress_horizontal_holo_'.$holo.'</item>'."\n";
+    $stylev8 .= '      <item name="android:indeterminateDrawable">@drawable/progress_indeterminate_horizontal_holo_'.$holo.'</item>'."\n";
+    $stylev8 .= '      <item name="android:minHeight">16dip</item>'."\n";
+    $stylev8 .= '      <item name="android:maxHeight">16dip</item>'."\n";
+    $stylev8 .= '  </style>'."\n\n";
+    
+    $style11_available = true;
+	$style8_available = true;
     
     $themev11 .= '    <item name="android:progressBarStyleHorizontal">@style/ProgressBar'.$name.'</item>'."\n\n";
-    
+    $themev8 .= '    <item name="android:progressBarStyleHorizontal">@style/ProgressBar'.$name.'</item>'."\n\n";
   }
   
   //  ============== seekbar ================ //
@@ -270,7 +306,8 @@
     $stylev11 .= '      <item name="android:thumb">@drawable/scrubber_control_selector_holo_'.$holo.'</item>'."\n";
 	$stylev11 .= '  </style>'."\n\n";
     
-    $style_available = true;
+    $style11_available = true;
+	$style8_available = true;
     
     $themev11 .= '    <item name="android:seekBarStyle">@style/SeekBar'.$name.'</item>'."\n\n";    
   }
@@ -294,7 +331,8 @@
     $stylev11 .= '      <item name="android:background">@drawable/btn_toggle_holo_'.$holo.'</item>'."\n";
 	$stylev11 .= '  </style>'."\n\n";
     
-    $style_available = true;
+    $style11_available = true;
+	$style8_available = true;
     
     $themev11 .= '    <item name="android:buttonStyleToggle">@style/Toggle'.$name.'</item>'."\n\n";    
   }
@@ -314,6 +352,7 @@
   }
   
     //  ============== numberpicker ================ //
+   /*
    if (isset($numberpicker) && $numberpicker == true) {
     require_once('widgets/numberpicker/common-numberpicker.php');
     $logger->debug("generate numberpicker");
@@ -348,14 +387,17 @@
     $stylev11 .= '      <item name="android:src">@drawable/numberpicker_down_btn_holo_'.$holo.'</item>'."\n";
 	$stylev11 .= '  </style>'."\n\n";
     
-    $style_available = true;
+    $style11_available = true;
+	$style8_available = true;
     
     $themev11 .= '    <item name="numberPickerUpButtonStyle">@style/NumberPickerButtonUp'.$name.'</item>'."\n";   
     $themev11 .= '    <item name="numberPickerDownButtonStyle">@style/NumberPickerButtonDown'.$name.'</item>'."\n";
     $themev11 .= '    <item name="numberPickerStyle">@style/NumberPicker'.$name.'</item>'."\n\n";
   }
+  */
   
   //  ============== switch ================ //
+  /*
    if (isset($switch) && $switch == true) {
     require_once('widgets/switch/common-switch.php');
     $logger->debug("generate switch");
@@ -385,12 +427,16 @@
     $themev14 .= "  </style>\n\n</resources>";
     $stylev14 .= "</resources>";
   }
+  */
   
     
   // ============== theme & style ================ //
   
   $themev11 .= "  </style>\n\n</resources>";
   $stylev11 .= "</resources>";
+  
+  $themev8 .= "  </style>\n\n</resources>";
+  $stylev8 .= "</resources>";
 
   
   $theme_file = "generated/".$date."/".$_SESSION['id']."/res/values-v11/".strtolower($name)."_themes.xml";
@@ -398,7 +444,19 @@
   fwrite($fp, $themev11);
   fclose($fp);
   
-  if ($style_available == true) {
+  $theme_file = "generated/".$date."/".$_SESSION['id']."/res/values/".strtolower($name)."_themes.xml";
+  $fp = fopen($theme_file, 'w');
+  fwrite($fp, $themev8);
+  fclose($fp);
+  
+  if ($style8_available == true) {
+	  $style_file = "generated/".$date."/".$_SESSION['id']."/res/values/".strtolower($name)."_styles.xml";
+	  $fp = fopen($style_file, 'w');
+	  fwrite($fp, $stylev8);
+	  fclose($fp);
+  }
+  
+  if ($style11_available == true) {
 	  $style_file = "generated/".$date."/".$_SESSION['id']."/res/values-v11/".strtolower($name)."_styles.xml";
 	  $fp = fopen($style_file, 'w');
 	  fwrite($fp, $stylev11);
@@ -476,10 +534,14 @@
 	  		if (file_exists($drawable) == FALSE) {
 	  			mkdir($drawable, 0777, true);
 	  		}
+	  		$values = getcwd()."/generated/".$date."/".$_SESSION['id']."/res/values";
+	  		if (file_exists($values) == FALSE) {
+	  			mkdir($values, 0777, true);
+	  		}
 	  		$values11 = getcwd()."/generated/".$date."/".$_SESSION['id']."/res/values-v11";
 	  		if (file_exists($values11) == FALSE) {
 	  			mkdir($values11, 0777, true);
-	  		}  
+	  		} 
 	  }
 
 	  /**********************************
