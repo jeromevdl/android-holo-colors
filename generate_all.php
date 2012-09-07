@@ -393,13 +393,13 @@
   $stylev11 .= "</resources>";
 
   
-  $theme_file = "generated/".$date."/".$_SESSION['id']."/res/values-v11/themes.xml";
+  $theme_file = "generated/".$date."/".$_SESSION['id']."/res/values-v11/".strtolower($name)."_themes.xml";
   $fp = fopen($theme_file, 'w');
   fwrite($fp, $themev11);
   fclose($fp);
   
   if ($style_available == true) {
-	  $style_file = "generated/".$date."/".$_SESSION['id']."/res/values-v11/styles.xml";
+	  $style_file = "generated/".$date."/".$_SESSION['id']."/res/values-v11/".strtolower($name)."_styles.xml";
 	  $fp = fopen($style_file, 'w');
 	  fwrite($fp, $stylev11);
 	  fclose($fp);
@@ -410,11 +410,11 @@
  		if (file_exists($values14) == FALSE) {
   			mkdir($values14, 0777, true);
   		} 
-  		  $theme_file = "generated/".$date."/".$_SESSION['id']."/res/values-v14/themes.xml";
+  		  $theme_file = "generated/".$date."/".$_SESSION['id']."/res/values-v14/".strtolower($name)."_themes.xml";
 		  $fp = fopen($theme_file, 'w');
 		  fwrite($fp, $themev14);
 		  fclose($fp);	
-		  $style_file = "generated/".$date."/".$_SESSION['id']."/res/values-v14/styles.xml";
+		  $style_file = "generated/".$date."/".$_SESSION['id']."/res/values-v14/".strtolower($name)."_styles.xml";
 		  $fp = fopen($style_file, 'w');
 		  fwrite($fp, $stylev14);
 		  fclose($fp);
