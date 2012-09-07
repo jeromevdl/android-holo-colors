@@ -83,6 +83,8 @@
     
     $themev11 .= '    <item name="android:editTextBackground">@drawable/edit_text_holo_'.$holo.'</item>'."\n\n";
     $themev8 .= '    <item name="android:editTextStyle">@style/EditText'.$name.'</item>'."\n\n";
+    
+    // TODO: autocomplete
    }
   
   // ============== checkbox =================== //
@@ -107,7 +109,8 @@
   }
 
   // ============== radio =================== //
-  if (isset($radio) && $radio == true) {
+  // spinner before v11 needs radio button in the dropdown
+  if ((isset($radio) && $radio == true) || ((isset($spinner) && $spinner == true) || (isset($cspinner) && $cspinner == true))) {
     require_once('widgets/radio/common-radio.php');
     $logger->debug("generate radio");
   
@@ -118,14 +121,16 @@
     
     copy_directory("widgets/radio/res/", $folder."/res/", $holo);
     
-    $stylev8 .= '  <style name="RadioButton'.$name.'" parent="android:Widget.CompoundButton.RadioButton">'."\n";
-    $stylev8 .= '      <item name="android:button">@drawable/btn_radio_holo_'.$holo.'</item>'."\n";
-    $stylev8 .= '  </style>'."\n\n";
-    
-    $style8_available = true;
-    
-    $themev11 .= '    <item name="android:listChoiceIndicatorSingle">@drawable/btn_radio_holo_'.$holo.'</item>'."\n\n";
-    $themev8 .= '    <item name="android:radioButtonStyle">@style/RadioButton'.$name.'</item>'."\n\n"; 
+    if (isset($radio) && $radio == true) {
+	    $stylev8 .= '  <style name="RadioButton'.$name.'" parent="android:Widget.CompoundButton.RadioButton">'."\n";
+	    $stylev8 .= '      <item name="android:button">@drawable/btn_radio_holo_'.$holo.'</item>'."\n";
+	    $stylev8 .= '  </style>'."\n\n";
+	    
+	    $style8_available = true;
+	    
+	    $themev11 .= '    <item name="android:listChoiceIndicatorSingle">@drawable/btn_radio_holo_'.$holo.'</item>'."\n\n";
+	    $themev8 .= '    <item name="android:radioButtonStyle">@style/RadioButton'.$name.'</item>'."\n\n";
+    }
   }
   
   // ============== button =================== //
@@ -212,23 +217,27 @@
     if ($holo == "dark") {
 		$stylev11 .= '  <style name="Spinner'.$name.'" parent="android:Widget.Holo.Spinner">'."\n";
         $stylev11 .= '      <item name="android:background">@drawable/spinner_background_holo_'.$holo.'</item>'."\n";
-        // <item name="android:dropDownSelector">@android:drawable/list_selector_holo_dark</item>
+        // TODO <item name="android:dropDownSelector">@android:drawable/list_selector_holo_dark</item>
         $stylev11 .= '  </style>'."\n\n";
 	} else {
 		$stylev11 .= '  <style name="Spinner'.$name.'" parent="android:Widget.Holo.Light.Spinner">'."\n";
         $stylev11 .= '      <item name="android:background">@drawable/spinner_background_holo_'.$holo.'</item>'."\n";
-        // <item name="android:dropDownSelector">@android:drawable/list_selector_holo_light</item>
+        // TODO <item name="android:dropDownSelector">@android:drawable/list_selector_holo_light</item>
         $stylev11 .= '  </style>'."\n\n";
 	}
 	
 	$stylev8 .= '  <style name="Spinner'.$name.'" parent="android:Widget.Spinner">'."\n";
     $stylev8 .= '      <item name="android:background">@drawable/spinner_background_holo_'.$holo.'</item>'."\n";
-    // <item name="android:dropDownSelector">@android:drawable/list_selector_holo_light</item>
+    // TODO <item name="android:dropDownSelector">@android:drawable/list_selector_holo_light</item>
     $stylev8 .= '  </style>'."\n\n";
     
     $stylev8 .= '  <style name="Spinner'.$name.'.DropDown">'."\n";
     $stylev8 .= '      <item name="android:spinnerMode">dropdown</item>'."\n";
     $stylev8 .= '  </style>'."\n\n";
+
+	$stylev8 .= '  <style name="SpinnerItem'.$name.'" parent="android:Widget.DropDownItem.Spinner">'."\n";
+    $stylev8 .= '      <item name="android:checkMark">@drawable/btn_radio_holo_'.$holo.'</item>'."\n";
+    $stylev8 .= '  </style>'."\n";
 
 	$style11_available = true;
 	$style8_available = true;
@@ -236,6 +245,7 @@
     $themev11 .= '    <item name="android:dropDownSpinnerStyle">@style/Spinner'.$name.'</item>'."\n\n";
     $themev8 .= '    <item name="android:spinnerStyle">@style/Spinner'.$name.'</item>'."\n\n";
     $themev8 .= '    <item name="android:dropDownSpinnerStyle">@style/Spinner'.$name.'.DropDown</item>'."\n\n";
+    $themev8 .= '    <item name="android:spinnerDropDownItemStyle">@style/SpinnerItem'.$name.'</item>'."\n\n";
   }  
 
   
@@ -305,11 +315,23 @@
     $stylev11 .= '      <item name="android:indeterminateDrawable">@drawable/scrubber_progress_horizontal_holo_'.$holo.'</item>'."\n";
     $stylev11 .= '      <item name="android:thumb">@drawable/scrubber_control_selector_holo_'.$holo.'</item>'."\n";
 	$stylev11 .= '  </style>'."\n\n";
+	
+	$stylev8 .= '  <style name="SeekBar'.$name.'" parent="android:Widget.SeekBar">'."\n";
+	$stylev8 .= '      <item name="android:progressDrawable">@drawable/scrubber_progress_horizontal_holo_'.$holo.'</item>'."\n";
+    $stylev8 .= '      <item name="android:indeterminateDrawable">@drawable/scrubber_progress_horizontal_holo_'.$holo.'</item>'."\n";
+    $stylev8 .= '      <item name="android:minHeight">13dip</item>'."\n";
+    $stylev8 .= '      <item name="android:maxHeight">13dip</item>'."\n";
+    $stylev8 .= '      <item name="android:thumb">@drawable/scrubber_control_selector_holo_'.$holo.'</item>'."\n";
+    $stylev8 .= '      <item name="android:thumbOffset">16dip</item>'."\n";
+    $stylev8 .= '      <item name="android:paddingLeft">16dip</item>'."\n";
+    $stylev8 .= '      <item name="android:paddingRight">16dip</item>'."\n";
+    $stylev8 .= '  </style>'."\n\n";
     
     $style11_available = true;
 	$style8_available = true;
     
-    $themev11 .= '    <item name="android:seekBarStyle">@style/SeekBar'.$name.'</item>'."\n\n";    
+    $themev11 .= '    <item name="android:seekBarStyle">@style/SeekBar'.$name.'</item>'."\n\n"; 
+    $themev8 .= '    <item name="android:seekBarStyle">@style/SeekBar'.$name.'</item>'."\n\n";    
   }
   
   //  ============== toggle ================ //
@@ -330,11 +352,17 @@
 	}
     $stylev11 .= '      <item name="android:background">@drawable/btn_toggle_holo_'.$holo.'</item>'."\n";
 	$stylev11 .= '  </style>'."\n\n";
+	
+	$stylev8 .= '  <style name="Toggle'.$name.'" parent="android:Widget.Button.Toggle">'."\n";
+    $stylev8 .= '      <item name="android:background">@drawable/btn_toggle_holo_'.$holo.'</item>'."\n";
+    $stylev8 .= '      <item name="android:minHeight">48dip</item>'."\n";
+    $stylev8 .= '  </style>'."\n\n";
     
     $style11_available = true;
 	$style8_available = true;
     
-    $themev11 .= '    <item name="android:buttonStyleToggle">@style/Toggle'.$name.'</item>'."\n\n";    
+    $themev11 .= '    <item name="android:buttonStyleToggle">@style/Toggle'.$name.'</item>'."\n\n";
+    $themev8 .= '    <item name="android:buttonStyleToggle">@style/Toggle'.$name.'</item>'."\n\n";
   }
   
   //  ============== list selector ================ //
@@ -348,7 +376,18 @@
     
     copy_directory("widgets/list/res/", $folder."/res/", $holo);
     
-    $themev11 .= '    <item name="android:listChoiceBackgroundIndicator">@drawable/list_selector_holo_'.$holo.'</item>'."\n\n";    
+    $stylev8 .= '  <style name="ListView'.$name.'" parent="android:Widget.ListView">'."\n";
+    $stylev8 .= '      <item name="android:listSelector">@drawable/list_selector_holo_'.$holo.'</item>'."\n";
+    $stylev8 .= '  </style>'."\n\n";
+    
+    $stylev8 .= '  <style name="ListView'.$name.'.White" parent="android:Widget.ListView.White">'."\n";
+    $stylev8 .= '      <item name="android:listSelector">@drawable/list_selector_holo_'.$holo.'</item>'."\n";
+    $stylev8 .= '  </style>'."\n\n";
+    
+    $themev11 .= '    <item name="android:listChoiceBackgroundIndicator">@drawable/list_selector_holo_'.$holo.'</item>'."\n\n";
+    $themev8 .= '    <item name="android:listViewStyle">@style/ListView'.$name.'</item>'."\n\n";
+    $themev8 .= '    <item name="android:listViewWhiteStyle">@style/ListView'.$name.'.White</item>'."\n\n";
+    // TODO dropdown, expandable...    
   }
   
     //  ============== numberpicker ================ //
