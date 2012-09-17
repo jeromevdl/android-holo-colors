@@ -170,6 +170,11 @@
     $stylev8 .= '	  <item name="android:background">@drawable/'.$button_image.'</item>'."\n";
     $stylev8 .= '	  <item name="android:minHeight">48dip</item>'."\n";
     $stylev8 .= '	  <item name="android:minWidth">64dip</item>'."\n";
+    if ($holo == "dark") {
+    	$stylev8 .= '	  <item name="android:textColor">#ffffff</item>'."\n";
+    } else {
+    	$stylev8 .= '	  <item name="android:textColor">#000000</item>'."\n";
+    }
     $stylev8 .= '  </style>'."\n\n";
     
     $stylev8 .= '  <style name="ImageButton'.$name.'" parent="android:Widget.ImageButton">'."\n";
@@ -356,6 +361,10 @@
 	$stylev8 .= '  <style name="Toggle'.$name.'" parent="android:Widget.Button.Toggle">'."\n";
     $stylev8 .= '      <item name="android:background">@drawable/btn_toggle_holo_'.$holo.'</item>'."\n";
     $stylev8 .= '      <item name="android:minHeight">48dip</item>'."\n";
+    if ($holo == "dark") {
+    	// TODO : replace with selector
+    	$stylev8 .= '	  <item name="android:textColor">#ffffff</item>'."\n";
+    }
     $stylev8 .= '  </style>'."\n\n";
     
     $style11_available = true;
@@ -387,6 +396,15 @@
     $themev11 .= '    <item name="android:listChoiceBackgroundIndicator">@drawable/list_selector_holo_'.$holo.'</item>'."\n\n";
     $themev8 .= '    <item name="android:listViewStyle">@style/ListView'.$name.'</item>'."\n\n";
     $themev8 .= '    <item name="android:listViewWhiteStyle">@style/ListView'.$name.'.White</item>'."\n\n";
+    
+    if ($holo == "dark") {
+	    $stylev8 .= '  <style name="SpinnerItem'.$name.'" parent="android:TextAppearance.Widget.TextView.SpinnerItem">'."\n";
+    	// TODO : replace with selector
+	    $stylev8 .= '      <item name="android:textColor">#ffffff</item>'."\n";
+	    $stylev8 .= '  </style>'."\n\n";
+	    $themev8 .= '    <item name="android:spinnerItemStyle">@style/SpinnerItem'.$name.'</item>'."\n\n";
+    }
+    
     // TODO dropdown, expandable...    
   }
   

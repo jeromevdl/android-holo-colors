@@ -252,6 +252,33 @@
 	      <br />
 	    </div>
 	    
+	    <div id="block-output-ratingbar" class="bloc-output">
+          RatingBar :
+          <table class="bloc-output-table">
+          	  <tr>
+                <td>btn_rating_star_on</td>
+                <td>btn_rating_star_on_focused</td>
+                <td>btn_rating_star_on_pressed</td>
+              </tr>
+	          <tr>
+	            <td><div id="output-ratingbar"> </div></td>
+	            <td><div id="output-ratingbar-on-focus"> </div></td>
+	            <td><div id="output-ratingbar-on-pressed"> </div></td>
+	           </tr>
+	           <tr>
+                <td>btn_rating_star_off</td>
+                <td>btn_rating_star_off_focused</td>
+                <td>btn_rating_star_off_pressed</td>
+              </tr>
+	           <tr>
+	            <td><div id="output-ratingbar-off"> </div></td>
+	            <td><div id="output-ratingbar-off-focus"> </div></td>
+	            <td><div id="output-ratingbar-off-pressed"> </div></td>
+	          </tr>
+	      </table>
+	      <br />
+	    </div>
+	    
 	    <div id="block-output-toggle" class="bloc-output">
           Toggle:
           <table class="bloc-output-table">
@@ -365,7 +392,6 @@
 	  ratingstar
 	  star
 	  rate star
-	  numberpicker (up/down)
 	  textview_search
 	  -->
     
@@ -401,6 +427,7 @@
       					'seekbar':1, 'seekbar-pressed':1, 'seekbar-focus':1, 'seekbar-disabled':1, 'seekbar-primary':1, 'seekbar-secondary':1,
       					'toggle':1, 'toggle-on-focus':1, 'toggle-on-pressed':1, 'toggle-off-focus':1, 'toggle-off-pressed':1, 'toggle-disabled':1, 'toggle-disabled-focus':1, 'toggle-off-disabled-focus':1,
       					'list':1, 'list-longpress':1, 'list-focus':1,
+      					'ratingbar':1, 'ratingbar-on-focus':1, 'ratingbar-on-pressed':1, 'ratingbar-off':1, 'ratingbar-off-focus':1, 'ratingbar-off-pressed':1, 
       					'numberpicker':1, 'numberpicker-down-longpressed':1, 'numberpicker-down-focus':1, 'numberpicker-down-disabled-focus':1, 'numberpicker-up':1, 'numberpicker-up-longpressed':1, 'numberpicker-up-focus':1, 'numberpicker-up-disabled-focus':1, 'numberpicker-divider':1,
       					'switch':1, 'switch-pressed':1, 'switch-bg':1  };
       
@@ -435,10 +462,12 @@
 	  	   	if (values['seekbar']) { url+='&seekbar=true'; okForDownload= true}
 	  	   	if (values['toggle']) { url+='&toggle=true'; okForDownload= true}
 	  	   	if (values['list']) { url+='&list=true'; okForDownload= true}
+	  	   	if (values['ratingbar']) { url+='&ratingbar=true'; okForDownload= true}
 	  	   	if (values['numberpicker']) { url+='&numberpicker=true'; okForDownload= true}
 	  	   	if (values['switch']) { url+='&switch=true'; okForDownload= true}
 			
-			//alert(url);
+			alert(url);
+			
 			if (okForDownload) {
 				$("#frame_download").attr("src", url);
 			} else {
@@ -567,6 +596,13 @@
 	       
 	       new studio.forms.BooleanField('seekbar', {
 	            title: 'SeekBar',
+	            defaultValue: false,
+	            offText: 'No',
+	            onText: 'Yes'
+	       }),
+	       
+	       new studio.forms.BooleanField('ratingbar', {
+	            title: 'RatingBar',
 	            defaultValue: false,
 	            offText: 'No',
 	            onText: 'Yes'
