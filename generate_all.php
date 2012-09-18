@@ -21,6 +21,7 @@
  $spinner = $_GET['spinner'];
  $cspinner = $_GET['cspinner'];
  $progressbar = $_GET['progressbar'];
+ $ratingbar = $_GET['ratingbar'];
  $seekbar = $_GET['seekbar'];
  $toggle = $_GET['toggle'];
  $list = $_GET['list'];
@@ -339,8 +340,34 @@
     $themev8 .= '    <item name="android:seekBarStyle">@style/SeekBar'.$name.'</item>'."\n\n";    
   }
   
+  //  ============== ratingbar ================ //
+  if (isset($ratingbar) && $ratingbar == true) {
+    require_once('widgets/ratingbar/common-ratingbar.php');
+    $logger->debug("generate ratingbar");
+  
+    foreach ($ratingbar_classes as $clazz) {
+      generateImageOnDisk($clazz, $color, $holo, "widgets/ratingbar/");
+    }
+    
+    copy_directory("widgets/ratingbar/res/", $folder."/res/", $holo);
+    
+    if ($holo == "dark") {
+      $stylev11 .= '  <style name="RatingBar'.$name.'" parent="android:Widget.Holo.RatingBar">'."\n";
+    } else {
+       $stylev11 .= '  <style name="RatingBar'.$name.'" parent="android:Widget.Holo.Light.RatingBar">'."\n";	
+    }
+    $stylev11 .= '      <item name="android:progressDrawable">@drawable/ratingbar_full_holo_'.$holo.'</item>'."\n";
+    $stylev11 .= '      <item name="android:indeterminateDrawable">@drawable/ratingbar_full_holo_'.$holo.'</item>'."\n";
+    $stylev11 .= '  </style>'."\n\n";
+    $style11_available = true;
+    
+    // TODO : v8
+    
+    $themev11 .= '    <item name="android:ratingBarStyle">@style/RatingBar'.$name.'</item>'."\n\n";
+  }
+  
   //  ============== toggle ================ //
-   if (isset($toggle) && $toggle == true) {
+  if (isset($toggle) && $toggle == true) {
     require_once('widgets/toggle/common-toggle.php');
     $logger->debug("generate toggle");
   
