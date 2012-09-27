@@ -279,6 +279,40 @@
 	      <br />
 	    </div>
 	    
+	    <div id="block-output-ratingstarbig" class="bloc-output">
+          RatingBar Big :
+          <table class="bloc-output-table">
+          	  <tr>
+                <td>btn_rating_star_on</td>
+                <td>btn_rating_star_half</td>
+                <td style="width:120px">&nbsp;</td>
+              </tr>
+	          <tr>
+	            <td><div id="output-ratingstarbig"> </div></td>
+	            <td><div id="output-ratingstarbig-half"> </div></td>
+	            <td></td>
+	           </tr>
+	      </table>
+	      <br />
+	    </div>
+	    
+	   	<div id="block-output-ratingstarsmall" class="bloc-output">
+          RatingBar Small :
+          <table class="bloc-output-table">
+          	  <tr>
+                <td>btn_rating_star_on</td>
+                <td>btn_rating_star_half</td>
+                <td style="width:120px">&nbsp;</td>
+              </tr>
+	          <tr>
+	            <td><div id="output-ratingstarsmall"> </div></td>
+	            <td><div id="output-ratingstarsmall-half"> </div></td>
+	            <td></td>
+	           </tr>
+	      </table>
+	      <br />
+	    </div>
+	    
 	    <div id="block-output-toggle" class="bloc-output">
           Toggle:
           <table class="bloc-output-table">
@@ -323,11 +357,30 @@
                 <td>list_pressed</td>
                 <td>list_longpressed</td>
                 <td>list_focused</td>
+                <td style="width:120px">&nbsp;</td>
               </tr>
 	          <tr>
 	            <td><div id="output-list"> </div></td>
 	            <td><div id="output-list-longpress"> </div></td>
 	            <td><div id="output-list-focus"> </div></td>
+	            <td></td>
+	          </tr>
+          </table>
+          <br />
+        </div>
+        
+        <div id="block-output-search" class="bloc-output">
+          Search edittext :
+          <table class="bloc-output-table">
+              <tr>
+                <td>textfield_search_selected</td>
+                <td>textfield_search_right_selected</td>
+                <td style="width:120px">&nbsp;</td>
+              </tr>
+	          <tr>
+	            <td><div id="output-search"> </div></td>
+	            <td><div id="output-search-right"> </div></td>
+	            <td></td>
 	          </tr>
           </table>
           <br />
@@ -368,7 +421,6 @@
           <br />
         </div>
         
-	    
 	    <div id="block-output-switch" class="bloc-output">
           Switch :
           <table class="bloc-output-table">
@@ -389,10 +441,7 @@
       
       <!--
       TODO:
-	  ratingstar
-	  star
 	  rate star
-	  textview_search
 	  -->
     
 	    <div id="footer">
@@ -428,6 +477,9 @@
       					'toggle':1, 'toggle-on-focus':1, 'toggle-on-pressed':1, 'toggle-off-focus':1, 'toggle-off-pressed':1, 'toggle-disabled':1, 'toggle-disabled-focus':1, 'toggle-off-disabled-focus':1,
       					'list':1, 'list-longpress':1, 'list-focus':1,
       					'ratingbar':1, 'ratingbar-on-focus':1, 'ratingbar-on-pressed':1, 'ratingbar-off':1, 'ratingbar-off-focus':1, 'ratingbar-off-pressed':1, 
+      					'ratingstarbig':1, 'ratingstarbig-half':1,
+      					'ratingstarsmall':1, 'ratingstarsmall-half':1,
+      					'search':1, 'search-right':1,
       					'numberpicker':1, 'numberpicker-down-longpressed':1, 'numberpicker-down-focus':1, 'numberpicker-down-disabled-focus':1, 'numberpicker-up':1, 'numberpicker-up-longpressed':1, 'numberpicker-up-focus':1, 'numberpicker-up-disabled-focus':1, 'numberpicker-divider':1,
       					'switch':1, 'switch-pressed':1, 'switch-bg':1  };
       
@@ -463,10 +515,13 @@
 	  	   	if (values['toggle']) { url+='&toggle=true'; okForDownload= true}
 	  	   	if (values['list']) { url+='&list=true'; okForDownload= true}
 	  	   	if (values['ratingbar']) { url+='&ratingbar=true'; okForDownload= true}
+	  	   	if (values['ratingstarsmall']) { url+='&ratingstarsmall=true'; okForDownload= true}
+	  	   	if (values['ratingstarbig']) { url+='&ratingstarbig=true'; okForDownload= true}
+	  	   	if (values['search']) { url+='&search=true'; okForDownload= true}
 	  	   	if (values['numberpicker']) { url+='&numberpicker=true'; okForDownload= true}
 	  	   	if (values['switch']) { url+='&switch=true'; okForDownload= true}
 			
-			alert(url);
+			//alert(url);
 			
 			if (okForDownload) {
 				$("#frame_download").attr("src", url);
@@ -603,6 +658,23 @@
 	       
 	       new studio.forms.BooleanField('ratingbar', {
 	            title: 'RatingBar',
+	            helpText: 'Editable by user',
+	            defaultValue: false,
+	            offText: 'No',
+	            onText: 'Yes'
+	       }),
+	       
+	       new studio.forms.BooleanField('ratingstarsmall', {
+	            title: 'RatingBar Small',
+	            helpText: 'Not editable by user',
+	            defaultValue: false,
+	            offText: 'No',
+	            onText: 'Yes'
+	       }),
+	       
+	       new studio.forms.BooleanField('ratingstarbig', {
+	            title: 'RatingBar Big',
+	            helpText: 'Not editable by user',
 	            defaultValue: false,
 	            offText: 'No',
 	            onText: 'Yes'
@@ -623,15 +695,21 @@
 	       }),
 	       
 	       /*
+	       new studio.forms.BooleanField('search', {
+	            title: 'Search EditText',
+	            defaultValue: false,
+	            offText: 'No',
+	            onText: 'Yes'
+	       }),
+	       
+	       
 	       new studio.forms.BooleanField('numberpicker', {
 	            title: 'Numberpicker',
 	            defaultValue: false,
 	            offText: 'No',
 	            onText: 'Yes'
 	       }),
-	       */
-	       
-	       /*
+
 	       new studio.forms.BooleanField('switch', {
 	            title: 'Switch',
 	            defaultValue: false,

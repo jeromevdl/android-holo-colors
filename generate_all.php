@@ -22,9 +22,12 @@
  $cspinner = $_GET['cspinner'];
  $progressbar = $_GET['progressbar'];
  $ratingbar = $_GET['ratingbar'];
+ $ratingstarsmall = $_GET['ratingstarsmall'];
+ $ratingstarbig = $_GET['ratingstarbig'];
  $seekbar = $_GET['seekbar'];
  $toggle = $_GET['toggle'];
  $list = $_GET['list'];
+ $search = $_GET['search'];
  $numberpicker = $_GET['numberpicker'];
  $switch = $_GET['switch'];
  
@@ -359,11 +362,86 @@
     $stylev11 .= '      <item name="android:progressDrawable">@drawable/ratingbar_full_holo_'.$holo.'</item>'."\n";
     $stylev11 .= '      <item name="android:indeterminateDrawable">@drawable/ratingbar_full_holo_'.$holo.'</item>'."\n";
     $stylev11 .= '  </style>'."\n\n";
-    $style11_available = true;
     
-    // TODO : v8
+    $stylev8 .= '  <style name="RatingBar'.$name.'" parent="android:Widget.RatingBar">'."\n";
+    $stylev8 .= '      <item name="android:progressDrawable">@drawable/ratingbar_full_holo_'.$holo.'</item>'."\n";
+    $stylev8 .= '      <item name="android:indeterminateDrawable">@drawable/ratingbar_full_holo_'.$holo.'</item>'."\n";
+    $stylev8 .= '  </style>'."\n\n";
+    
+    $style11_available = true;
+    $style8_available = true;
     
     $themev11 .= '    <item name="android:ratingBarStyle">@style/RatingBar'.$name.'</item>'."\n\n";
+    $themev8 .= '    <item name="android:ratingBarStyle">@style/RatingBar'.$name.'</item>'."\n\n";
+  }
+  
+  // ================== ratingstarbig ===================== //
+  if (isset($ratingstarbig) && $ratingstarbig == true) {
+    require_once('widgets/ratingstarbig/common-ratingstarbig.php');
+    $logger->debug("generate ratingstarbig");
+  
+    foreach ($ratingbarbig_classes as $clazz) {
+      generateImageOnDisk($clazz, $color, $holo, "widgets/ratingstarbig/");
+    }
+    
+    copy_directory("widgets/ratingstarbig/res/", $folder."/res/", $holo);
+  
+  	if ($holo == "dark") {
+      $stylev11 .= '  <style name="RatingBarBig'.$name.'" parent="android:Widget.Holo.RatingBar.Indicator">'."\n";
+    } else {
+       $stylev11 .= '  <style name="RatingBarBig'.$name.'" parent="android:Widget.Holo.Light.RatingBar.Indicator">'."\n";	
+    }
+    $stylev11 .= '      <item name="android:progressDrawable">@drawable/ratingbar_holo_'.$holo.'</item>'."\n";
+    $stylev11 .= '      <item name="android:indeterminateDrawable">@drawable/ratingbar_holo_'.$holo.'</item>'."\n";
+    $stylev11 .= '  </style>'."\n\n";
+      
+  	$stylev8 .= '  <style name="RatingBarBig'.$name.'">'."\n";
+    $stylev8 .= '      <item name="android:progressDrawable">@drawable/ratingbar_holo_'.$holo.'</item>'."\n";
+    $stylev8 .= '      <item name="android:indeterminateDrawable">@drawable/ratingbar_holo_'.$holo.'</item>'."\n";
+    $stylev8 .= '      <item name="android:minHeight">35dip</item>'."\n";
+    $stylev8 .= '      <item name="android:maxHeight">35dip</item>'."\n";
+    $stylev8 .= '  </style>'."\n\n";
+    
+    $style11_available = true;
+	$style8_available = true;
+  
+  	$themev11 .= '    <item name="android:ratingBarStyleIndicator">@style/RatingBarBig'.$name.'</item>'."\n\n"; 
+    $themev8 .= '    <item name="android:ratingBarStyleIndicator">@style/RatingBarBig'.$name.'</item>'."\n\n"; 
+
+  }
+  
+  // ================== ratingstarsmall ===================== //
+  if (isset($ratingstarsmall) && $ratingstarsmall == true) {
+    require_once('widgets/ratingstarsmall/common-ratingstarsmall.php');
+    $logger->debug("generate ratingstarsmall");
+  
+    foreach ($ratingbarsmall_classes as $clazz) {
+      generateImageOnDisk($clazz, $color, $holo, "widgets/ratingstarsmall/");
+    }
+    
+    copy_directory("widgets/ratingstarsmall/res/", $folder."/res/", $holo);
+  
+  	if ($holo == "dark") {
+      $stylev11 .= '  <style name="RatingBarSmall'.$name.'" parent="android:Widget.Holo.RatingBar.Small">'."\n";
+    } else {
+       $stylev11 .= '  <style name="RatingBarSmall'.$name.'" parent="android:Widget.Holo.Light.RatingBar.Small">'."\n";	
+    }
+    $stylev11 .= '      <item name="android:progressDrawable">@drawable/ratingbar_small_holo_'.$holo.'</item>'."\n";
+    $stylev11 .= '      <item name="android:indeterminateDrawable">@drawable/ratingbar_small_holo_'.$holo.'</item>'."\n";
+    $stylev11 .= '  </style>'."\n\n";
+    
+  	$stylev8 .= '  <style name="RatingBarSmall'.$name.'">'."\n";
+    $stylev8 .= '      <item name="android:progressDrawable">@drawable/ratingbar_small_holo_'.$holo.'</item>'."\n";
+    $stylev8 .= '      <item name="android:indeterminateDrawable">@drawable/ratingbar_small_holo_'.$holo.'</item>'."\n";
+    $stylev8 .= '      <item name="android:minHeight">16dip</item>'."\n";
+    $stylev8 .= '      <item name="android:maxHeight">16dip</item>'."\n";
+    $stylev8 .= '  </style>'."\n\n"; 
+    
+    $style11_available = true;
+  	$style8_available = true;
+  	
+  	$themev11 .= '    <item name="android:ratingBarStyleSmall">@style/RatingBarSmall'.$name.'</item>'."\n\n"; 
+    $themev8 .= '    <item name="android:ratingBarStyleSmall">@style/RatingBarSmall'.$name.'</item>'."\n\n";
   }
   
   //  ============== toggle ================ //
@@ -434,6 +512,26 @@
     
     // TODO dropdown, expandable...    
   }
+  
+    
+  // ================ search edit text ================//
+  /*
+  if (isset($search) && $search == true) {
+    require_once('widgets/search/common-search.php');
+    $logger->debug("generate search");
+  
+    foreach ($search_classes as $clazz) {
+      generateImageOnDisk($clazz, $color, $holo, "widgets/search/");
+    }
+    
+    copy_directory("widgets/search/res/", $folder."/res/", $holo);
+    
+    // TODO : v8
+    
+    $themev11 .= '    <item name="android:searchViewTextField">@drawable/textfield_searchview_holo_dark</item>'."\n\n";
+    $themev11 .= '    <item name="android:searchViewTextFieldRight">@drawable/textfield_searchview_right_holo_dark</item>'."\n\n";
+  }
+  */
   
     //  ============== numberpicker ================ //
    /*
