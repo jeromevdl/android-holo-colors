@@ -510,6 +510,8 @@
 	    $themev8 .= '    <item name="android:spinnerItemStyle">@style/SpinnerItem'.$name.'</item>'."\n\n";
     }
     
+    $style11_available = true;
+    $style8_available = true;
     // TODO dropdown, expandable...    
   }
   
