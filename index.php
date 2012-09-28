@@ -438,12 +438,7 @@
           <br />
         </div>
       </div>
-      
-      <!--
-      TODO:
-	  rate star
-	  -->
-    
+          
 	    <div id="footer">
 		<p>Created by <a href="mailto:jeromevdl@android-holo-colors.com">Jérôme Van Der Linden</a>.</p>
 		<p>Built upon the <a href="http://code.google.com/p/android-ui-utils" target="_blank">android-ui-utils</a> asset studio framework created by <a href="http://roman.nurik.net/" target="_blank">Roman Nurik</a>, copyright Google Inc.</p><br/>
