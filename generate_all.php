@@ -27,6 +27,7 @@
  $seekbar = $_GET['seekbar'];
  $toggle = $_GET['toggle'];
  $list = $_GET['list'];
+ $fastscroll = $_GET['fastscroll'];
  $search = $_GET['search'];
  $numberpicker = $_GET['numberpicker'];
  $switch = $_GET['switch'];
@@ -515,6 +516,22 @@
     // TODO dropdown, expandable...    
   }
   
+  // ================= fastscroll ====================//
+  if (isset($fastscroll) && $fastscroll==true) {
+  	require_once('widgets/fastscroll/common-fastscroll.php');
+    $logger->debug("generate fastscroll");
+  
+    foreach ($fastscroll_classes as $clazz) {
+      generateImageOnDisk($clazz, $color, $holo, "widgets/fastscroll/");
+    }
+    
+    copy_directory("widgets/fastscroll/res/", $folder."/res/", $holo, false);
+    
+    $themev11 .= '    <item name="android:fastScrollThumbDrawable">@drawable/fastscroll_thumb_holo</item>'."\n\n";
+	
+	// not available in v8
+  }
+  
     
   // ================ search edit text ================//
   /*
@@ -806,7 +823,7 @@
 	   * Copy a directory and its content to destination
 	   *
 	   *************************************************/
-		function copy_directory( $source, $destination, $holo) {
+		function copy_directory( $source, $destination, $holo, $check_holo=true) {
 			if ( is_dir( $source ) ) {
 				$directory = dir( $source );
 				while ( FALSE !== ( $readdirectory = $directory->read() ) ) {
@@ -818,7 +835,9 @@
 						copy_directory( $PathDir, $destination . '/' . $readdirectory, $holo );
 						continue;
 					}
-					if (strpos($readdirectory, $holo)) {
+					if ($check_holo && strpos($readdirectory, $holo)) {
+						copy( $PathDir, $destination . '/' . $readdirectory );
+					} else {
 						copy( $PathDir, $destination . '/' . $readdirectory );
 					}
 				}

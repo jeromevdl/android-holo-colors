@@ -369,6 +369,23 @@
           <br />
         </div>
         
+       <div id="block-output-fastscroll" class="bloc-output">
+          Fast scroll :
+          <table class="bloc-output-table">
+              <tr>
+                <td>fastscroll_default</td>
+                <td>fastscroll_pressed</td>
+                <td style="width:150px">&nbsp;</td>
+              </tr>
+	          <tr>
+	            <td><div id="output-fastscroll"> </div></td>
+	            <td><div id="output-fastscroll-pressed"> </div></td>
+	            <td></td>
+	          </tr>
+          </table>
+          <br />
+        </div>
+        
         <div id="block-output-search" class="bloc-output">
           Search edittext :
           <table class="bloc-output-table">
@@ -476,7 +493,8 @@
       					'ratingstarsmall':1, 'ratingstarsmall-half':1,
       					'search':1, 'search-right':1,
       					'numberpicker':1, 'numberpicker-down-longpressed':1, 'numberpicker-down-focus':1, 'numberpicker-down-disabled-focus':1, 'numberpicker-up':1, 'numberpicker-up-longpressed':1, 'numberpicker-up-focus':1, 'numberpicker-up-disabled-focus':1, 'numberpicker-divider':1,
-      					'switch':1, 'switch-pressed':1, 'switch-bg':1  };
+      					'switch':1, 'switch-pressed':1, 'switch-bg':1,
+      					'fastscroll':1, 'fastscroll-pressed':1  };
       
 	  for (var component in components) {
 	  	var group = studio.ui.createImageOutputGroup({
@@ -512,6 +530,7 @@
 	  	   	if (values['ratingbar']) { url+='&ratingbar=true'; okForDownload= true}
 	  	   	if (values['ratingstarsmall']) { url+='&ratingstarsmall=true'; okForDownload= true}
 	  	   	if (values['ratingstarbig']) { url+='&ratingstarbig=true'; okForDownload= true}
+	  	   	if (values['fastscroll']) { url+='&fastscroll=true'; okForDownload= true}
 	  	   	if (values['search']) { url+='&search=true'; okForDownload= true}
 	  	   	if (values['numberpicker']) { url+='&numberpicker=true'; okForDownload= true}
 	  	   	if (values['switch']) { url+='&switch=true'; okForDownload= true}
@@ -684,6 +703,14 @@
 	       
 	       new studio.forms.BooleanField('list', {
 	            title: 'List Selector',
+	            defaultValue: false,
+	            offText: 'No',
+	            onText: 'Yes'
+	       }),
+	       
+	       new studio.forms.BooleanField('fastscroll', {
+	            title: 'Fast Scroll',
+	            helpText: 'For listviews',
 	            defaultValue: false,
 	            offText: 'No',
 	            onText: 'Yes'
