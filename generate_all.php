@@ -279,28 +279,37 @@
   
   // ============ cspinnner & spinner ============= //
   if ((isset($spinner) && $spinner == true) || (isset($cspinner) && $cspinner == true)) {
+  	
+  	if (!isset($list)) {
+	    require_once('widgets/list/common-list.php');  
+	    foreach ($list_classes as $clazz) {
+	      generateImageOnDisk($clazz, $color, $holo, "widgets/list/");
+	    }
+	    copy_directory("widgets/list/res/", $folder."/res/", $holo);
+	}
+	
     if ($holo == "dark") {
 		$stylev11 .= '  <style name="Spinner'.$name.'" parent="android:Widget.Holo.Spinner">'."\n";
         $stylev11 .= '      <item name="android:background">@drawable/spinner_background_holo_'.$holo.'</item>'."\n";
-        // TODO <item name="android:dropDownSelector">@android:drawable/list_selector_holo_dark</item>
+        $stylev11 .= '      <item name="android:dropDownSelector">@drawable/list_selector_holo_'.$holo.'</item>'."\n";
         $stylev11 .= '  </style>'."\n\n";
 	} else {
 		$stylev11 .= '  <style name="Spinner'.$name.'" parent="android:Widget.Holo.Light.Spinner">'."\n";
         $stylev11 .= '      <item name="android:background">@drawable/spinner_background_holo_'.$holo.'</item>'."\n";
-        // TODO <item name="android:dropDownSelector">@android:drawable/list_selector_holo_light</item>
+        $stylev11 .= '      <item name="android:dropDownSelector">@drawable/list_selector_holo_'.$holo.'</item>'."\n";
         $stylev11 .= '  </style>'."\n\n";
 	}
 	
 	$stylev8 .= '  <style name="Spinner'.$name.'" parent="android:Widget.Spinner">'."\n";
     $stylev8 .= '      <item name="android:background">@drawable/spinner_background_holo_'.$holo.'</item>'."\n";
-    // TODO <item name="android:dropDownSelector">@android:drawable/list_selector_holo_light</item>
+    $stylev8 .= '      <item name="android:dropDownSelector">@drawable/list_selector_holo_'.$holo.'</item>'."\n";
     $stylev8 .= '  </style>'."\n\n";
     
     $stylev8 .= '  <style name="Spinner'.$name.'.DropDown">'."\n";
     $stylev8 .= '      <item name="android:spinnerMode">dropdown</item>'."\n";
     $stylev8 .= '  </style>'."\n\n";
 
-	$stylev8 .= '  <style name="SpinnerItem'.$name.'" parent="android:Widget.DropDownItem.Spinner">'."\n";
+	$stylev8 .= '  <style name="SpinnerDropDownItem'.$name.'" parent="android:Widget.DropDownItem.Spinner">'."\n";
     $stylev8 .= '      <item name="android:checkMark">@drawable/btn_radio_holo_'.$holo.'</item>'."\n";
     $stylev8 .= '  </style>'."\n";
 
@@ -310,7 +319,7 @@
     $themev11 .= '    <item name="android:dropDownSpinnerStyle">@style/Spinner'.$name.'</item>'."\n\n";
     $themev8 .= '    <item name="android:spinnerStyle">@style/Spinner'.$name.'</item>'."\n\n";
     $themev8 .= '    <item name="android:dropDownSpinnerStyle">@style/Spinner'.$name.'.DropDown</item>'."\n\n";
-    $themev8 .= '    <item name="android:spinnerDropDownItemStyle">@style/SpinnerItem'.$name.'</item>'."\n\n";
+    $themev8 .= '    <item name="android:spinnerDropDownItemStyle">@style/SpinnerDropDownItem'.$name.'</item>'."\n\n";
   }  
 
   
@@ -555,17 +564,21 @@
 	    $stylev8 .= '  </style>'."\n\n";
 	    
 	    $themev11 .= '    <item name="android:listChoiceBackgroundIndicator">@drawable/list_selector_holo_'.$holo.'</item>'."\n\n";
+	    // TODO : $themev11 .= '    <item name="android:activatedBackgroundIndicator">@drawable/activated_background_holo_'.$holo.'</item>'."\n\n";
 	    $themev8 .= '    <item name="android:listViewStyle">@style/ListView'.$name.'</item>'."\n\n";
 	    $themev8 .= '    <item name="android:listViewWhiteStyle">@style/ListView'.$name.'.White</item>'."\n\n";
 	    
-	    if ($holo == "dark") {
-		    $stylev8 .= '  <style name="SpinnerItem'.$name.'" parent="android:TextAppearance.Widget.TextView.SpinnerItem">'."\n";
-	    	// TODO : replace with selector
-		    $stylev8 .= '      <item name="android:textColor">#ffffff</item>'."\n";
-		    $stylev8 .= '  </style>'."\n\n";
-		    $themev8 .= '    <item name="android:spinnerItemStyle">@style/SpinnerItem'.$name.'</item>'."\n\n";
-	    }// TODO holo light ???
 	    
+		$stylev8 .= '  <style name="SpinnerItem'.$name.'" parent="android:TextAppearance.Widget.TextView.SpinnerItem">'."\n";
+	    // TODO : replace with selector
+		if ($holo == "dark") {
+	    	$stylev8 .= '      <item name="android:textColor">#ffffff</item>'."\n";
+	    } else {
+	    	$stylev8 .= '      <item name="android:textColor">#000000</item>'."\n";
+	    }
+		$stylev8 .= '  </style>'."\n\n";
+    	$themev8 .= '    <item name="android:spinnerItemStyle">@style/SpinnerItem'.$name.'</item>'."\n\n";
+	 
 		$style8_available = true;
     
     // TODO dropdown, expandable...    
