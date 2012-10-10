@@ -31,6 +31,7 @@
  $search = $_GET['search'];
  $numberpicker = $_GET['numberpicker'];
  $switch = $_GET['switch'];
+ $autocomplete = $_GET['autocomplete'];
  
  $style = '<?xml version="1.0" encoding="utf-8"?>'."\n\n";
  $style .= "<!-- Generated with http://android-holo-colors.com -->\n";
@@ -70,7 +71,7 @@
 	generateFolders($date);
 
   // ============== edittext =================== //
-  if (isset($edittext) && $edittext == true) {
+  if ((isset($edittext) && $edittext == true)) {
     require_once('widgets/edittext/common-edittext.php');
     $logger->debug("generate edittext");
   
@@ -82,6 +83,12 @@
     
     $stylev8 .= '  <style name="EditText'.$name.'" parent="android:Widget.EditText">'."\n";
     $stylev8 .= '	  <item name="android:background">@drawable/edit_text_holo_'.$holo.'</item>'."\n";
+    // TODO replace with selector
+    if ($holo == "dark") {
+    	$stylev8 .= '	  <item name="android:textColor">#ffffff</item>'."\n";
+    } else {
+    	$stylev8 .= '	  <item name="android:textColor">#000000</item>'."\n";
+    }
     $stylev8 .= '  </style>'."\n\n"; 
     
 	$style8_available = true;
@@ -89,8 +96,55 @@
     $themev11 .= '    <item name="android:editTextBackground">@drawable/edit_text_holo_'.$holo.'</item>'."\n\n";
     $themev8 .= '    <item name="android:editTextStyle">@style/EditText'.$name.'</item>'."\n\n";
     
-    // TODO: autocomplete
    }
+
+  // ============== autocomplete =================== //
+  if (isset($autocomplete) && $autocomplete == true) {
+  	
+    $logger->debug("generate autocomplete");
+    
+    if (!isset($edittext)) {
+	  	require_once('widgets/edittext/common-edittext.php');
+	    foreach ($edittext_classes as $clazz) {
+	      generateImageOnDisk($clazz, $color, $holo, "widgets/edittext/");
+	    }
+	    copy_directory("widgets/edittext/res/", $folder."/res/", $holo);
+    }
+
+	if (!isset($list)) {
+	    require_once('widgets/list/common-list.php');  
+	    foreach ($list_classes as $clazz) {
+	      generateImageOnDisk($clazz, $color, $holo, "widgets/list/");
+	    }
+	    copy_directory("widgets/list/res/", $folder."/res/", $holo);
+	}
+  	
+  	if ($holo == "dark") {
+  		$stylev11 .= '  <style name="AutoCompleteTextView'.$name.'" parent="android:Widget.Holo.AutoCompleteTextView">'."\n";
+  	} else {
+  		$stylev11 .= '  <style name="AutoCompleteTextView'.$name.'" parent="android:Widget.Holo.Light.AutoCompleteTextView">'."\n";
+  	}
+    $stylev11 .= '      <item name="android:dropDownSelector">@drawable/list_selector_holo_'.$holo.'</item>'."\n";
+    $stylev11 .= '	    <item name="android:background">@drawable/edit_text_holo_'.$holo.'</item>'."\n";
+    $stylev11 .= '  </style>'."\n\n";
+    
+    $stylev8 .= '  <style name="AutoCompleteTextView'.$name.'" parent="android:Widget.AutoCompleteTextView">'."\n";
+    $stylev8 .= '      <item name="android:dropDownSelector">@drawable/list_selector_holo_'.$holo.'</item>'."\n";
+    $stylev8 .= '	  <item name="android:background">@drawable/edit_text_holo_'.$holo.'</item>'."\n";
+    // TODO replace with selector
+    if ($holo == "dark") {
+    	$stylev8 .= '	  <item name="android:textColor">#ffffff</item>'."\n";
+    } else {
+    	$stylev8 .= '	  <item name="android:textColor">#000000</item>'."\n";
+    }
+    $stylev8 .= '  </style>'."\n\n";
+    
+    $themev11 .= '    <item name="android:autoCompleteTextViewStyle">@style/AutoCompleteTextView'.$name.'</item>'."\n\n";
+    $themev8 .= '    <item name="android:autoCompleteTextViewStyle">@style/AutoCompleteTextView'.$name.'</item>'."\n\n";    
+    
+    $style11_available = true;
+	$style8_available = true;
+  }
   
   // ============== checkbox =================== //
   if (isset($checkbox) && $checkbox == true) {
@@ -175,6 +229,7 @@
     $stylev8 .= '	  <item name="android:background">@drawable/'.$button_image.'</item>'."\n";
     $stylev8 .= '	  <item name="android:minHeight">48dip</item>'."\n";
     $stylev8 .= '	  <item name="android:minWidth">64dip</item>'."\n";
+	// TODO replace with selector
     if ($holo == "dark") {
     	$stylev8 .= '	  <item name="android:textColor">#ffffff</item>'."\n";
     } else {
@@ -481,7 +536,7 @@
   }
   
   //  ============== list selector ================ //
-   if (isset($list) && $list == true) {
+   if ((isset($list) && $list == true)) {
     require_once('widgets/list/common-list.php');
     $logger->debug("generate list");
   
@@ -491,27 +546,27 @@
     
     copy_directory("widgets/list/res/", $folder."/res/", $holo);
     
-    $stylev8 .= '  <style name="ListView'.$name.'" parent="android:Widget.ListView">'."\n";
-    $stylev8 .= '      <item name="android:listSelector">@drawable/list_selector_holo_'.$holo.'</item>'."\n";
-    $stylev8 .= '  </style>'."\n\n";
-    
-    $stylev8 .= '  <style name="ListView'.$name.'.White" parent="android:Widget.ListView.White">'."\n";
-    $stylev8 .= '      <item name="android:listSelector">@drawable/list_selector_holo_'.$holo.'</item>'."\n";
-    $stylev8 .= '  </style>'."\n\n";
-    
-    $themev11 .= '    <item name="android:listChoiceBackgroundIndicator">@drawable/list_selector_holo_'.$holo.'</item>'."\n\n";
-    $themev8 .= '    <item name="android:listViewStyle">@style/ListView'.$name.'</item>'."\n\n";
-    $themev8 .= '    <item name="android:listViewWhiteStyle">@style/ListView'.$name.'.White</item>'."\n\n";
-    
-    if ($holo == "dark") {
-	    $stylev8 .= '  <style name="SpinnerItem'.$name.'" parent="android:TextAppearance.Widget.TextView.SpinnerItem">'."\n";
-    	// TODO : replace with selector
-	    $stylev8 .= '      <item name="android:textColor">#ffffff</item>'."\n";
+	    $stylev8 .= '  <style name="ListView'.$name.'" parent="android:Widget.ListView">'."\n";
+	    $stylev8 .= '      <item name="android:listSelector">@drawable/list_selector_holo_'.$holo.'</item>'."\n";
 	    $stylev8 .= '  </style>'."\n\n";
-	    $themev8 .= '    <item name="android:spinnerItemStyle">@style/SpinnerItem'.$name.'</item>'."\n\n";
-    }
-    
-	$style8_available = true;
+	    
+	    $stylev8 .= '  <style name="ListView'.$name.'.White" parent="android:Widget.ListView.White">'."\n";
+	    $stylev8 .= '      <item name="android:listSelector">@drawable/list_selector_holo_'.$holo.'</item>'."\n";
+	    $stylev8 .= '  </style>'."\n\n";
+	    
+	    $themev11 .= '    <item name="android:listChoiceBackgroundIndicator">@drawable/list_selector_holo_'.$holo.'</item>'."\n\n";
+	    $themev8 .= '    <item name="android:listViewStyle">@style/ListView'.$name.'</item>'."\n\n";
+	    $themev8 .= '    <item name="android:listViewWhiteStyle">@style/ListView'.$name.'.White</item>'."\n\n";
+	    
+	    if ($holo == "dark") {
+		    $stylev8 .= '  <style name="SpinnerItem'.$name.'" parent="android:TextAppearance.Widget.TextView.SpinnerItem">'."\n";
+	    	// TODO : replace with selector
+		    $stylev8 .= '      <item name="android:textColor">#ffffff</item>'."\n";
+		    $stylev8 .= '  </style>'."\n\n";
+		    $themev8 .= '    <item name="android:spinnerItemStyle">@style/SpinnerItem'.$name.'</item>'."\n\n";
+	    }// TODO holo light ???
+	    
+		$style8_available = true;
     
     // TODO dropdown, expandable...    
   }
