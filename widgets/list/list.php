@@ -18,6 +18,9 @@
 	  	case "list-focus":
 	  		$list = new ListFocus();
 	  		break;
+	  	case "list-activated":
+	  		$list = new ListActivated();
+	  		break;
 	  	default:
 	  		$list = new ListPress();
 	  		break;

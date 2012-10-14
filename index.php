@@ -357,13 +357,13 @@
                 <td>list_pressed</td>
                 <td>list_longpressed</td>
                 <td>list_focused</td>
-                <td style="width:120px">&nbsp;</td>
+                <td>list_activated</td>
               </tr>
 	          <tr>
 	            <td><div id="output-list"> </div></td>
 	            <td><div id="output-list-longpress"> </div></td>
 	            <td><div id="output-list-focus"> </div></td>
-	            <td></td>
+	            <td><div id="output-list-activated"> </div></td>
 	          </tr>
           </table>
           <br />
@@ -488,7 +488,7 @@
       					'progressbar':1, 'progressbar-primary':1, 'progressbar-secondary':1, 
       					'seekbar':1, 'seekbar-pressed':1, 'seekbar-focus':1, 'seekbar-disabled':1, 'seekbar-primary':1, 'seekbar-secondary':1,
       					'toggle':1, 'toggle-on-focus':1, 'toggle-on-pressed':1, 'toggle-off-focus':1, 'toggle-off-pressed':1, 'toggle-disabled':1, 'toggle-disabled-focus':1, 'toggle-off-disabled-focus':1,
-      					'list':1, 'list-longpress':1, 'list-focus':1,
+      					'list':1, 'list-longpress':1, 'list-focus':1, 'list-activated':1,
       					'ratingbar':1, 'ratingbar-on-focus':1, 'ratingbar-on-pressed':1, 'ratingbar-off':1, 'ratingbar-off-focus':1, 'ratingbar-off-pressed':1, 
       					'ratingstarbig':1, 'ratingstarbig-half':1,
       					'ratingstarsmall':1, 'ratingstarsmall-half':1,

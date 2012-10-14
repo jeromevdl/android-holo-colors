@@ -554,7 +554,10 @@
     }
     
     copy_directory("widgets/list/res/", $folder."/res/", $holo);
-    
+    	
+    	$themev11 .= '    <item name="android:listChoiceBackgroundIndicator">@drawable/list_selector_holo_'.$holo.'</item>'."\n\n";
+	    $themev11 .= '    <item name="android:activatedBackgroundIndicator">@drawable/activated_background_holo_'.$holo.'</item>'."\n\n";
+	    
 	    $stylev8 .= '  <style name="ListView'.$name.'" parent="android:Widget.ListView">'."\n";
 	    $stylev8 .= '      <item name="android:listSelector">@drawable/list_selector_holo_'.$holo.'</item>'."\n";
 	    $stylev8 .= '  </style>'."\n\n";
@@ -562,12 +565,9 @@
 	    $stylev8 .= '  <style name="ListView'.$name.'.White" parent="android:Widget.ListView.White">'."\n";
 	    $stylev8 .= '      <item name="android:listSelector">@drawable/list_selector_holo_'.$holo.'</item>'."\n";
 	    $stylev8 .= '  </style>'."\n\n";
-	    
-	    $themev11 .= '    <item name="android:listChoiceBackgroundIndicator">@drawable/list_selector_holo_'.$holo.'</item>'."\n\n";
-	    // TODO : $themev11 .= '    <item name="android:activatedBackgroundIndicator">@drawable/activated_background_holo_'.$holo.'</item>'."\n\n";
+	  
 	    $themev8 .= '    <item name="android:listViewStyle">@style/ListView'.$name.'</item>'."\n\n";
 	    $themev8 .= '    <item name="android:listViewWhiteStyle">@style/ListView'.$name.'.White</item>'."\n\n";
-	    
 	    
 		$stylev8 .= '  <style name="SpinnerItem'.$name.'" parent="android:TextAppearance.Widget.TextView.SpinnerItem">'."\n";
 	    // TODO : replace with selector
