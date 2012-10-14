@@ -895,7 +895,7 @@
 			if ( is_dir( $source ) ) {
 				$directory = dir( $source );
 				while ( FALSE !== ( $readdirectory = $directory->read() ) ) {
-					if ( $readdirectory == '.' || $readdirectory == '..' ) {
+					if ( $readdirectory == '.' || $readdirectory == '..' || $readdirectory == '.DS_Store') {
 						continue;
 					}
 					$PathDir = $source . '/' . $readdirectory; 
@@ -905,13 +905,13 @@
 					}
 					if ($check_holo && strpos($readdirectory, $holo)) {
 						copy( $PathDir, $destination . '/' . $readdirectory );
-					} else {
+					} else if (!$check_holo) {
 						copy( $PathDir, $destination . '/' . $readdirectory );
 					}
 				}
 		 
 				$directory->close();
-			}else {
+			} else {
 				copy( $source, $destination );
 			}
 		}
