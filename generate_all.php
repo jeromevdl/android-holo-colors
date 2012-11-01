@@ -892,6 +892,9 @@
 	   *
 	   *************************************************/
 		function copy_directory( $source, $destination, $holo, $check_holo=true) {
+			$log = Logger::getLogger("copy");
+			$log->debug("copy directory : ".$source." in ".$destination);
+			
 			if ( is_dir( $source ) ) {
 				$directory = dir( $source );
 				while ( FALSE !== ( $readdirectory = $directory->read() ) ) {
@@ -899,17 +902,20 @@
 						continue;
 					}
 					$PathDir = $source . '/' . $readdirectory; 
+					$log->debug("Path : ".$PathDir." holo=".$check_holo);
 					if ( is_dir( $PathDir ) ) {
-						copy_directory( $PathDir, $destination . '/' . $readdirectory, $holo );
+						copy_directory( $PathDir, $destination . '/' . $readdirectory, $holo, $check_holo );
 						continue;
 					}
-					if ($check_holo && strpos($readdirectory, $holo)) {
+					if ($check_holo == false) {
+						$log->debug("holo false => copy ".$PathDir);
 						copy( $PathDir, $destination . '/' . $readdirectory );
-					} else if (!$check_holo) {
+					}
+					else if (strpos($readdirectory, $holo)) {
+						$log->debug("holo true => copy ".$PathDir);
 						copy( $PathDir, $destination . '/' . $readdirectory );
 					}
 				}
-		 
 				$directory->close();
 			} else {
 				copy( $source, $destination );
