@@ -741,14 +741,15 @@
 	            offText: 'No',
 	            onText: 'Yes'
 	       }),
-
+			*/
 	       new studio.forms.BooleanField('switch', {
 	            title: 'Switch',
+	            helpText: 'Styles are not public for this widget, see <a href="https://github.com/BoD/android-switch-backport" target="_blank">switch-backport</a> or <a href="https://github.com/ankri/SwitchCompatLibrary" target="_blank">SwitchCompatLibrary</a>',
 	            defaultValue: false,
 	            offText: 'No',
 	            onText: 'Yes'
 	       }),
-	       */
+	       
         ]
       });
       

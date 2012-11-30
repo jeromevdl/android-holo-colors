@@ -666,7 +666,7 @@
   */
   
   //  ============== switch ================ //
-  /*
+  
    if (isset($switch) && $switch == true) {
     require_once('widgets/switch/common-switch.php');
     $logger->debug("generate switch");
@@ -677,6 +677,7 @@
     
     copy_directory("widgets/switch/res/", $folder."/res/", $holo);
     
+    /*
     $stylev14 = $stylev11;
 	$themev14 = $themev11;
 	
@@ -695,8 +696,9 @@
     
     $themev14 .= "  </style>\n\n</resources>";
     $stylev14 .= "</resources>";
+    */
   }
-  */
+  
   
     
   // ============== theme & style ================ //
