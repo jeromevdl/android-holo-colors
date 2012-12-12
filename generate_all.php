@@ -18,6 +18,7 @@
  $checkbox = $_GET['checkbox'];
  $radio = $_GET['radio'];
  $button = $_GET['button'];
+ $cbutton = $_GET['cbutton'];
  $spinner = $_GET['spinner'];
  $cspinner = $_GET['cspinner'];
  $progressbar = $_GET['progressbar'];
@@ -193,15 +194,26 @@
   }
   
   // ============== button =================== //
-  if (isset($button) && $button == true) {
-    require_once('widgets/button/common-button.php');
-    $logger->debug("generate button");
-  
-    foreach ($button_classes as $clazz) {
-      generateImageOnDisk($clazz, $color, $holo, "widgets/button/");
+  if ((isset($button) && $button == true) || (isset($cbutton) && $cbutton == true)) {
+    if ((isset($button) && $button == true) && (!isset($cbutton))) {
+	    require_once('widgets/button/common-button.php');
+	    $logger->debug("generate button");
+	  
+	    foreach ($button_classes as $clazz) {
+	      generateImageOnDisk($clazz, $color, $holo, "widgets/button/");
+	    }
+	    
+	    copy_directory("widgets/button/res/", $folder."/res/", $holo);
+    } else {
+    	require_once('widgets/cbutton/common-cbutton.php');
+	    $logger->debug("generate cbutton");
+	  
+	    foreach ($cbutton_classes as $clazz) {
+	      generateImageOnDisk($clazz, $color, $holo, "widgets/cbutton/");
+	    }
+	    
+	    copy_directory("widgets/cbutton/res/", $folder."/res/", $holo);
     }
-    
-    copy_directory("widgets/button/res/", $folder."/res/", $holo);
         
     if ($holo == "dark") {
 		$stylev11 .= '  <style name="Button'.$name.'" parent="android:Widget.Holo.Button">'."\n";

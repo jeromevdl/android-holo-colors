@@ -106,6 +106,26 @@
           </table>
           <br />
         </div>
+
+		<div id="block-output-cbutton" class="bloc-output">
+          Colored Button :
+          <table class="bloc-output-table">
+              <tr>
+                <td>btn_default</td>
+                <td>btn_default_focused</td>
+                <td>btn_default_pressed</td>
+                <td>btn_default_disabled_focused</td>
+              </tr>
+	          <tr>
+	            <td><div id="output-cbutton"> </div></td>
+	            <td><div id="output-cbutton-focus"> </div></td>
+	            <td><div id="output-cbutton-pressed"> </div></td>
+	            <td><div id="output-cbutton-disabled-focus"> </div></td>
+	          </tr>
+          </table>
+          <br />
+        </div>
+
         
         <div id="block-output-checkbox" class="bloc-output">
           CheckBox :
@@ -479,23 +499,24 @@
       
       var densities = {'xhdpi':1, 'hdpi':1, 'mdpi':1};
       var components = {
-				      'edittext':1, 'edittext-focus':1, 'edittext-activated':1,
-      					'button':1, 'button-pressed':1, 'button-focus':1, 'button-disabled-focus':1,
-      					'checkbox':1, 'checkbox-off':1, 'checkbox-off-pressed':1, 'checkbox-on-pressed':1, 'checkbox-off-focus':1, 'checkbox-on-focus':1, 'checkbox-on-disabled-focus':1, 'checkbox-off-disabled-focus':1, 
-      					'radio':1, 'radio-off':1, 'radio-off-pressed':1, 'radio-on-pressed':1, 'radio-off-focus':1, 'radio-on-focus':1, 'radio-on-disabled-focus':1, 'radio-off-disabled-focus':1,
-      					'spinner':1, 'spinner-pressed':1, 'spinner-focus':1,
-      					'cspinner':1, 'cspinner-pressed':1, 'cspinner-focus':1,
-      					'progressbar':1, 'progressbar-primary':1, 'progressbar-secondary':1, 
-      					'seekbar':1, 'seekbar-pressed':1, 'seekbar-focus':1, 'seekbar-disabled':1, 'seekbar-primary':1, 'seekbar-secondary':1,
-      					'toggle':1, 'toggle-on-focus':1, 'toggle-on-pressed':1, 'toggle-off-focus':1, 'toggle-off-pressed':1, 'toggle-disabled':1, 'toggle-disabled-focus':1, 'toggle-off-disabled-focus':1,
-      					'list':1, 'list-longpress':1, 'list-focus':1, 'list-activated':1,
-      					'ratingbar':1, 'ratingbar-on-focus':1, 'ratingbar-on-pressed':1, 'ratingbar-off':1, 'ratingbar-off-focus':1, 'ratingbar-off-pressed':1, 
-      					'ratingstarbig':1, 'ratingstarbig-half':1,
-      					'ratingstarsmall':1, 'ratingstarsmall-half':1,
-      					'search':1, 'search-right':1,
-      					'numberpicker':1, 'numberpicker-down-longpressed':1, 'numberpicker-down-focus':1, 'numberpicker-down-disabled-focus':1, 'numberpicker-up':1, 'numberpicker-up-longpressed':1, 'numberpicker-up-focus':1, 'numberpicker-up-disabled-focus':1, 'numberpicker-divider':1,
-      					'switch':1, 'switch-pressed':1, 'switch-bg':1,
-      					'fastscroll':1, 'fastscroll-pressed':1  };
+			'edittext':1, 'edittext-focus':1, 'edittext-activated':1,
+      		'button':1, 'button-pressed':1, 'button-focus':1, 'button-disabled-focus':1,
+      		'cbutton':1, 'cbutton-pressed':1, 'cbutton-focus':1, 'cbutton-disabled-focus':1,
+      		'checkbox':1, 'checkbox-off':1, 'checkbox-off-pressed':1, 'checkbox-on-pressed':1, 'checkbox-off-focus':1, 'checkbox-on-focus':1, 'checkbox-on-disabled-focus':1, 'checkbox-off-disabled-focus':1, 
+      		'radio':1, 'radio-off':1, 'radio-off-pressed':1, 'radio-on-pressed':1, 'radio-off-focus':1, 'radio-on-focus':1, 'radio-on-disabled-focus':1, 'radio-off-disabled-focus':1,
+      		'spinner':1, 'spinner-pressed':1, 'spinner-focus':1,
+      		'cspinner':1, 'cspinner-pressed':1, 'cspinner-focus':1,
+      		'progressbar':1, 'progressbar-primary':1, 'progressbar-secondary':1, 
+      		'seekbar':1, 'seekbar-pressed':1, 'seekbar-focus':1, 'seekbar-disabled':1, 'seekbar-primary':1, 'seekbar-secondary':1,
+      		'toggle':1, 'toggle-on-focus':1, 'toggle-on-pressed':1, 'toggle-off-focus':1, 'toggle-off-pressed':1, 'toggle-disabled':1, 'toggle-disabled-focus':1, 'toggle-off-disabled-focus':1,
+      		'list':1, 'list-longpress':1, 'list-focus':1, 'list-activated':1,
+      		'ratingbar':1, 'ratingbar-on-focus':1, 'ratingbar-on-pressed':1, 'ratingbar-off':1, 'ratingbar-off-focus':1, 'ratingbar-off-pressed':1, 
+      		'ratingstarbig':1, 'ratingstarbig-half':1,
+      		'ratingstarsmall':1, 'ratingstarsmall-half':1,
+      		'search':1, 'search-right':1,
+      		'numberpicker':1, 'numberpicker-down-longpressed':1, 'numberpicker-down-focus':1, 'numberpicker-down-disabled-focus':1, 'numberpicker-up':1, 'numberpicker-up-longpressed':1, 'numberpicker-up-focus':1, 'numberpicker-up-disabled-focus':1, 'numberpicker-divider':1,
+      		'switch':1, 'switch-pressed':1, 'switch-bg':1,
+      		'fastscroll':1, 'fastscroll-pressed':1  };
       
 	  for (var component in components) {
 	  	var group = studio.ui.createImageOutputGroup({
@@ -521,6 +542,7 @@
 	  	   	if (values['edittext']) { url+='&edittext=true'; okForDownload= true}
 	  	   	if (values['autocomplete']) { url+='&autocomplete=true'; okForDownload= true}
 	  	   	if (values['button']) { url+='&button=true'; okForDownload= true}
+	  	   	if (values['cbutton']) { url+='&cbutton=true'; okForDownload= true}
 	  	   	if (values['checkbox']) { url+='&checkbox=true'; okForDownload= true}
 	  	   	if (values['radio']) { url+='&radio=true'; okForDownload= true}
 	  	   	if (values['spinner']) { url+='&spinner=true'; okForDownload= true}
@@ -632,6 +654,14 @@
 	       
            new studio.forms.BooleanField('button', {
 	            title: 'Button',
+	            defaultValue: false,
+	            offText: 'No',
+	            onText: 'Yes'
+	       }),
+	       
+	       new studio.forms.BooleanField('cbutton', {
+	            title: 'Colored Button',
+	            helpText: 'Like Button, but colored',
 	            defaultValue: false,
 	            offText: 'No',
 	            onText: 'Yes'
