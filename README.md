@@ -8,6 +8,8 @@ The Android Holo Colors Generator allows you to easily create Android components
 
 Release note
 ------------
+__Dec 12, 2012; version 1.8.1__: Bug Fixes
+
 __Nov 30, 2012; version 1.8__: Enable Swich component (without styles, only pictures)
 
 __Oct 10, 2012; version 1.7__: Complete List styling
