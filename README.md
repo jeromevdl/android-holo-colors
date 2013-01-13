@@ -1,10 +1,32 @@
 ![Android Holo Colors logo](http://android-holo-colors.com/H-256.png)
 
+Website is available here: http://android-holo-colors.com/
+
 Overview
 --------
 The Android Holo Colors Generator allows you to easily create Android components such as editext or spinner with your own colours for your Android application. It will generate all necessary nine patch assets plus associated XML drawables and styles which you can copy straight into your project.
 
 ![Android Holo Colors](http://android-holo-colors.com/preview2.png)
+
+Components available
+--------------------
+* EditText
+* Autocomplete
+* Button
+* Colored Button
+* CheckBox
+* Radio
+* Spinner
+* Colored Spinner
+* ProgressBar
+* SeekBar
+* RatingBar
+* RatingBar Small
+* RatingBar Big
+* Toggle
+* List Selector
+* Fast Scroll
+* Switch
 
 Release note
 ------------
