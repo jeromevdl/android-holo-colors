@@ -33,6 +33,7 @@
  $numberpicker = $_GET['numberpicker'];
  $switch = $_GET['switch'];
  $autocomplete = $_GET['autocomplete'];
+ $tab = $_GET['tab'];
  
  $style = '<?xml version="1.0" encoding="utf-8"?>'."\n\n";
  $style .= "<!-- Generated with http://android-holo-colors.com -->\n";
@@ -48,9 +49,13 @@
  if ($holo == 'light') {
  	$themev11 = $style.'  <style name="'.$name.'" parent="android:Theme.Holo.Light">'."\n\n";
  	$themev8 = $style.'  <style name="'.$name.'" parent="android:Theme.Light">'."\n\n";
+ } else if ($holo == 'light_dark_action_bar') {
+ 	$themev11 = $style.'  <style name="'.$name.'" parent="android:Theme.Holo.Light.DarkActionBar">'."\n\n";
+ 	$themev8 = $style.'  <style name="'.$name.'" parent="android:Theme.Light">'."\n\n";
+ 	$holo = "light";
  } else {
  	$themev11 = $style.'  <style name="'.$name.'" parent="android:Theme.Holo">'."\n\n";
- 	$themev8 = $style.'  <style name="'.$name.'" parent="android:Theme">'."\n\n";
+ 	$themev8 = $style.'  <style name="'.$name.'" parent="android:Theme.Black">'."\n\n";
  }
  
 	// empty input
@@ -332,7 +337,86 @@
     $themev8 .= '    <item name="android:spinnerStyle">@style/Spinner'.$name.'</item>'."\n\n";
     $themev8 .= '    <item name="android:dropDownSpinnerStyle">@style/Spinner'.$name.'.DropDown</item>'."\n\n";
     $themev8 .= '    <item name="android:spinnerDropDownItemStyle">@style/SpinnerDropDownItem'.$name.'</item>'."\n\n";
-  }  
+  } 
+  
+  // ============== tab =================== //
+  if (isset($tab) && $tab == true) {
+    require_once('widgets/tab/common-tab.php');
+    $logger->debug("generate tab");
+  
+    foreach ($tab_classes as $clazz) {
+      generateImageOnDisk($clazz, $color, $holo, "widgets/tab/");
+    }
+    
+    copy_directory("widgets/tab/res/", $folder."/res/", $holo, false);
+    
+    $content = str_replace("%%HoloColors%%", $name, file_get_contents($folder."/res/layout/tab_indicator_holo.xml"));
+	file_put_contents($folder."/res/layout/tab_indicator_holo.xml", $content);
+
+    $stylev11 .= '  <style name="TabWidget'.$name.'" parent="@android:style/Widget.TabWidget">'."\n";
+    $stylev11 .= '      <item name="android:tabStripLeft">@null</item>'."\n";
+    $stylev11 .= '      <item name="android:tabStripRight">@null</item>'."\n";
+    $stylev11 .= '      <item name="android:tabStripEnabled">false</item>'."\n";
+    $stylev11 .= '      <item name="android:divider">?android:attr/dividerVertical</item>'."\n";
+    $stylev11 .= '      <item name="android:showDividers">middle</item>'."\n";
+    $stylev11 .= '      <item name="android:dividerPadding">8dip</item>'."\n";
+    $stylev11 .= '      <item name="android:measureWithLargestChild">true</item>'."\n";
+    $stylev11 .= '      <item name="tabLayout">@layout/tab_indicator_holo</item>'."\n";
+    $stylev11 .= '  </style>'."\n\n";
+
+    $stylev11 .= '  <style name="Tab'.$name.'" parent="@android:style/Widget.ActionBar.TabView">'."\n";
+    $stylev11 .= '      <item name="android:paddingLeft">16dip</item>'."\n";
+    $stylev11 .= '      <item name="android:paddingRight">16dip</item>'."\n";
+    $stylev11 .= '      <item name="android:background">@drawable/tab_indicator_holo</item>'."\n";
+    $stylev11 .= '      <item name="android:layout_width">0dip</item>'."\n";
+    $stylev11 .= '      <item name="android:layout_weight">1</item>'."\n";
+    $stylev11 .= '      <item name="android:minWidth">80dip</item>'."\n";
+    $stylev11 .= '  </style>'."\n\n";
+    
+    $stylev11 .= '  <style name="TabText'.$name.'">'."\n";
+    if ($holo == "dark") {
+    	$stylev11 .= '	  <item name="android:textColor">#ffffff</item>'."\n";
+    } else {
+    	$stylev11 .= '	  <item name="android:textColor">#000000</item>'."\n";
+    }
+    $stylev11 .= '      <item name="android:textSize">12sp</item>'."\n";
+    $stylev11 .= '      <item name="android:textStyle">bold</item>'."\n";
+    $stylev11 .= '      <item name="android:textAllCaps">true</item>'."\n";
+    $stylev11 .= '      <item name="android:ellipsize">marquee</item>'."\n";
+    $stylev11 .= '      <item name="android:maxLines">2</item>'."\n";
+    $stylev11 .= '      <item name="android:maxWidth">180dip</item>'."\n";
+    $stylev11 .= '  </style>'."\n\n";
+    
+    $style11_available = true;
+    
+    $stylev8 .= '  <style name="Tab'.$name.'">'."\n";
+    $stylev8 .= '      <item name="android:paddingLeft">16dip</item>'."\n";
+    $stylev8 .= '      <item name="android:paddingRight">16dip</item>'."\n";
+    $stylev8 .= '      <item name="android:background">@drawable/tab_indicator_holo</item>'."\n";
+    $stylev8 .= '      <item name="android:layout_width">0dip</item>'."\n";
+    $stylev8 .= '      <item name="android:layout_weight">1</item>'."\n";
+    $stylev8 .= '      <item name="android:minWidth">80dip</item>'."\n";
+    $stylev8 .= '  </style>'."\n\n";
+    
+    $stylev8 .= '  <style name="TabText'.$name.'">'."\n";
+    if ($holo == "dark") {
+    	$stylev8 .= '	  <item name="android:textColor">#ffffff</item>'."\n";
+    } else {
+    	$stylev8 .= '	  <item name="android:textColor">#000000</item>'."\n";
+    }
+    $stylev8 .= '      <item name="android:textSize">12sp</item>'."\n";
+    $stylev8 .= '      <item name="android:textStyle">bold</item>'."\n";
+    $stylev8 .= '      <item name="android:textAllCaps">true</item>'."\n";
+    $stylev8 .= '      <item name="android:ellipsize">marquee</item>'."\n";
+    $stylev8 .= '      <item name="android:maxLines">2</item>'."\n";
+    $stylev8 .= '      <item name="android:maxWidth">180dip</item>'."\n";
+    $stylev8 .= '  </style>'."\n\n";
+    
+    $style8_available = true;
+        
+	$themev11 .= '    <item name="android:tabWidgetStyle">@style/TabWidget'.$name.'</item>'."\n\n";
+  }
+ 
 
   
   // ============= progressbar ================ //
@@ -546,6 +630,8 @@
     if ($holo == "dark") {
     	// TODO : replace with selector
     	$stylev8 .= '	  <item name="android:textColor">#ffffff</item>'."\n";
+    } else {
+		$stylev8 .= '	  <item name="android:textColor">#000000</item>'."\n";
     }
     $stylev8 .= '  </style>'."\n\n";
     
@@ -722,25 +808,25 @@
   $stylev8 .= "</resources>";
 
   
-  $theme_file = "generated/".$date."/".$_SESSION['id']."/res/values-v11/".strtolower($name)."_themes.xml";
+  $theme_file = "generated/".$date."/".$_SESSION['id']."/res/values-v11/themes_".strtolower($name).".xml";
   $fp = fopen($theme_file, 'w');
   fwrite($fp, $themev11);
   fclose($fp);
   
-  $theme_file = "generated/".$date."/".$_SESSION['id']."/res/values/".strtolower($name)."_themes.xml";
+  $theme_file = "generated/".$date."/".$_SESSION['id']."/res/values/themes_".strtolower($name).".xml";
   $fp = fopen($theme_file, 'w');
   fwrite($fp, $themev8);
   fclose($fp);
   
   if ($style8_available == true) {
-	  $style_file = "generated/".$date."/".$_SESSION['id']."/res/values/".strtolower($name)."_styles.xml";
+	  $style_file = "generated/".$date."/".$_SESSION['id']."/res/values/styles_".strtolower($name).".xml";
 	  $fp = fopen($style_file, 'w');
 	  fwrite($fp, $stylev8);
 	  fclose($fp);
   }
   
   if ($style11_available == true) {
-	  $style_file = "generated/".$date."/".$_SESSION['id']."/res/values-v11/".strtolower($name)."_styles.xml";
+	  $style_file = "generated/".$date."/".$_SESSION['id']."/res/values-v11/styles_".strtolower($name).".xml";
 	  $fp = fopen($style_file, 'w');
 	  fwrite($fp, $stylev11);
 	  fclose($fp);
@@ -751,11 +837,11 @@
  		if (file_exists($values14) == FALSE) {
   			mkdir($values14, 0777, true);
   		} 
-  		  $theme_file = "generated/".$date."/".$_SESSION['id']."/res/values-v14/".strtolower($name)."_themes.xml";
+  		  $theme_file = "generated/".$date."/".$_SESSION['id']."/res/values-v14/themes_".strtolower($name).".xml";
 		  $fp = fopen($theme_file, 'w');
 		  fwrite($fp, $themev14);
 		  fclose($fp);	
-		  $style_file = "generated/".$date."/".$_SESSION['id']."/res/values-v14/".strtolower($name)."_styles.xml";
+		  $style_file = "generated/".$date."/".$_SESSION['id']."/res/values-v14/styles_".strtolower($name).".xml";
 		  $fp = fopen($style_file, 'w');
 		  fwrite($fp, $stylev14);
 		  fclose($fp);
@@ -805,6 +891,7 @@
 	   **********************************/	  
 	  function generateFolders($date) {
 	  		$drawable = getcwd()."/generated/".$date."/".$_SESSION['id']."/res/drawable";
+	  		$layout = getcwd()."/generated/".$date."/".$_SESSION['id']."/res/layout";
 	  		if (file_exists($drawable."-mdpi") == FALSE) {
 	  			mkdir($drawable."-mdpi", 0777, true);
 	  		}
@@ -816,6 +903,9 @@
 	  		}
 	  		if (file_exists($drawable) == FALSE) {
 	  			mkdir($drawable, 0777, true);
+	  		}
+	  		if (file_exists($layout) == FALSE) {
+	  			mkdir($layout, 0777, true);
 	  		}
 	  		$values = getcwd()."/generated/".$date."/".$_SESSION['id']."/res/values";
 	  		if (file_exists($values) == FALSE) {

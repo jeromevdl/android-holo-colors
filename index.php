@@ -196,11 +196,13 @@
                 <td>spinner_default</td>
                 <td>spinner_focused</td>
                 <td>spinner_pressed</td>
+                <td style="width:120px">&nbsp;</td>
               </tr>
 	          <tr>
 	            <td><div id="output-spinner"> </div></td>
 	            <td><div id="output-spinner-focus"> </div></td>
 	            <td><div id="output-spinner-pressed"> </div></td>
+                <td style="width:120px">&nbsp;</td>
 	          </tr>
 	      </table>
 	      <br />
@@ -213,11 +215,36 @@
                 <td>spinner_default</td>
                 <td>spinner_focused</td>
                 <td>spinner_pressed</td>
+                <td style="width:120px">&nbsp;</td>
               </tr>
 	          <tr>
 	            <td><div id="output-cspinner"> </div></td>
 	            <td><div id="output-cspinner-focus"> </div></td>
 	            <td><div id="output-cspinner-pressed"> </div></td>
+                <td style="width:120px">&nbsp;</td>
+	          </tr>
+	      </table>
+	      <br />
+	    </div>
+	    
+	    <div id="block-output-tab" class="bloc-output">
+          TabWidget:
+          <table class="bloc-output-table">
+          	  <tr>
+                <td>tab_selected</td>
+                <td>tab_selected_focused</td>
+                <td>tab_selected_pressed</td>
+                <td>tab_unselected</td>
+                <td>tab_unselected_focused</td>
+                <td>tab_unselected_pressed</td>
+              </tr>
+	          <tr>
+	            <td><div id="output-tab"> </div></td>
+	            <td><div id="output-tab-selected-focus"> </div></td>
+	            <td><div id="output-tab-selected-pressed"> </div></td>
+	            <td><div id="output-tab-unselected"> </div></td>
+	            <td><div id="output-tab-unselected-focus"> </div></td>
+	            <td><div id="output-tab-unselected-pressed"> </div></td>
 	          </tr>
 	      </table>
 	      <br />
@@ -516,7 +543,8 @@
       		'search':1, 'search-right':1,
       		'numberpicker':1, 'numberpicker-down-longpressed':1, 'numberpicker-down-focus':1, 'numberpicker-down-disabled-focus':1, 'numberpicker-up':1, 'numberpicker-up-longpressed':1, 'numberpicker-up-focus':1, 'numberpicker-up-disabled-focus':1, 'numberpicker-divider':1,
       		'switch':1, 'switch-pressed':1, 'switch-bg':1,
-      		'fastscroll':1, 'fastscroll-pressed':1  };
+      		'fastscroll':1, 'fastscroll-pressed':1,
+      		'tab':1, 'tab-selected-pressed':1, 'tab-selected-focus':1, 'tab-unselected':1, 'tab-unselected-pressed':1, 'tab-unselected-focus':1  };
       
 	  for (var component in components) {
 	  	var group = studio.ui.createImageOutputGroup({
@@ -534,7 +562,9 @@
 		  	var values = form.getValues();
 		  	var color = values['color'].color;
 	        if (color.charAt(0) == '#') {
+
 	          color = color.substr(1,6);
+
 	    	}
 
 	  	    var url = 'generate_all.php?color='+color+'&holo='+values['theme']+'&name='+values['name'];
@@ -558,6 +588,7 @@
 	  	   	if (values['search']) { url+='&search=true'; okForDownload= true}
 	  	   	if (values['numberpicker']) { url+='&numberpicker=true'; okForDownload= true}
 	  	   	if (values['switch']) { url+='&switch=true'; okForDownload= true}
+	  	   	if (values['tab']) { url+='&tab=true'; okForDownload= true}
 			
 			//alert(url);
 			
@@ -592,7 +623,9 @@
 	    
         var color = values['color'].color;
         if (color.charAt(0) == '#') { // remove # if any
+
           color = color.substr(1,6);
+
     	}
     	
     	for (var component in components) {
@@ -603,7 +636,7 @@
 	    
 	    $('#header').css('background-color', values['color'].color);
 	    
-	    if (values['theme'] == 'light')
+	    if (values['theme'] == 'light' || values['theme'] == 'light_dark_action_bar')
 		    $('#header').css('color', '#fff');
 		else
 		    $('#header').css('color', '#000');
@@ -628,7 +661,8 @@
             buttons: true,
             options: [
               { id: 'light', title: 'Holo Light' },
-              { id: 'dark', title: 'Holo Dark' }
+              { id: 'dark', title: 'Holo Dark' }, 
+              { id: 'light_dark_action_bar', title: 'Holo Light Dark ActionBar' }
             ],
             defaultValue: 'light'
           }),
@@ -691,6 +725,13 @@
 	        new studio.forms.BooleanField('cspinner', {
 	            title: 'Colored Spinner',
 	            helpText: 'Like spinner, but colored',
+	            defaultValue: false,
+	            offText: 'No',
+	            onText: 'Yes'
+	       }),
+	       
+	       new studio.forms.BooleanField('tab', {
+	            title: 'TabWidget',
 	            defaultValue: false,
 	            offText: 'No',
 	            onText: 'Yes'
