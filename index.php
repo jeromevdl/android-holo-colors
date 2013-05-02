@@ -732,6 +732,7 @@
 	       
 	       new studio.forms.BooleanField('tab', {
 	            title: 'TabWidget',
+	            helpText: 'See <a href="faq.html#tabwidget">faq</a> for help',
 	            defaultValue: false,
 	            offText: 'No',
 	            onText: 'Yes'

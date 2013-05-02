@@ -60,6 +60,7 @@
             <li><a href="#progressbar">Why the ProgressBar is not with my color ?</a></li>
             <li><a href="#overiden-files">On Mac OS, when I copy the folders, it overwrite previous content</a></li>
             <li><a href="#actionbar">The generator does not provide action bar files, how to get them ?</a></li>
+            <li><a href="#tabwidget">How to use TabWidget ?</a></li>
             <li><a href="#donate">How to help you to improve the generator ?</a></li>
           </ul>
         </p>
@@ -88,6 +89,15 @@
        <p class="faq"><a name="actionbar">The generator does not provide action bar files, how to get them ?</a><br />
        There is another website for that. Go to <a href="http://jgilfelt.github.com/android-actionbarstylegenerator/" target="_blank">actionbarstylegenerator</a> to get your action bar pictures.
        </p>
+       
+       <p class="faq"><a name="tabwidget">How to use TabWidget ?</a><br />
+       You should have a look at <a href="http://developer.android.com/reference/android/support/v4/app/FragmentTabHost.html" target="_blank">google documentation</a> for the basis. To use the custom color, replace the default indicator like this:<br />
+       <code>
+       View tabIndicator = LayoutInflater.from(this).inflate(R.layout.tab_indicator_holo, mTabHost.getTabWidget(), false);
+	   TextView title = (TextView) tabIndicator.findViewById(android.R.id.title);
+	   title.setText("Tab 1");
+	   </code>
+	   </p>
        
        <p class="faq"><a name="donate">How to help you to improve the generator ?</a><br/>
        You can help by submitting your enhancement <a href="https://github.com/jeromevdl/android-holo-colors/issues" target="_blank">requests</a> or with a donation : <br /><center>
