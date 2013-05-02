@@ -719,8 +719,17 @@
   */
   
     //  ============== numberpicker ================ //
-   /*
+   
    if (isset($numberpicker) && $numberpicker == true) {
+   
+     if (!isset($list)) {
+	    require_once('widgets/list/common-list.php');  
+	    foreach ($list_classes as $clazz) {
+	      generateImageOnDisk($clazz, $color, $holo, "widgets/list/");
+	    }
+	    copy_directory("widgets/list/res/", $folder."/res/", $holo);
+	}
+	
     require_once('widgets/numberpicker/common-numberpicker.php');
     $logger->debug("generate numberpicker");
   
@@ -730,38 +739,29 @@
     
     copy_directory("widgets/numberpicker/res/", $folder."/res/", $holo);
 
-	if ($holo == "dark") {
-		$stylev11 .= '  <style name="NumberPicker'.$name.'" parent="android:Widget.Holo.NumberPicker">'."\n";
-	} else {
-		$stylev11 .= '  <style name="NumberPicker'.$name.'" parent="android:Widget.Holo.Light.NumberPicker">'."\n";
-	}
-    $stylev11 .= '      <item name="android:selectionDivider">@drawable/numberpicker_selection_divider</item>'."\n";
-	$stylev11 .= '  </style>'."\n\n";
-	
-	if ($holo == "dark") {
-		$stylev11 .= '  <style name="NumberPickerButtonUp'.$name.'" parent="android:Widget.Holo.ImageButton.NumberPickerUpButton">'."\n";
-	} else {
-		$stylev11 .= '  <style name="NumberPickerButtonUp'.$name.'" parent="android:Widget.Holo.Light.ImageButton.NumberPickerUpButton">'."\n";
-	}
-    $stylev11 .= '      <item name="android:src">@drawable/numberpicker_up_btn_holo_'.$holo.'</item>'."\n";
-	$stylev11 .= '  </style>'."\n\n";
-    
+    $stylev8 .= '  <style name="NumberPicker'.$name.'">'."\n";
+    $stylev8 .= '      <item name="android:orientation">vertical</item>">'."\n";
+    $stylev8 .= '      <item name="android:fadingEdge">vertical</item>">'."\n";
+    $stylev8 .= '      <item name="android:fadingEdgeLength">50dip</item>">'."\n";
+    $stylev8 .= '      <item name="solidColor">@android:color/transparent</item>">'."\n";
+    $stylev8 .= '      <item name="selectionDivider">@drawable/numberpicker_selection_divider</item>">'."\n";
+    $stylev8 .= '      <item name="selectionDividerHeight">2dip</item>">'."\n";
+    $stylev8 .= '      <item name="internalLayout">@layout/number_picker_with_selector_wheel</item>">'."\n";
+    $stylev8 .= '      <item name="internalMinWidth">64dip</item>">'."\n";
+    $stylev8 .= '      <item name="internalMaxHeight">180dip</item>">'."\n";
     if ($holo == "dark") {
-		$stylev11 .= '  <style name="NumberPickerButtonDown'.$name.'" parent="android:Widget.Holo.ImageButton.NumberPickerDownButton">'."\n";
+		$stylev8 .= '      <item name="virtualButtonPressedDrawable">@drawable/item_background_holo_dark</item>">'."\n";
 	} else {
-		$stylev11 .= '  <style name="NumberPickerButtonDown'.$name.'" parent="android:Widget.Holo.Light.ImageButton.NumberPickerDownButton">'."\n";
+		$stylev8 .= '      <item name="virtualButtonPressedDrawable">@drawable/item_background_holo_light</item>">'."\n";
 	}
-    $stylev11 .= '      <item name="android:src">@drawable/numberpicker_down_btn_holo_'.$holo.'</item>'."\n";
-	$stylev11 .= '  </style>'."\n\n";
-    
-    $style11_available = true;
+    $stylev8 .= '  </style>'."\n\n";
+
 	$style8_available = true;
     
-    $themev11 .= '    <item name="numberPickerUpButtonStyle">@style/NumberPickerButtonUp'.$name.'</item>'."\n";   
-    $themev11 .= '    <item name="numberPickerDownButtonStyle">@style/NumberPickerButtonDown'.$name.'</item>'."\n";
+    $themev8 .= '    <item name="numberPickerStyle">@style/NumberPicker'.$name.'</item>'."\n\n";
     $themev11 .= '    <item name="numberPickerStyle">@style/NumberPicker'.$name.'</item>'."\n\n";
   }
-  */
+  
   
   //  ============== switch ================ //
   

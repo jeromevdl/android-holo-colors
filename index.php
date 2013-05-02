@@ -454,32 +454,12 @@
           Numberpicker :
           <table class="bloc-output-table">
               <tr>
-                <td>numberpicker_up_pressed</td>
-                <td>numberpicker_up_longpressed</td>
-                <td>numberpicker_up_focused</td>
-                <td>numberpicker_up_disabled_focused</td>
                 <td>numberpicker_divider</td>
-              </tr>
-	          <tr>
-	            <td><div id="output-numberpicker-up"> </div></td>
-	            <td><div id="output-numberpicker-up-longpressed"> </div></td>
-	            <td><div id="output-numberpicker-up-focus"> </div></td>
-	            <td><div id="output-numberpicker-up-disabled-focus"> </div></td>
-	            <td><div id="output-numberpicker-divider"> </div></td>
-	          </tr>
-	          <tr>
-                <td>numberpicker_down_pressed</td>
-                <td>numberpicker_down_longpressed</td>
-                <td>numberpicker_down_focused</td>
-                <td>numberpicker_down_disabled_focused</td>
-                 <td></td>
+                <td style="width:240px">&nbsp;</td>
               </tr>
 	          <tr>
 	            <td><div id="output-numberpicker"> </div></td>
-	            <td><div id="output-numberpicker-down-longpressed"> </div></td>
-	            <td><div id="output-numberpicker-down-focus"> </div></td>
-	            <td><div id="output-numberpicker-down-disabled-focus"> </div></td>
-	             <td></td>
+	            <td style="width:240px">&nbsp;</td>
 	          </tr>
           </table>
           <br />
@@ -541,7 +521,7 @@
       		'ratingstarbig':1, 'ratingstarbig-half':1,
       		'ratingstarsmall':1, 'ratingstarsmall-half':1,
       		'search':1, 'search-right':1,
-      		'numberpicker':1, 'numberpicker-down-longpressed':1, 'numberpicker-down-focus':1, 'numberpicker-down-disabled-focus':1, 'numberpicker-up':1, 'numberpicker-up-longpressed':1, 'numberpicker-up-focus':1, 'numberpicker-up-disabled-focus':1, 'numberpicker-divider':1,
+      		'numberpicker':1,
       		'switch':1, 'switch-pressed':1, 'switch-bg':1,
       		'fastscroll':1, 'fastscroll-pressed':1,
       		'tab':1, 'tab-selected-pressed':1, 'tab-selected-focus':1, 'tab-unselected':1, 'tab-unselected-pressed':1, 'tab-unselected-focus':1  };
@@ -805,15 +785,16 @@
 	            offText: 'No',
 	            onText: 'Yes'
 	       }),
-	       
+	       */
 	       
 	       new studio.forms.BooleanField('numberpicker', {
 	            title: 'Numberpicker',
+	            helpText: 'Styles are not public for this widget, use <a href="https://github.com/SimonVT/android-numberpicker" target="_blank">android-numberpicker library</a>', 
 	            defaultValue: false,
 	            offText: 'No',
 	            onText: 'Yes'
 	       }),
-			*/
+		
 	       new studio.forms.BooleanField('switch', {
 	            title: 'Switch',
 	            helpText: 'Styles are not public for this widget, see <a href="https://github.com/BoD/android-switch-backport" target="_blank">switch-backport</a> or <a href="https://github.com/ankri/SwitchCompatLibrary" target="_blank">SwitchCompatLibrary</a>',

@@ -10,35 +10,9 @@
   if (isset($color) && isset($size) && isset($holo) && isset($component)) {
   	
   	switch ($component) {
-  		case "numberpicker":
-	  		$toggle = new NbPickerDownPress();
-	  		break;
-	  	case "numberpicker-down-longpressed":
-	  		$toggle = new NbPickerDownLongPress();
-	  		break;
-	  	case "numberpicker-down-focus":
-	  		$toggle = new NbPickerDownFocus();
-	  		break;
-	  	case "numberpicker-down-disabled-focus":
-	  		$toggle = new NbPickerDownDisabledFocus();
-	  		break;
-	  	 case "numberpicker-up":
-	  		$toggle = new NbPickerUpPress();
-	  		break;
-	  	case "numberpicker-up-longpressed":
-	  		$toggle = new NbPickerUpLongPress();
-	  		break;
-	  	case "numberpicker-up-focus":
-	  		$toggle = new NbPickerUpFocus();
-	  		break;
-	  	case "numberpicker-up-disabled-focus":
-	  		$toggle = new NbPickerUpDisabledFocus();
-	  		break;
-	  	case "numberpicker-divider":
-	  		$toggle = new NbPickerDivider();
-	  		break;
+	  	case "numberpicker":
 	  	default:
-	  		$toggle = new NbPickerDownPress();
+	  		$toggle = new NbPickerDivider();
 	  		break;
   	}	
   	
