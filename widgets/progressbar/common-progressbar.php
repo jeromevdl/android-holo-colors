@@ -36,7 +36,7 @@
   class ProgressBarPrimary extends Component {
   	
   	function __construct($ctx="") {
-  		parent:: __construct("progress_primary_holo.9.png", $ctx);
+  		parent:: __construct("progress_primary_holo_{{holo}}.9.png", $ctx);
   	}
   	
   	function generate_image($color, $size, $holo) {	
@@ -70,7 +70,7 @@
   class ProgressBarSecondary extends Component {
   	
   	function __construct($ctx="") {
-  		parent:: __construct("progress_secondary_holo.9.png", $ctx);
+  		parent:: __construct("progress_secondary_holo_{{holo}}.9.png", $ctx);
   	}
   	
   	function generate_image($color, $size, $holo) {	
