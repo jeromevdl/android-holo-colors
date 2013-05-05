@@ -56,7 +56,6 @@
           <ul>
             <li><a href="#many-pictures">Why does it genereate so many pictures ?</a></li>
             <li><a href="#ldpi">Why the low density (ldpi) is not generated ?</a></li>
-            <li><a href="#v11">The generator only provide v11 themes and styles, how to use pictures with older version ?</a></li>
             <li><a href="#progressbar">Why the ProgressBar is not with my color ?</a></li>
             <li><a href="#overiden-files">On Mac OS, when I copy the folders, it overwrite previous content</a></li>
             <li><a href="#actionbar">The generator does not provide action bar files, how to get them ?</a></li>
@@ -75,11 +74,6 @@
        
        <p class="faq"><a name="ldpi">Why the low density (ldpi) is not generated ?</a><br />
        Android Holo Colors Generator is based upon the default holo theme (in <a href="http://omapzoom.org/?p=platform/frameworks/base.git;a=tree;f=core/res/res;h=a98b2c0f022e44d1dfabf89c46013b3a260c4aa0;hb=HEAD" target="_blank">Android source code</a>) which does not provide any picture for low density devices. Moreover, ldpi represents <a href="http://developer.android.com/about/dashboards/index.html#Screens" target="_blank">less than 2%</a> of the Android Market Share. Finally, if a device is in ldpi, it will use the mdpi or hdpi pictures (<a href="http://developer.android.com/guide/practices/screens_support.html#support" target="_blank">more info</a>).</p>
-       
-       <p class="faq"><a name="v11">The generator only provide v11 themes and styles, how to use pictures with older version ?</a><br />
-       Android Holo Colors Generator is based upon the default holo theme, which came in sdk version 11, so all styles extends the Holo (or Holo.Light) theme.
-       You can however use the pictures created by Android Holo Colors Generator with older versions. Indeed, copy the styles.xml and themes.xml in values folder and replace parent values. For example, replace <code>Widget.Holo.Button</code> with <code>Widget.Button</code>, replace <code>Widget.Holo.Spinner</code> with <code>Widget.Spinner</code> and generally remove Holo from parent names (you can verify <a href="http://omapzoom.org/?p=platform/frameworks/base.git;a=blob_plain;f=core/res/res/values/themes.xml;hb=HEAD" target="_blank">in Android source code (themes.xml)</a>).<br/>
-       </p>
        
        <p class="faq"><a name="progressbar">Why the ProgressBar is not with my color ?</a><br />
        When using a ProgressBar, the default picture is the rolling ProgressBar. In order to get your pictures, set the following to your ProgresBar : <br /> <code>style="?android:attr/progressBarStyleHorizontal"</code></p>
