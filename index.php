@@ -67,10 +67,14 @@
         <div id="inputs-form"></div>
       </div>
       <div id="outputs">
-		<h3>
-			Output resources: <a class="dragout form-button" onclick="javascript:downloadFile();">Download .ZIP</a>
-		</h3>
-		<i>(zip file contains a "res" folder)</i><br/><br/>
+		<table><tr><td style="width:45%">
+			<b>Output resources</b> (<i>zip file contains a "res" folder</i>): </td><td><a class="dragout form-button" onclick="javascript:downloadFile();">Download .ZIP</a></td></tr>
+		<tr><td><br>This website is <b>totally free</b> but if you saved time and money with it, please <b>make a small donation</b> : </td><td><br><form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+		<input type="hidden" name="cmd" value="_s-xclick">
+		<input type="hidden" name="hosted_button_id" value="XQSBX55A2Z46U">
+		<input type="image" src="support-button.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+		<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
+		</form></td></tr></table><br/>
         <div id="block-output-edittext" class="bloc-output">
           EditText :
           <table class="bloc-output-table">
@@ -481,6 +485,24 @@
           </table>
           <br />
         </div>
+        
+        <div id="block-output-switchjb" class="bloc-output">
+          Switch Jelly Bean:
+          <table class="bloc-output-table">
+              <tr>
+                <td>switch_thumb_activated</td>
+                <td>switch_thumb_pressed</td>
+                <td>switch_bg_focused</td>
+              </tr>
+	          <tr>
+	            <td><div id="output-switchjb"> </div></td>
+	            <td><div id="output-switchjb-pressed"> </div></td>
+	            <td><div id="output-switchjb-bg"> </div></td>
+	          </tr>
+          </table>
+          <br />
+        </div>
+        
       </div>
           
 	    <div id="footer">
@@ -523,6 +545,7 @@
       		'search':1, 'search-right':1,
       		'numberpicker':1,
       		'switch':1, 'switch-pressed':1, 'switch-bg':1,
+      		'switchjb':1, 'switchjb-pressed':1, 'switchjb-bg':1,
       		'fastscroll':1, 'fastscroll-pressed':1,
       		'tab':1, 'tab-selected-pressed':1, 'tab-selected-focus':1, 'tab-unselected':1, 'tab-unselected-pressed':1, 'tab-unselected-focus':1  };
       
@@ -568,6 +591,7 @@
 	  	   	if (values['search']) { url+='&search=true'; okForDownload= true}
 	  	   	if (values['numberpicker']) { url+='&numberpicker=true'; okForDownload= true}
 	  	   	if (values['switch']) { url+='&switch=true'; okForDownload= true}
+	  	   	if (values['switchjb']) { url+='&switchjb=true'; okForDownload= true}
 	  	   	if (values['tab']) { url+='&tab=true'; okForDownload= true}
 			
 			//alert(url);
@@ -797,6 +821,14 @@
 		
 	       new studio.forms.BooleanField('switch', {
 	            title: 'Switch',
+	            helpText: 'Styles are not public for this widget, see <a href="https://github.com/BoD/android-switch-backport" target="_blank">switch-backport</a> or <a href="https://github.com/ankri/SwitchCompatLibrary" target="_blank">SwitchCompatLibrary</a>',
+	            defaultValue: false,
+	            offText: 'No',
+	            onText: 'Yes'
+	       }),
+	       
+	       new studio.forms.BooleanField('switchjb', {
+	            title: 'Switch Jelly Bean',
 	            helpText: 'Styles are not public for this widget, see <a href="https://github.com/BoD/android-switch-backport" target="_blank">switch-backport</a> or <a href="https://github.com/ankri/SwitchCompatLibrary" target="_blank">SwitchCompatLibrary</a>',
 	            defaultValue: false,
 	            offText: 'No',
