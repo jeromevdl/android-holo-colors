@@ -32,6 +32,7 @@
  $search = $_GET['search'];
  $numberpicker = $_GET['numberpicker'];
  $switch = $_GET['switch'];
+ $switchjb = $_GET['switchjb'];
  $autocomplete = $_GET['autocomplete'];
  $tab = $_GET['tab'];
  
@@ -762,6 +763,23 @@
     $themev11 .= '    <item name="numberPickerStyle">@style/NumberPicker'.$name.'</item>'."\n\n";
   }
   
+   //  ============== switch JB ================ //
+  if (isset($switchjb) && $switchjb == true) {
+    require_once('widgets/switchjb/common-switchjb.php');
+    $logger->debug("generate switch jb");
+  
+    foreach ($switchjb_classes as $clazz) {
+      generateImageOnDisk($clazz, $color, $holo, "widgets/switchjb/");
+    }
+    
+    copy_directory("widgets/switchjb/res/", $folder."/res/", $holo);
+    
+    if (isset($switch) && $switch == true) {
+    	// TODO : in this case provide switch jb in a "-16" folder and switch ics in default folder
+    	$switch = false;
+    }
+  }
+  
   
   //  ============== switch ================ //
   
@@ -796,6 +814,8 @@
     $stylev14 .= "</resources>";
     */
   }
+  
+ 
   
   
     

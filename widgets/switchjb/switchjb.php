@@ -11,16 +11,16 @@
   	
   	switch ($component) {
   		case "switchjb":
-	  		$toggle = new SwitchThumbActivated();
+	  		$toggle = new SwitchJBThumbActivated();
 	  		break;
 	  	case "switchjb-pressed":
-	  		$toggle = new SwitchThumbPress();
+	  		$toggle = new SwitchJBThumbPress();
 	  		break;
 	  	case "switchjb-bg":
-	  		$toggle = new SwitchBackground();
+	  		$toggle = new SwitchJBBackground();
 	  		break;
 	  	default:
-	  		$toggle = new SwitchThumbActivated();
+	  		$toggle = new SwitchJBThumbActivated();
 	  		break;
   	}	
   	

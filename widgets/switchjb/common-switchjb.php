@@ -5,12 +5,12 @@
 
   require_once($context.'common.php');
   
-  $switchjb_classes = array('SwitchThumbActivated', 'SwitchThumbPress', 'SwitchBackground');
+  $switchjb_classes = array('SwitchJBThumbActivated', 'SwitchJBThumbPress', 'SwitchJBBackground');
 
   /******************************************/
   /*       SWITCH THUMB ACTIVATED          */
   /******************************************/
-  class SwitchThumbActivated extends Component {
+  class SwitchJBThumbActivated extends Component {
   	
   	function __construct($ctx="") {
   		parent:: __construct("switch_thumb_activated_holo_{{holo}}.9.png", $ctx);
@@ -50,7 +50,7 @@
   /******************************************/
   /*         SWITCH THUMB PRESS             */
   /******************************************/
-  class SwitchThumbPress extends Component {
+  class SwitchJBThumbPress extends Component {
   	
   	function __construct($ctx="") {
   		parent:: __construct("switch_thumb_pressed_holo_{{holo}}.9.png", $ctx);
@@ -90,7 +90,7 @@
   /******************************************/
   /*         SWITCH BACKGROUND              */
   /******************************************/
-  class SwitchBackground extends Component {
+  class SwitchJBBackground extends Component {
   	
   	function __construct($ctx="") {
   		parent:: __construct("switch_bg_focused_holo_{{holo}}.9.png", $ctx);
