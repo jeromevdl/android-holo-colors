@@ -13,7 +13,8 @@
 		  $ninepatch = array(// lefttop, leftbottom, righttop, rightbottom, topleft, topright
 		  					   "mdpi" => array(21, 23, 8, 25, 13, 15), 
 		  					   "hdpi" => array(31, 34, 11, 37, 19, 22), 
-		  					   "xhdpi" => array(41, 45, 15, 49, 25, 29));
+		  					   "xhdpi" => array(41, 45, 15, 49, 25, 29), 
+		  					   "xxhdpi" => array(61, 67, 22, 73, 37, 43));
 	
 		  // load picture
 		  $edittext_img =  $this->loadTransparentPNG($image_name, $size);
@@ -22,14 +23,21 @@
 		  $rgb = $this->hex2RGB($color);
 		  imagefilter($edittext_img, IMG_FILTER_COLORIZE, $rgb['red'], $rgb['green'], $rgb['blue']);
 		  
-		  // add nine patch  	
-		  $edittext_img = $this->drawNinePatch($edittext_img, $image_name, $size, $ninepatch);
+		  // add nine patch  
+		  $nine_img =  $this->loadTransparentPNG("nine_patch.png", $size);
+		  	
+		  //$edittext_img = $this->drawNinePatch($edittext_img, $image_name, $size, $ninepatch);
+		  $result = $this->create_dest_image($image_name, $size);
+	    
+		  imagecopy($result[0], $edittext_img, 0, 0, 0, 0, $result[1], $result[2]);
+		  imagecopy($result[0], $nine_img, 0, 0, 0, 0, $result[1], $result[2]);
+		  
 		  
 		  // output to browser
 		  if (isset($_GET['action']) && $_GET['action'] == 'display') {
- 			  $this->displayImage($edittext_img);
+ 			  $this->displayImage($result[0]);
 		  } else {
-		  	 $this->generateImageFile($edittext_img, $size, $holo);
+		  	 $this->generateImageFile($result[0], $size, $holo);
 		  }
 	  }
   }
