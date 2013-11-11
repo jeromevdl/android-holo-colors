@@ -26,13 +26,17 @@
 	  $rgb = $this->hex2RGB($color);
 	  imagefilter($checkbox_img, IMG_FILTER_COLORIZE, $rgb['red'], $rgb['green'], $rgb['blue']);
 	  
+	  // add square
+	  $checkbox_border_img =  $this->loadTransparentPNG("btn_check_on_holo_".$holo.".png", $size);
+	  
 	  // add border
-	  $checkbox_border_img =  $this->loadTransparentPNG("btn_check_off_holo_".$holo.".png", $size);
+	  $border_img =  $this->loadTransparentPNG("btn_check_border.png", $size);
 	  
 	  $result = $this->create_dest_image($image_name, $size);
 	    
 	  imagecopy($result[0], $checkbox_border_img, 0, 0, 0, 0, $result[1], $result[2]);
 	  imagecopy($result[0], $checkbox_img, 0, 0, 0, 0, $result[1], $result[2]);
+	  imagecopy($result[0], $border_img, 0, 0, 0, 0, $result[1], $result[2]);
 	  
 	  // output to browser
 	  if (isset($_GET['action']) && $_GET['action'] == 'display') {
@@ -63,7 +67,7 @@
 	  imagefilter($checkbox_img, IMG_FILTER_COLORIZE, $rgb['red'], $rgb['green'], $rgb['blue']);
 	  
 	  // add border
-	  $checkbox_border_img = $this->loadTransparentPNG("btn_check_on_holo_".$holo.".png", $size);
+	  $checkbox_border_img = $this->loadTransparentPNG("btn_check_pressed_holo_".$holo.".png", $size);
 	  
 	  $result = $this->create_dest_image($image_name, $size);
 	    
@@ -101,13 +105,17 @@
 	  imagefilter($checkbox_img, IMG_FILTER_COLORIZE, $rgb['red'], $rgb['green'], $rgb['blue']);
 	  imagefilter($checkbox_focus_img, IMG_FILTER_COLORIZE, $rgb['red'], $rgb['green'], $rgb['blue']);
 	  
+	  // add square
+	  $checkbox_border_img = $this->loadTransparentPNG("btn_check_on_holo_".$holo.".png", $size);
+	  
 	  // add border
-	  $checkbox_border_img = $this->loadTransparentPNG("btn_check_off_holo_".$holo.".png", $size);
+	  $border_img =  $this->loadTransparentPNG("btn_check_border.png", $size);
 	  
 	  $result = $this->create_dest_image($image_name, $size);
 	    
 	  imagecopy($result[0], $checkbox_border_img, 0, 0, 0, 0, $result[1], $result[2]);
 	  imagecopy($result[0], $checkbox_img, 0, 0, 0, 0, $result[1], $result[2]);
+	  imagecopy($result[0], $border_img, 0, 0, 0, 0, $result[1], $result[2]);
 	  imagecopy($result[0], $checkbox_focus_img, 0, 0, 0, 0, $result[1], $result[2]);
 	  
 	  // output to browser
