@@ -426,7 +426,7 @@
   	
   	$logger->debug("generate progressbar");
   
-  	$img_sizes = array('mdpi', 'hdpi', 'xhdpi');
+  	$img_sizes = array('mdpi', 'hdpi', 'xhdpi', 'xxhdpi');
   	
   	for ($i = 1; $i <= 8 ; $i++) {  	  
 	  $pb = new ProgressBar("widgets/progressbar/", $i);
@@ -895,7 +895,7 @@
 	   *
 	   **********************************/
 		function generateImageOnDisk($clazz, $color, $holo, $ctx="") {
-		  $sizes = array('mdpi', 'hdpi', 'xhdpi');
+		  $sizes = array('mdpi', 'hdpi', 'xhdpi', 'xxhdpi');
 		  $obj = new $clazz($ctx);
 		  
 		  foreach ($sizes as $size) {

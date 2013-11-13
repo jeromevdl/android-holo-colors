@@ -110,6 +110,25 @@
           </table>
           <br />
         </div>
+        
+        <div id="block-output-kbutton" class="bloc-output">
+          KitKat Button :
+          <table class="bloc-output-table">
+              <tr>
+                <td>btn_default</td>
+                <td>btn_default_focused</td>
+                <td>btn_default_pressed</td>
+                <td>btn_default_disabled_focused</td>
+              </tr>
+	          <tr>
+	            <td><div id="output-kbutton"> </div></td>
+	            <td><div id="output-kbutton-focus"> </div></td>
+	            <td><div id="output-kbutton-pressed"> </div></td>
+	            <td><div id="output-kbutton-disabled-focus"> </div></td>
+	          </tr>
+          </table>
+          <br />
+        </div>
 
 		<div id="block-output-cbutton" class="bloc-output">
           Colored Button :
@@ -526,10 +545,11 @@
     <script>
       $(studio.checkBrowser);
       
-      var densities = {'xhdpi':1, 'hdpi':1, 'mdpi':1};
+      var densities = {'xxhdpi':1, 'xhdpi':1, 'hdpi':1, 'mdpi':1};
       var components = {
 			'edittext':1, 'edittext-focus':1, 'edittext-activated':1,
       		'button':1, 'button-pressed':1, 'button-focus':1, 'button-disabled-focus':1,
+      		'kbutton':1, 'kbutton-pressed':1, 'kbutton-focus':1, 'kbutton-disabled-focus':1,
       		'cbutton':1, 'cbutton-pressed':1, 'cbutton-focus':1, 'cbutton-disabled-focus':1,
       		'checkbox':1, 'checkbox-off':1, 'checkbox-off-pressed':1, 'checkbox-on-pressed':1, 'checkbox-off-focus':1, 'checkbox-on-focus':1, 'checkbox-on-disabled-focus':1, 'checkbox-off-disabled-focus':1, 
       		'radio':1, 'radio-off':1, 'radio-off-pressed':1, 'radio-on-pressed':1, 'radio-off-focus':1, 'radio-on-focus':1, 'radio-on-disabled-focus':1, 'radio-off-disabled-focus':1,
@@ -575,6 +595,7 @@
 	  	   	if (values['edittext']) { url+='&edittext=true'; okForDownload= true}
 	  	   	if (values['autocomplete']) { url+='&autocomplete=true'; okForDownload= true}
 	  	   	if (values['button']) { url+='&button=true'; okForDownload= true}
+  	   		if (values['kbutton']) { url+='&kbutton=true'; okForDownload= true}
 	  	   	if (values['cbutton']) { url+='&cbutton=true'; okForDownload= true}
 	  	   	if (values['checkbox']) { url+='&checkbox=true'; okForDownload= true}
 	  	   	if (values['radio']) { url+='&radio=true'; okForDownload= true}
@@ -611,7 +632,11 @@
 		var table = comp.split(reg);
 		component = table[0];
 	  	if (values[component]) {
-	            $('#out-' + comp + '-' + density).attr('src', "widgets/"+component+"/"+component+".php?color="+ color +"&size=" + density + "&holo=" + values['theme'] + "&action=display&component=" + comp);
+	  			$theme = values['theme'];
+	  			if ($theme == 'light_dark_action_bar') {
+	  				$theme = 'light';
+	  			}
+	            $('#out-' + comp + '-' + density).attr('src', "widgets/"+component+"/"+component+".php?color="+ color +"&size=" + density + "&holo=" + $theme + "&action=display&component=" + comp);
 	            $('#out-' + comp + '-' + density).css('display', 'inline-block');
 	            $('#block-output-' + comp).css('display', 'inline-block');
 	          } else {
@@ -696,7 +721,15 @@
 	            offText: 'No',
 	            onText: 'Yes'
 	       }),
-	       
+	       /*
+	       new studio.forms.BooleanField('kbutton', {
+	            title: 'KitKat Button',
+	            helpText: 'Unblue touch feedback, see <a target="_blank" href="http://developer.android.com/design/style/touch-feedback.html">guidelines</a>',
+	            defaultValue: false,
+	            offText: 'No',
+	            onText: 'Yes'
+	       }),
+	       */
 	       new studio.forms.BooleanField('cbutton', {
 	            title: 'Colored Button',
 	            helpText: 'Like Button, but colored',
@@ -744,6 +777,7 @@
 	       
 	       new studio.forms.BooleanField('progressbar', {
 	            title: 'ProgressBar',
+	            helpText: 'And ProgressBar Indeterminate',
 	            defaultValue: false,
 	            offText: 'No',
 	            onText: 'Yes'
