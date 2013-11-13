@@ -30,10 +30,14 @@
 	  // add border
 	  $checkbox_border_img =  $this->loadTransparentPNG("btn_radio_off_holo_".$holo.".png", $size);
 	  
-	   $result = $this->create_dest_image($image_name, $size);
+	   // add border
+	  $border_img = $this->loadTransparentPNG("btn_radio_on_border.png", $size);
+	  
+      $result = $this->create_dest_image($image_name, $size);
 	    
 	  imagecopy($result[0], $checkbox_border_img, 0, 0, 0, 0, $result[1], $result[2]);
 	  imagecopy($result[0], $checkbox_img, 0, 0, 0, 0, $result[1], $result[2]);
+	  imagecopy($result[0], $border_img, 0, 0, 0, 0, $result[1], $result[2]);
 	  
 	  // output to browser
 	  if (isset($_GET['action']) && $_GET['action'] == 'display') {
@@ -110,10 +114,14 @@
 	  // add border
 	  $checkbox_border_img = $this->loadTransparentPNG("btn_radio_off_holo_".$holo.".png", $size);
 	  
+	  // add border
+	  $border_img = $this->loadTransparentPNG("btn_radio_on_border.png", $size);
+	  
 	  $result = $this->create_dest_image($image_name, $size);
 	    
 	  imagecopy($result[0], $checkbox_border_img, 0, 0, 0, 0, $result[1], $result[2]);
 	  imagecopy($result[0], $checkbox_img, 0, 0, 0, 0, $result[1], $result[2]);
+	  imagecopy($result[0], $border_img, 0, 0, 0, 0, $result[1], $result[2]);
 	  imagecopy($result[0], $checkbox_focus_img, 0, 0, 0, 0, $result[1], $result[2]);
 	  
 	  // output to browser
