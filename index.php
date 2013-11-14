@@ -45,9 +45,17 @@
 	<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 	<script type="text/javascript">stLight.options({publisher: "ed3a7034-081d-4179-9fad-3ea83de87da2"}); </script>
 
+	<script type="text/javascript">
+            
+            function positFix() {
+                $('#ads').css("left", $('#main-container').offset().left + $('#main-container').width() + 20);
+            }
+    </script>
+
 </head>
   <body>
-    <div id="main-container">
+  
+  	<div id="main-container">
       <div id="header">
         <h1>Android Holo Colors Generator</h1>
       </div>
@@ -541,8 +549,31 @@
 			</div>
 		</div>
 	</div>
-    
+  
+  	<div id="ads" style="position: fixed; top: 25px;">
+		<?
+		$random = rand(1,3);
+		if ($random == 1) {
+		?>	
+  	<script type="text/javascript"><!--
+amazon_ad_tag = "andholcol-20"; amazon_ad_width = "160"; amazon_ad_height = "600"; amazon_ad_logo = "hide"; amazon_ad_link_target = "new"; amazon_color_border = "33B5E5"; amazon_color_link = "33B5E5"; amazon_color_price = "FF8800"; amazon_color_logo = "FFFFFF";//--></script>
+<script type="text/javascript" src="http://ir-na.amazon-adsystem.com/s/ads.js"></script>
+  	<?
+		} else if ($random == 2) {
+	?>
+  	<iframe src="http://rcm-na.amazon-adsystem.com/e/cm?t=andholcol-20&o=1&p=14&l=ur1&category=wireless&banner=086F8PMGCMQPQVEZKT82&f=ifr" width="160" height="600" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
+	<?
+		} else {
+	?>
+	<SCRIPT charset="utf-8" type="text/javascript" src="http://ws-na.amazon-adsystem.com/widgets/q?rt=tf_cw&ServiceVersion=20070822&MarketPlace=US&ID=V20070822%2FUS%2Fandholcol-20%2F8010%2F9530d7a5-6901-4bd4-a108-e6dd2de5dbf4&Operation=GetScriptTemplate"> </SCRIPT> <NOSCRIPT><A HREF="http://ws-na.amazon-adsystem.com/widgets/q?rt=tf_cw&ServiceVersion=20070822&MarketPlace=US&ID=V20070822%2FUS%2Fandholcol-20%2F8010%2F9530d7a5-6901-4bd4-a108-e6dd2de5dbf4&Operation=NoScript">Amazon.com Widgets</A></NOSCRIPT>
+	<?
+		}
+	?>
+	<br/><a href="faq.html#ads">Why ads ?</a>
+  	</div>
+    	
     <script>
+      positFix();
       $(studio.checkBrowser);
       
       var densities = {'xxhdpi':1, 'xhdpi':1, 'hdpi':1, 'mdpi':1};

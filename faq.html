@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="include/css/studio.css">
     <link rel="stylesheet" href="include/lib/spectrum/spectrum-assetstudio.css">
     
+    <script src="include/lib/jquery.min.js"></script>
+    
     <!-- Analytics -->
     <script type="text/javascript">
 	
@@ -24,6 +26,13 @@
 	  })();
 	
 	</script>
+	
+	<script type="text/javascript">
+            
+            function positFix() {
+                $('#ads').css("left", $('#main-container').offset().left + $('#main-container').width() + 20);
+            }
+    </script>
     
     <!-- Share This -->
 	<script type="text/javascript">var switchTo5x=true;</script>
@@ -62,6 +71,7 @@
             <li><a href="#tabwidget">How to use TabWidget ?</a></li>
             <li><a href="#holoeverywhere">Is it possible to combine Holo Colors with HoloEverywhere ?</a></li>
             <li><a href="#donate">How to help you to improve the generator ?</a></li>
+            <li><a href="#ads">Why has there ads ?</a></li>
           </ul>
         </p>
         <br/>
@@ -102,12 +112,15 @@
        <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
 		<input type="hidden" name="cmd" value="_s-xclick">
 		<input type="hidden" name="hosted_button_id" value="XQSBX55A2Z46U">
-		<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+		<input type="image" src="support-button.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
 		<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
 		</form>
 		</center>
 		</p>
 
+		<p class="faq"><a name="ads">Why has there ads ?</a><br/>
+		Android Holo Colors is totally free, but I need to pay the host and domain name. Furthermore, I keep adding features and spending time on it. So Ads and Paypal are necessary to keep this website alive.
+		</p>
        
       </div>
       <div id="footer">
@@ -127,5 +140,14 @@
 			</div>
 		</div>
    </div>
+   
+    <div id="ads" style="position: fixed; top: 25px;">
+     	<script type="text/javascript"><!--
+amazon_ad_tag = "andholcol-20"; amazon_ad_width = "160"; amazon_ad_height = "600"; amazon_ad_logo = "hide"; amazon_ad_link_target = "new"; amazon_color_border = "33B5E5"; amazon_color_link = "33B5E5"; amazon_color_price = "FF8800"; amazon_color_logo = "FFFFFF";//--></script>
+<script type="text/javascript" src="http://ir-na.amazon-adsystem.com/s/ads.js"></script>
+	</div>
+	<script>
+      positFix();
+    </script>
  </body>
 </html>
