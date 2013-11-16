@@ -18,7 +18,7 @@
   		parent:: __construct("fastscroll_thumb_default_holo.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "fastscroll_thumb_default_holo.png";
 	
 	  // load picture
@@ -47,7 +47,7 @@
   		parent:: __construct("fastscroll_thumb_pressed_holo.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "fastscroll_thumb_pressed_holo.png";
 	
 	  // load picture

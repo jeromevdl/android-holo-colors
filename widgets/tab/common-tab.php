@@ -16,7 +16,7 @@
   		parent:: __construct("tab_selected_holo.9.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "tab_selected_holo.9.png";
 	
 	  // load picture
@@ -52,7 +52,7 @@
   		parent:: __construct("tab_selected_pressed_holo.9.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "tab_selected_pressed_holo.9.png";
 	
 	  // load picture
@@ -66,7 +66,15 @@
 	  $border_img =  $this->loadTransparentPNG("tab_selected_nine_patch.png", $size);
 	  
 	  $result = $this->create_dest_image($image_name, $size);
+	  
+	  if ($kitkat) {
+	  	$top_img =  $this->loadTransparentPNG("tab_selected_pressed_top.png", $size);
+	  } else {
+	  	$top_img =  $this->loadTransparentPNG("tab_selected_pressed_holo_top.png", $size);
+	  	imagefilter($top_img, IMG_FILTER_COLORIZE, $rgb['red'], $rgb['green'], $rgb['blue']);
+	  }
 	    
+	  imagecopy($result[0], $top_img, 0, 0, 0, 0, $result[1], $result[2]);
 	  imagecopy($result[0], $tab_img, 0, 0, 0, 0, $result[1], $result[2]);
 	  imagecopy($result[0], $border_img, 0, 0, 0, 0, $result[1], $result[2]);
 	  
@@ -88,7 +96,7 @@
   		parent:: __construct("tab_selected_focused_holo.9.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "tab_selected_focused_holo.9.png";
 	
 	  // load picture
@@ -124,7 +132,7 @@
   		parent:: __construct("tab_unselected_holo.9.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "tab_unselected_holo.9.png";
 	
 	  // load picture
@@ -160,7 +168,7 @@
   		parent:: __construct("tab_unselected_pressed_holo.9.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "tab_unselected_pressed_holo.9.png";
 	
 	  // load picture
@@ -174,7 +182,15 @@
 	  $border_img =  $this->loadTransparentPNG("tab_unselected_nine_patch.png", $size);
 	  
 	  $result = $this->create_dest_image($image_name, $size);
+
+	  if ($kitkat) {
+	  	$top_img =  $this->loadTransparentPNG("tab_unselected_pressed_top.png", $size);
+	  } else {
+	  	$top_img =  $this->loadTransparentPNG("tab_unselected_pressed_holo_top.png", $size);
+	  	imagefilter($top_img, IMG_FILTER_COLORIZE, $rgb['red'], $rgb['green'], $rgb['blue']);
+	  }
 	    
+	  imagecopy($result[0], $top_img, 0, 0, 0, 0, $result[1], $result[2]);
 	  imagecopy($result[0], $tab_img, 0, 0, 0, 0, $result[1], $result[2]);
 	  imagecopy($result[0], $border_img, 0, 0, 0, 0, $result[1], $result[2]);
 	  
@@ -196,7 +212,7 @@
   		parent:: __construct("tab_unselected_focused_holo.9.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "tab_unselected_focused_holo.9.png";
 	
 	  // load picture

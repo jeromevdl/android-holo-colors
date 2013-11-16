@@ -16,7 +16,7 @@
   		parent:: __construct("btn_rating_star_on_normal_holo_{{holo}}.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "btn_rating_star_on_normal_holo.png";
 	
 	  // load picture
@@ -52,7 +52,7 @@
   		parent:: __construct("btn_rating_star_off_normal_holo_{{holo}}.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "btn_rating_star_off_normal_holo_".$holo.".png";
 	
 	  // load picture
@@ -76,7 +76,7 @@
   		parent:: __construct("btn_rating_star_on_focused_holo_{{holo}}.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "btn_rating_star_on_normal_holo.png";
 	
 	  // load picture
@@ -119,7 +119,7 @@
   		parent:: __construct("btn_rating_star_off_focused_holo_{{holo}}.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "btn_rating_star_off_normal_holo_".$holo.".png";
 	
 	  // load picture
@@ -155,7 +155,7 @@
   		parent:: __construct("btn_rating_star_on_pressed_holo_{{holo}}.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "btn_rating_star_on_normal_holo.png";
 	
 	  // load picture
@@ -198,7 +198,7 @@
   		parent:: __construct("btn_rating_star_off_pressed_holo_{{holo}}.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "btn_rating_star_off_normal_holo_".$holo.".png";
 	
 	  // load picture

@@ -16,7 +16,7 @@
   		parent:: __construct("btn_default_normal_holo_{{holo}}.9.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "btn_default_colored.png";
 	
 	  // load picture
@@ -56,7 +56,7 @@
   		parent:: __construct("btn_default_focused_holo_{{holo}}.9.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "btn_default_focused_holo.png";
 	
 	  // load picture
@@ -96,7 +96,7 @@
   		parent:: __construct("btn_default_disabled_focused_holo_{{holo}}.9.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "btn_default_disabled_focused_holo.png";
 	
 	  // load picture
@@ -133,7 +133,7 @@
   		parent:: __construct("btn_default_pressed_holo_{{holo}}.9.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "btn_default_pressed_holo.png";
 	
 	  // load picture

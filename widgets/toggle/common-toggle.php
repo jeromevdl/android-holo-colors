@@ -16,7 +16,7 @@
   		parent:: __construct("btn_toggle_on_normal_holo_{{holo}}.9.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "btn_toggle_on_normal_holo.png";
 	
 	  // load picture
@@ -56,7 +56,7 @@
   		parent:: __construct("btn_toggle_on_focused_holo_{{holo}}.9.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "btn_toggle_on_focused_holo.png";
 	
 	  // load picture
@@ -96,27 +96,37 @@
   		parent:: __construct("btn_toggle_on_pressed_holo_{{holo}}.9.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
-	  $image_name = "btn_toggle_on_pressed_holo.png";
-	
+    function generate_image($color, $size, $holo, $kitkat) {			   
+	  if ($kitkat) {
+	  	  $image_name = "btn_toggle_on_pressed_holo_".$holo.".9.png";
+	  } else {
+	  		$image_name = "btn_toggle_on_pressed_holo.png";
+	  }
+	  
 	  // load picture
 	  $button_img = $this->loadTransparentPNG($image_name, $size);
-	 
-	  // update colors
-	  $rgb = $this->hex2RGB($color);
-	  imagefilter($button_img, IMG_FILTER_COLORIZE, $rgb['red'], $rgb['green'], $rgb['blue']);
 	  
-	  // add ninepatch
-	  $nine_patch_img =  $this->loadTransparentPNG("btn_toggle_nine_patch.png", $size);
+	  if ($kitkat) {
+	  	  $result = $this->create_dest_image($image_name, $size);
+		  imagecopy($result[0], $button_img, 0, 0, 0, 0, $result[1], $result[2]);
+		  
+	  } else {	  	  
+		  // update colors
+		  $rgb = $this->hex2RGB($color);
+		  imagefilter($button_img, IMG_FILTER_COLORIZE, $rgb['red'], $rgb['green'], $rgb['blue']);
+	  
+		  // add ninepatch
+		  $nine_patch_img =  $this->loadTransparentPNG("btn_toggle_nine_patch.png", $size);
 
-	  // add shadow
-	  $border_img =  $this->loadTransparentPNG("btn_border_shadow.png", $size);
+		  // add shadow
+		  $border_img =  $this->loadTransparentPNG("btn_border_shadow.png", $size);
 	  
-	  $result = $this->create_dest_image($image_name, $size);
-	    
-	  imagecopy($result[0], $button_img, 0, 0, 0, 0, $result[1], $result[2]);
-	  imagecopy($result[0], $border_img, 0, 0, 0, 0, $result[1], $result[2]);
-	  imagecopy($result[0], $nine_patch_img, 0, 0, 0, 0, $result[1], $result[2]);
+		  $result = $this->create_dest_image($image_name, $size);
+		
+		  imagecopy($result[0], $button_img, 0, 0, 0, 0, $result[1], $result[2]);
+		  imagecopy($result[0], $border_img, 0, 0, 0, 0, $result[1], $result[2]);
+		  imagecopy($result[0], $nine_patch_img, 0, 0, 0, 0, $result[1], $result[2]);
+	  }
 	  
 	  // output to browser
 	  if (isset($_GET['action']) && $_GET['action'] == 'display') {
@@ -136,7 +146,7 @@
   		parent:: __construct("btn_toggle_off_focused_holo_{{holo}}.9.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "btn_toggle_off_focused_holo.png";
 	
 	  // load picture
@@ -173,7 +183,7 @@
   }
   
   /************************************************/
-  /*              TOGGLE ON PRESS                 */
+  /*              TOGGLE OFF PRESS                 */
   /***********************************************/
   class ToggleOffPress extends Component {
   	
@@ -181,31 +191,42 @@
   		parent:: __construct("btn_toggle_off_pressed_holo_{{holo}}.9.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
-	  $image_name = "btn_toggle_off_pressed_holo.png";
+    function generate_image($color, $size, $holo, $kitkat) {			   
+	  
+	  if ($kitkat) {
+	  	  $image_name = "btn_toggle_off_pressed_holo_".$holo.".9.png";
+	  } else {
+		  $image_name = "btn_toggle_off_pressed_holo.png";
+	  }
 	
 	  // load picture
 	  $button_img = $this->loadTransparentPNG($image_name, $size);
 	 
-	  // update colors
-	  $rgb = $this->hex2RGB($color);
-	  imagefilter($button_img, IMG_FILTER_COLORIZE, $rgb['red'], $rgb['green'], $rgb['blue']);
+	  if ($kitkat) {
+	  	  $result = $this->create_dest_image($image_name, $size);
+		  imagecopy($result[0], $button_img, 0, 0, 0, 0, $result[1], $result[2]);
+		  
+	  } else {	  	  
+		  // update colors
+		  $rgb = $this->hex2RGB($color);
+		  imagefilter($button_img, IMG_FILTER_COLORIZE, $rgb['red'], $rgb['green'], $rgb['blue']);
 	  
-	  // add ninepatch
-	  $nine_patch_img =  $this->loadTransparentPNG("btn_toggle_nine_patch.png", $size);
+		  // add ninepatch
+		  $nine_patch_img =  $this->loadTransparentPNG("btn_toggle_nine_patch.png", $size);
 
-	  // add shadow
-	  $border_img =  $this->loadTransparentPNG("btn_border_shadow.png", $size);
+		  // add shadow
+		  $border_img =  $this->loadTransparentPNG("btn_border_shadow.png", $size);
 	  
-	  // add toggle
-	  $toggle_img =  $this->loadTransparentPNG("btn_toggle_on_normal_holo_color.png", $size);
+		  // add toggle
+		  $toggle_img =  $this->loadTransparentPNG("btn_toggle_on_normal_holo_color.png", $size);
 	  
-	  $result = $this->create_dest_image($image_name, $size);
+		  $result = $this->create_dest_image($image_name, $size);
 	   
-	  imagecopy($result[0], $button_img, 0, 0, 0, 0, $result[1], $result[2]);
-	  imagecopy($result[0], $border_img, 0, 0, 0, 0, $result[1], $result[2]);
-	  imagecopy($result[0], $toggle_img, 0, 0, 0, 0, $result[1], $result[2]);
-	  imagecopy($result[0], $nine_patch_img, 0, 0, 0, 0, $result[1], $result[2]);
+		  imagecopy($result[0], $button_img, 0, 0, 0, 0, $result[1], $result[2]);
+		  imagecopy($result[0], $border_img, 0, 0, 0, 0, $result[1], $result[2]);
+		  imagecopy($result[0], $toggle_img, 0, 0, 0, 0, $result[1], $result[2]);
+		  imagecopy($result[0], $nine_patch_img, 0, 0, 0, 0, $result[1], $result[2]);
+	  }
 	  
 	  // output to browser
 	  if (isset($_GET['action']) && $_GET['action'] == 'display') {
@@ -225,7 +246,7 @@
   		parent:: __construct("btn_toggle_on_disabled_holo_{{holo}}.9.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "btn_toggle_on_disabled_holo.png";
 	
 	  // load picture
@@ -269,7 +290,7 @@
   		parent:: __construct("btn_toggle_on_disabled_focused_holo_{{holo}}.9.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "btn_toggle_on_disabled_focused_holo.png";
 	
 	  // load picture
@@ -309,7 +330,7 @@
   		parent:: __construct("btn_toggle_off_disabled_focused_holo_{{holo}}.9.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "btn_toggle_off_disabled_focused_holo.png";
 	
 	  // load picture

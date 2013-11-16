@@ -14,6 +14,8 @@
  $name = $_GET['name'];
  $color = $_GET['color'];
  $holo = $_GET['holo'];
+ $kitkat = $_GET['kitkat'];
+ 
  $edittext = $_GET['edittext'];
  $checkbox = $_GET['checkbox'];
  $radio = $_GET['radio'];
@@ -83,7 +85,7 @@
     $logger->debug("generate edittext");
   
     foreach ($edittext_classes as $clazz) {
-      generateImageOnDisk($clazz, $color, $holo, "widgets/edittext/");
+      generateImageOnDisk($clazz, $color, $holo, $kitkat,  "widgets/edittext/");
     }
     
     copy_directory("widgets/edittext/res/", $folder."/res/", $holo);
@@ -113,7 +115,7 @@
     if (!isset($edittext)) {
 	  	require_once('widgets/edittext/common-edittext.php');
 	    foreach ($edittext_classes as $clazz) {
-	      generateImageOnDisk($clazz, $color, $holo, "widgets/edittext/");
+	      generateImageOnDisk($clazz, $color, $holo, $kitkat,  "widgets/edittext/");
 	    }
 	    copy_directory("widgets/edittext/res/", $folder."/res/", $holo);
     }
@@ -121,7 +123,7 @@
 	if (!isset($list)) {
 	    require_once('widgets/list/common-list.php');  
 	    foreach ($list_classes as $clazz) {
-	      generateImageOnDisk($clazz, $color, $holo, "widgets/list/");
+	      generateImageOnDisk($clazz, $color, $holo, $kitkat,  "widgets/list/");
 	    }
 	    copy_directory("widgets/list/res/", $folder."/res/", $holo);
 	}
@@ -159,7 +161,7 @@
     $logger->debug("generate checkbox");
   
     foreach ($checkbox_classes as $clazz) {
-      generateImageOnDisk($clazz, $color, $holo, "widgets/checkbox/");
+      generateImageOnDisk($clazz, $color, $holo, $kitkat,  "widgets/checkbox/");
     }
     
     copy_directory("widgets/checkbox/res/", $folder."/res/", $holo);
@@ -182,7 +184,7 @@
   
   
     foreach ($radio_classes as $clazz) {
-      generateImageOnDisk($clazz, $color, $holo, "widgets/radio/");
+      generateImageOnDisk($clazz, $color, $holo, $kitkat,  "widgets/radio/");
     }
     
     copy_directory("widgets/radio/res/", $folder."/res/", $holo);
@@ -206,7 +208,7 @@
 	    $logger->debug("generate button");
 	  
 	    foreach ($button_classes as $clazz) {
-	      generateImageOnDisk($clazz, $color, $holo, "widgets/button/");
+	      generateImageOnDisk($clazz, $color, $holo, $kitkat,  "widgets/button/");
 	    }
 	    
 	    copy_directory("widgets/button/res/", $folder."/res/", $holo);
@@ -215,7 +217,7 @@
 	    $logger->debug("generate cbutton");
 	  
 	    foreach ($cbutton_classes as $clazz) {
-	      generateImageOnDisk($clazz, $color, $holo, "widgets/cbutton/");
+	      generateImageOnDisk($clazz, $color, $holo, $kitkat,  "widgets/cbutton/");
 	    }
 	    
 	    copy_directory("widgets/cbutton/res/", $folder."/res/", $holo);
@@ -276,7 +278,7 @@
     $logger->debug("generate colored spinner");
   
     foreach ($cspinner_classes as $clazz) {
-      generateImageOnDisk($clazz, $color, $holo, "widgets/cspinner/");
+      generateImageOnDisk($clazz, $color, $holo, $kitkat,  "widgets/cspinner/");
     }
     
     copy_directory("widgets/cspinner/res/", $folder."/res/", $holo);
@@ -288,7 +290,7 @@
     $logger->debug("generate spinner");
   
     foreach ($spinner_classes as $clazz) {
-      generateImageOnDisk($clazz, $color, $holo, "widgets/spinner/");
+      generateImageOnDisk($clazz, $color, $holo, $kitkat,  "widgets/spinner/");
     }
     
     copy_directory("widgets/spinner/res/", $folder."/res/", $holo);
@@ -301,7 +303,7 @@
   	if (!isset($list)) {
 	    require_once('widgets/list/common-list.php');  
 	    foreach ($list_classes as $clazz) {
-	      generateImageOnDisk($clazz, $color, $holo, "widgets/list/");
+	      generateImageOnDisk($clazz, $color, $holo, $kitkat,  "widgets/list/");
 	    }
 	    copy_directory("widgets/list/res/", $folder."/res/", $holo);
 	}
@@ -346,7 +348,7 @@
     $logger->debug("generate tab");
   
     foreach ($tab_classes as $clazz) {
-      generateImageOnDisk($clazz, $color, $holo, "widgets/tab/");
+      generateImageOnDisk($clazz, $color, $holo, $kitkat,  "widgets/tab/");
     }
     
     copy_directory("widgets/tab/res/", $folder."/res/", $holo, false);
@@ -437,7 +439,7 @@
   	}
   	
   	foreach ($progressbar_classes as $clazz) {
-      generateImageOnDisk($clazz, $color, $holo, "widgets/progressbar/");
+      generateImageOnDisk($clazz, $color, $holo, $kitkat,  "widgets/progressbar/");
     }
   	
   	copy_directory("widgets/progressbar/res/", $folder."/res/", $holo);
@@ -472,7 +474,7 @@
     $logger->debug("generate seekbar");
   
     foreach ($seekbar_classes as $clazz) {
-      generateImageOnDisk($clazz, $color, $holo, "widgets/seekbar/");
+      generateImageOnDisk($clazz, $color, $holo, $kitkat,  "widgets/seekbar/");
     }
     
     copy_directory("widgets/seekbar/res/", $folder."/res/", $holo);
@@ -511,7 +513,7 @@
     $logger->debug("generate ratingbar");
   
     foreach ($ratingbar_classes as $clazz) {
-      generateImageOnDisk($clazz, $color, $holo, "widgets/ratingbar/");
+      generateImageOnDisk($clazz, $color, $holo, $kitkat,  "widgets/ratingbar/");
     }
     
     copy_directory("widgets/ratingbar/res/", $folder."/res/", $holo);
@@ -543,7 +545,7 @@
     $logger->debug("generate ratingstarbig");
   
     foreach ($ratingbarbig_classes as $clazz) {
-      generateImageOnDisk($clazz, $color, $holo, "widgets/ratingstarbig/");
+      generateImageOnDisk($clazz, $color, $holo, $kitkat,  "widgets/ratingstarbig/");
     }
     
     copy_directory("widgets/ratingstarbig/res/", $folder."/res/", $holo);
@@ -578,7 +580,7 @@
     $logger->debug("generate ratingstarsmall");
   
     foreach ($ratingbarsmall_classes as $clazz) {
-      generateImageOnDisk($clazz, $color, $holo, "widgets/ratingstarsmall/");
+      generateImageOnDisk($clazz, $color, $holo, $kitkat,  "widgets/ratingstarsmall/");
     }
     
     copy_directory("widgets/ratingstarsmall/res/", $folder."/res/", $holo);
@@ -612,7 +614,7 @@
     $logger->debug("generate toggle");
   
     foreach ($toggle_classes as $clazz) {
-      generateImageOnDisk($clazz, $color, $holo, "widgets/toggle/");
+      generateImageOnDisk($clazz, $color, $holo, $kitkat,  "widgets/toggle/");
     }
     
     copy_directory("widgets/toggle/res/", $folder."/res/", $holo);
@@ -649,7 +651,7 @@
     $logger->debug("generate list");
   
     foreach ($list_classes as $clazz) {
-      generateImageOnDisk($clazz, $color, $holo, "widgets/list/");
+      generateImageOnDisk($clazz, $color, $holo, $kitkat,  "widgets/list/");
     }
     
     copy_directory("widgets/list/res/", $folder."/res/", $holo);
@@ -689,7 +691,7 @@
     $logger->debug("generate fastscroll");
   
     foreach ($fastscroll_classes as $clazz) {
-      generateImageOnDisk($clazz, $color, $holo, "widgets/fastscroll/");
+      generateImageOnDisk($clazz, $color, $holo, $kitkat,  "widgets/fastscroll/");
     }
     
     copy_directory("widgets/fastscroll/res/", $folder."/res/", $holo, false);
@@ -707,7 +709,7 @@
     $logger->debug("generate search");
   
     foreach ($search_classes as $clazz) {
-      generateImageOnDisk($clazz, $color, $holo, "widgets/search/");
+      generateImageOnDisk($clazz, $color, $holo, $kitkat,  "widgets/search/");
     }
     
     copy_directory("widgets/search/res/", $folder."/res/", $holo);
@@ -726,7 +728,7 @@
      if (!isset($list)) {
 	    require_once('widgets/list/common-list.php');  
 	    foreach ($list_classes as $clazz) {
-	      generateImageOnDisk($clazz, $color, $holo, "widgets/list/");
+	      generateImageOnDisk($clazz, $color, $holo, $kitkat,  "widgets/list/");
 	    }
 	    copy_directory("widgets/list/res/", $folder."/res/", $holo);
 	}
@@ -735,7 +737,7 @@
     $logger->debug("generate numberpicker");
   
     foreach ($numberpicker_classes as $clazz) {
-      generateImageOnDisk($clazz, $color, $holo, "widgets/numberpicker/");
+      generateImageOnDisk($clazz, $color, $holo, $kitkat,  "widgets/numberpicker/");
     }
     
     copy_directory("widgets/numberpicker/res/", $folder."/res/", $holo);
@@ -769,7 +771,7 @@
     $logger->debug("generate switch jb");
   
     foreach ($switchjb_classes as $clazz) {
-      generateImageOnDisk($clazz, $color, $holo, "widgets/switchjb/");
+      generateImageOnDisk($clazz, $color, $holo, $kitkat,  "widgets/switchjb/");
     }
     
     copy_directory("widgets/switchjb/res/", $folder."/res/", $holo);
@@ -788,7 +790,7 @@
     $logger->debug("generate switch");
   
     foreach ($switch_classes as $clazz) {
-      generateImageOnDisk($clazz, $color, $holo, "widgets/switch/");
+      generateImageOnDisk($clazz, $color, $holo, $kitkat,  "widgets/switch/");
     }
     
     copy_directory("widgets/switch/res/", $folder."/res/", $holo);
@@ -894,12 +896,12 @@
 	   * Generate 
 	   *
 	   **********************************/
-		function generateImageOnDisk($clazz, $color, $holo, $ctx="") {
+		function generateImageOnDisk($clazz, $color, $holo, $kitkat=false, $ctx="") {
 		  $sizes = array('mdpi', 'hdpi', 'xhdpi', 'xxhdpi');
 		  $obj = new $clazz($ctx);
 		  
 		  foreach ($sizes as $size) {
-		    $obj->generate_image($color, $size, $holo);
+		    $obj->generate_image($color, $size, $holo, $kitkat);
 		  }
 		}
 

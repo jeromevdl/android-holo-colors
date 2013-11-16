@@ -16,7 +16,7 @@
   		parent:: __construct("switch_thumb_activated_holo_{{holo}}.9.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "switch_thumb_activated_holo.png";
 	
 	  // load picture
@@ -56,7 +56,7 @@
   		parent:: __construct("switch_thumb_pressed_holo_{{holo}}.9.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "switch_thumb_pressed_holo.png";
 	
 	  // load picture
@@ -96,7 +96,7 @@
   		parent:: __construct("switch_bg_focused_holo_{{holo}}.9.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "switch_bg_focused_holo.png";
 	
 	  // load picture

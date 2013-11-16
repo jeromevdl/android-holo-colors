@@ -16,7 +16,7 @@
   		parent:: __construct("scrubber_control_normal_holo.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "scrubber_control_normal_holo.png";
 	
 	  // load picture
@@ -44,7 +44,7 @@
   		parent:: __construct("scrubber_control_focused_holo.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "scrubber_control_focused_holo.png";
 	
 	  // load picture
@@ -72,7 +72,7 @@
   		parent:: __construct("scrubber_control_pressed_holo.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "scrubber_control_pressed_holo.png";
 	
 	  // load picture
@@ -100,7 +100,7 @@
   		parent:: __construct("scrubber_control_disabled_holo.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "scrubber_control_disabled_holo.png";
 	
 	  // load picture
@@ -136,7 +136,7 @@
   		parent:: __construct("scrubber_primary_holo.9.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "scrubber_primary_holo.png";
 	
 	  // load picture
@@ -172,7 +172,7 @@
   		parent:: __construct("scrubber_secondary_holo.9.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "scrubber_secondary_holo.png";
 	
 	  // load picture

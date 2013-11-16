@@ -16,7 +16,7 @@
   		parent:: __construct("spinner_default_holo_{{holo}}.9.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "spinner_default_holo.png";
 	
 	  // load picture
@@ -52,7 +52,7 @@
   		parent:: __construct("spinner_focused_holo_{{holo}}.9.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "spinner_default_holo.png";
 	
 	  // load picture
@@ -96,7 +96,7 @@
   		parent:: __construct("spinner_pressed_holo_{{holo}}.9.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "spinner_default_holo.png";
 	
 	  // load picture

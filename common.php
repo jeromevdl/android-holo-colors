@@ -9,9 +9,10 @@
   	public $_context = "";
   	public $_color = "000";
   	public $_holo = "light";
+  	public $_kitkat = false;
   	public $_name = "";
   	
-    abstract protected function generate_image($color, $size, $holo);
+    abstract protected function generate_image($color, $size, $holo, $kitkat);
     
     function __construct($name, $ctx="") 
     {
@@ -20,40 +21,7 @@
     	 $this->logger = Logger::getLogger(__CLASS__);
     }
     
-    /***************************
-	   *
-	   * Add nine patch lines
-	   *
-	   ***************************/
-	  function drawNinePatch($image, $image_name, $size, $ninepatch) {
-	  	
-	  	$image_path = $this->_context."images/drawable-".$size."/".$image_name;
-	  	
-	  	$this->logger->debug("drawNinePatch : ".$image_path);
-	  					   
-	  	$nine = $ninepatch[$size];
-	  	  	
-	  	$black = imagecolorallocate($image, 0, 0, 0);
-	  	
-	  	$size = getimagesize($image_path);
-	    $w = $size[0];
-	    $h = $size[1];
-	  	  	
-	  	// left
-	  	imageline($image, 0, $nine[0], 0, $nine[1], $black);
-	  	
-	  	// right
-	  	imageline($image, $w - 1, $nine[2], $w - 1, $nine[3], $black);
-	  	
-	  	// top
-	  	imageline($image, $nine[4], 0, $nine[5], 0, $black);
-	  	
-	  	// bottom
-	  	imageline($image, $nine[4], $h - 1, $nine[5], $h - 1, $black);
-	  	
-	  	return $image;
-	  }
-	  
+      
 	  /***************************
 	   *
 	   * Display image in browser
@@ -117,6 +85,10 @@
    		$this->logger->debug("loadTransparentPNG : ".$image_path);
 	  	
 	  	$im = ImageCreateFromPNG($image_path);
+	  	
+	  	if (!$im) {
+	  		$this->logger->error($image_path." KO");
+	  	 }
 	  
 	    $size = getimagesize($image_path);
 	    $w = $size[0];
@@ -124,12 +96,18 @@
 	
 	    // crée l'image de sortie
 	    $im2 =  imagecreatetruecolor($w,$h);
+	    if (!$im2) {
+	  		$this->logger->error("imagecreatetruecolor ".$image_path." KO");
+	  	 }
 	    imagealphablending($im2,false);
 	    imagesavealpha($im2,true);
 	
 	    // remplit l'image de sortie
-	    imagecopyresampled($im2,$im,0,0,0,0,$w,$h,$w,$h);
-	    
+	    $imcp = imagecopyresampled($im2,$im,0,0,0,0,$w,$h,$w,$h);
+	    if (!$imcp) {
+	  		$this->logger->error("copy ".$image_path." KO");
+	  	 }
+	  	 
 	    $this->logger->debug("loadTransparentPNG OK");
 	  	
 	    return $im2;
@@ -154,7 +132,9 @@
 		  $transparent = imagecolorallocatealpha($dest, 0, 0, 0, 127);
 		  imagefill($dest, 0, 0, $transparent);
 		  
-		  return array($dest, $w, $h);
+		  $this->logger->debug("create_dest_image OK");
+		  $result = array($dest, $w, $h);
+		  return $result;
 	  }
   }  
 ?>

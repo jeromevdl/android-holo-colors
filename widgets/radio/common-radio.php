@@ -17,7 +17,7 @@
   	}
 
   	
-    function generate_image($color, $size, $holo) {	
+    function generate_image($color, $size, $holo, $kitkat) {	
     	$image_name = "btn_radio_on.png";
 	
 	  // load picture
@@ -59,26 +59,38 @@
   	}
 
   	
-    function generate_image($color, $size, $holo) {	
-    	$image_name = "btn_radio_pressed_holo.png";
+    function generate_image($color, $size, $holo, $kitkat) {	
+    	if ($kitkat) {
+	  		$image_name = "btn_radio_on_pressed_holo_".$holo.".png";
+	    } else {
+    		$image_name = "btn_radio_pressed_holo.png";
+    	}
 
 		  // load picture
 		  $checkbox_img =  $this->loadTransparentPNG($image_name, $size);
-		  // add inside radio
-		  $radio_in_img =  $this->loadTransparentPNG("btn_radio_on_holo_".$holo.".png", $size);
-		    
-		  // update colors
-		  $rgb = $this->hex2RGB($color);
-		  imagefilter($checkbox_img, IMG_FILTER_COLORIZE, $rgb['red'], $rgb['green'], $rgb['blue']);
 		  
-		  // add border
-		  $checkbox_border_img =  $this->loadTransparentPNG("btn_radio_off_holo_".$holo.".png", $size);
-		  
-		  $result = $this->create_dest_image($image_name, $size);
-		  
+		if ($kitkat) {
+	  	  $result = $this->create_dest_image($image_name, $size);
 		  imagecopy($result[0], $checkbox_img, 0, 0, 0, 0, $result[1], $result[2]);
-		  imagecopy($result[0], $radio_in_img, 0, 0, 0, 0, $result[1], $result[2]);
-		  imagecopy($result[0], $checkbox_border_img, 0, 0, 0, 0, $result[1], $result[2]);
+		  
+	    } else {   
+			  // add inside radio
+			  $radio_in_img =  $this->loadTransparentPNG("btn_radio_on_holo_".$holo.".png", $size);
+			
+			  // update colors
+			  $rgb = $this->hex2RGB($color);
+			  imagefilter($checkbox_img, IMG_FILTER_COLORIZE, $rgb['red'], $rgb['green'], $rgb['blue']);
+		  
+			  // add border
+			  $checkbox_border_img =  $this->loadTransparentPNG("btn_radio_off_holo_".$holo.".png", $size);
+		  
+			  $result = $this->create_dest_image($image_name, $size);
+		  
+			  imagecopy($result[0], $checkbox_img, 0, 0, 0, 0, $result[1], $result[2]);
+			  imagecopy($result[0], $radio_in_img, 0, 0, 0, 0, $result[1], $result[2]);
+			  imagecopy($result[0], $checkbox_border_img, 0, 0, 0, 0, $result[1], $result[2]);
+		  
+		}
 		  
 		  // output to browser
 		  if (isset($_GET['action']) && $_GET['action'] == 'display') {
@@ -98,7 +110,7 @@
   		parent:: __construct("btn_radio_on_focused_holo_{{holo}}.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {
+    function generate_image($color, $size, $holo, $kitkat) {
     	$image_name = "btn_radio_on.png";
 	  $focus_image_name = "btn_radio_off_focus.png";
 	
@@ -142,7 +154,7 @@
   		parent:: __construct("btn_radio_off_holo_{{holo}}.png", $ctx);
   	}
     	
-    function generate_image($color, $size, $holo) {	
+    function generate_image($color, $size, $holo, $kitkat) {	
       // add border
 	  $checkbox_border_img =  $this->loadTransparentPNG("btn_radio_off_holo_".$holo.".png", $size);
 	  
@@ -165,24 +177,33 @@
   	}
 
   	
-    function generate_image($color, $size, $holo) {
-    	 $image_name = "btn_radio_pressed_holo.png";
-	
+    function generate_image($color, $size, $holo, $kitkat) {
+     if ($kitkat) {
+	  	  $image_name = "btn_radio_off_pressed_holo_".$holo.".png";
+	  } else {
+      	  $image_name = "btn_radio_pressed_holo.png";
+	  }
+	  
 	  // load picture
 	  $checkbox_img = $this->loadTransparentPNG($image_name, $size);
-	    
-	  // update colors
-	  $rgb = $this->hex2RGB($color);
-	  imagefilter($checkbox_img, IMG_FILTER_COLORIZE, $rgb['red'], $rgb['green'], $rgb['blue']);
 	  
-	  // add border
-	  $checkbox_border_img = $this->loadTransparentPNG("btn_radio_off_holo_".$holo.".png", $size);
+	  if ($kitkat) {
+	  	  $result = $this->create_dest_image($image_name, $size);
+		  imagecopy($result[0], $checkbox_img, 0, 0, 0, 0, $result[1], $result[2]);
+		  
+	  } else {  
+		  // update colors
+		  $rgb = $this->hex2RGB($color);
+		  imagefilter($checkbox_img, IMG_FILTER_COLORIZE, $rgb['red'], $rgb['green'], $rgb['blue']);
 	  
-	   $result = $this->create_dest_image($image_name, $size);
-	    
-	  imagecopy($result[0], $checkbox_img, 0, 0, 0, 0, $result[1], $result[2]);
-	  imagecopy($result[0], $checkbox_border_img, 0, 0, 0, 0, $result[1], $result[2]);
+		  // add border
+		  $checkbox_border_img = $this->loadTransparentPNG("btn_radio_off_holo_".$holo.".png", $size);
 	  
+		   $result = $this->create_dest_image($image_name, $size);
+		
+		  imagecopy($result[0], $checkbox_img, 0, 0, 0, 0, $result[1], $result[2]);
+		  imagecopy($result[0], $checkbox_border_img, 0, 0, 0, 0, $result[1], $result[2]);
+	  }
 	  // output to browser
 	  if (isset($_GET['action']) && $_GET['action'] == 'display') {
  			  $this->displayImage($result[0]);
@@ -203,7 +224,7 @@
   	}
 
   	
-    function generate_image($color, $size, $holo) {
+    function generate_image($color, $size, $holo, $kitkat) {
     	$focus_image_name = "btn_radio_off_focus.png";
 	
 	  // load picture
@@ -238,7 +259,7 @@
   		parent:: __construct("btn_radio_off_disabled_focused_holo_{{holo}}.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {
+    function generate_image($color, $size, $holo, $kitkat) {
 	  $focus_image_name = "btn_radio_off_focus.png";
 	
 	  // load picture
@@ -274,7 +295,7 @@
   		parent:: __construct("btn_radio_on_disabled_focused_holo_{{holo}}.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {
+    function generate_image($color, $size, $holo, $kitkat) {
 	  $focus_image_name = "btn_radio_off_focus.png";
 	
 	  // load picture

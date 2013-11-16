@@ -16,7 +16,7 @@
   		parent:: __construct("rate_star_big_on_holo_{{holo}}.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "rate_star_big_on_holo.png";
 	
 	  // load picture
@@ -52,7 +52,7 @@
   		parent:: __construct("rate_star_big_half_holo_{{holo}}.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "rate_star_big_half_holo.png";
 	
 	  // load picture

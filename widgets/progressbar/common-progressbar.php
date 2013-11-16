@@ -16,7 +16,7 @@
   		$_number = $number;
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
     	  // load picture
 		  $progress_img =  $this->loadTransparentPNG($this->_name, $size);
 		 
@@ -39,7 +39,7 @@
   		parent:: __construct("progress_primary_holo_{{holo}}.9.png", $ctx);
   	}
   	
-  	function generate_image($color, $size, $holo) {	
+  	function generate_image($color, $size, $holo, $kitkat) {	
   		$image_name = "progress_primary_holo.png";
 	
 	  // load picture
@@ -73,7 +73,7 @@
   		parent:: __construct("progress_secondary_holo_{{holo}}.9.png", $ctx);
   	}
   	
-  	function generate_image($color, $size, $holo) {	
+  	function generate_image($color, $size, $holo, $kitkat) {	
   		$image_name = "progress_secondary_holo.png";
 	
 	  // load picture

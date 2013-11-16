@@ -119,25 +119,6 @@
           <br />
         </div>
         
-        <div id="block-output-kbutton" class="bloc-output">
-          KitKat Button :
-          <table class="bloc-output-table">
-              <tr>
-                <td>btn_default</td>
-                <td>btn_default_focused</td>
-                <td>btn_default_pressed</td>
-                <td>btn_default_disabled_focused</td>
-              </tr>
-	          <tr>
-	            <td><div id="output-kbutton"> </div></td>
-	            <td><div id="output-kbutton-focus"> </div></td>
-	            <td><div id="output-kbutton-pressed"> </div></td>
-	            <td><div id="output-kbutton-disabled-focus"> </div></td>
-	          </tr>
-          </table>
-          <br />
-        </div>
-
 		<div id="block-output-cbutton" class="bloc-output">
           Colored Button :
           <table class="bloc-output-table">
@@ -497,7 +478,7 @@
         </div>
         
 	    <div id="block-output-switch" class="bloc-output">
-          Switch :
+          Switch - Deprecated :
           <table class="bloc-output-table">
               <tr>
                 <td>switch_thumb_activated</td>
@@ -620,13 +601,15 @@ amazon_ad_tag = "andholcol-20"; amazon_ad_width = "160"; amazon_ad_height = "600
 	          color = color.substr(1,6);
 
 	    	}
+	    	
+	    	var kitkat = values['kitkat'];
+	  		var kitkatint = kitkat ? 1 : 0;
 
-	  	    var url = 'generate_all.php?color='+color+'&holo='+values['theme']+'&name='+values['name'];
+	  	    var url = 'generate_all.php?color='+color+'&holo='+values['theme']+'&name='+values['name']+'&kitkat='+kitkatint;
 	  	    var okForDownload = false;
 	  	   	if (values['edittext']) { url+='&edittext=true'; okForDownload= true}
 	  	   	if (values['autocomplete']) { url+='&autocomplete=true'; okForDownload= true}
 	  	   	if (values['button']) { url+='&button=true'; okForDownload= true}
-  	   		if (values['kbutton']) { url+='&kbutton=true'; okForDownload= true}
 	  	   	if (values['cbutton']) { url+='&cbutton=true'; okForDownload= true}
 	  	   	if (values['checkbox']) { url+='&checkbox=true'; okForDownload= true}
 	  	   	if (values['radio']) { url+='&radio=true'; okForDownload= true}
@@ -663,11 +646,13 @@ amazon_ad_tag = "andholcol-20"; amazon_ad_width = "160"; amazon_ad_height = "600
 		var table = comp.split(reg);
 		component = table[0];
 	  	if (values[component]) {
-	  			$theme = values['theme'];
-	  			if ($theme == 'light_dark_action_bar') {
-	  				$theme = 'light';
+	  			var theme = values['theme'];
+	  			if (theme == 'light_dark_action_bar') {
+	  				theme = 'light';
 	  			}
-	            $('#out-' + comp + '-' + density).attr('src', "widgets/"+component+"/"+component+".php?color="+ color +"&size=" + density + "&holo=" + $theme + "&action=display&component=" + comp);
+	  			var kitkat = values['kitkat'];
+	  			var kitkatint = kitkat ? 1 : 0;
+	            $('#out-' + comp + '-' + density).attr('src', "widgets/"+component+"/"+component+".php?color="+ color +"&size=" + density + "&holo=" + theme + "&action=display&component=" + comp + "&kitkat=" + kitkatint);
 	            $('#out-' + comp + '-' + density).css('display', 'inline-block');
 	            $('#block-output-' + comp).css('display', 'inline-block');
 	          } else {
@@ -716,16 +701,35 @@ amazon_ad_tag = "andholcol-20"; amazon_ad_width = "160"; amazon_ad_height = "600
             title: 'Color',
             defaultValue: '#33b5e5'
           }),
+          /*
+          new studio.forms.EnumField('style', {
+            title: 'Style compatibility',
+            buttons: true,
+            options: [
+              { id: 'holo', title: 'Holo' },
+              { id: 'compat', title: 'AppCompat' }
+            ],
+            defaultValue: 'holo'
+          }), */
           new studio.forms.EnumField('theme', {
             title: 'Theme',
             buttons: true,
             options: [
-              { id: 'light', title: 'Holo Light' },
-              { id: 'dark', title: 'Holo Dark' }, 
-              { id: 'light_dark_action_bar', title: 'Holo Light Dark ActionBar' }
+              { id: 'light', title: 'Light' },
+              { id: 'dark', title: 'Dark' }, 
+              { id: 'light_dark_action_bar', title: 'Light Dark ActionBar' }
             ],
             defaultValue: 'light'
           }),
+          
+          new studio.forms.BooleanField('kitkat', {
+	            title: 'KitKat Style',
+	            helpText: 'Unblue touch feedback, see <a target="_blank" href="http://developer.android.com/design/style/touch-feedback.html">guidelines</a>',
+	            defaultValue: false,
+	            offText: 'No',
+	            onText: 'Yes'
+	       }),
+
           new studio.forms.Separator('sep-general', {
           	title: '',
           	defaultValue:''
@@ -752,15 +756,7 @@ amazon_ad_tag = "andholcol-20"; amazon_ad_width = "160"; amazon_ad_height = "600
 	            offText: 'No',
 	            onText: 'Yes'
 	       }),
-	       /*
-	       new studio.forms.BooleanField('kbutton', {
-	            title: 'KitKat Button',
-	            helpText: 'Unblue touch feedback, see <a target="_blank" href="http://developer.android.com/design/style/touch-feedback.html">guidelines</a>',
-	            defaultValue: false,
-	            offText: 'No',
-	            onText: 'Yes'
-	       }),
-	       */
+
 	       new studio.forms.BooleanField('cbutton', {
 	            title: 'Colored Button',
 	            helpText: 'Like Button, but colored',
@@ -886,7 +882,7 @@ amazon_ad_tag = "andholcol-20"; amazon_ad_width = "160"; amazon_ad_height = "600
 		
 	       new studio.forms.BooleanField('switch', {
 	            title: 'Switch',
-	            helpText: 'Styles are not public for this widget, see <a href="https://github.com/BoD/android-switch-backport" target="_blank">switch-backport</a> or <a href="https://github.com/ankri/SwitchCompatLibrary" target="_blank">SwitchCompatLibrary</a>',
+	            helpText: '<b>Deprecated</b>. Use Switch Jelly Bean below.',
 	            defaultValue: false,
 	            offText: 'No',
 	            onText: 'Yes'

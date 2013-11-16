@@ -5,6 +5,7 @@
   $color = $_GET['color'];
   $size = $_GET['size'];
   $holo = $_GET['holo'];
+  $kitkat = $_GET['kitkat'];
   $component = $_GET['component'];
   
   if (isset($color) && isset($size) && isset($holo) && isset($component)) {
@@ -23,7 +24,7 @@
 	  		break;
   	}	
 
-    $et->generate_image($color, $size, $holo);
+    $et->generate_image($color, $size, $holo, $kitkat);
   }
 
 ?>

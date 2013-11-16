@@ -17,7 +17,7 @@
   		parent:: __construct("numberpicker_selection_divider.9.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "numberpicker_selection_divider.9.png";
 	
 	  // load picture

@@ -5,6 +5,7 @@
   $color = $_GET['color'];
   $size = $_GET['size'];
   $holo = $_GET['holo'];
+  $kitkat = (bool) $_GET['kitkat'];
   $component = $_GET['component'];
   
   if (isset($color) && isset($size) && isset($holo) && isset($component)) {
@@ -25,7 +26,7 @@
 	  		$button = new CButton();
 	  		break;
   	}	
-  	$button->generate_image($color, $size, $holo);
+  	$button->generate_image($color, $size, $holo, $kitkat);
   }
   
 

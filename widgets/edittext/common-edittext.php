@@ -10,12 +10,6 @@
   abstract class AbstractEditText extends Component {
   	
   	  public function generate_image_with_name($image_name, $color, $size, $holo) {
-		  $ninepatch = array(// lefttop, leftbottom, righttop, rightbottom, topleft, topright
-		  					   "mdpi" => array(21, 23, 8, 25, 13, 15), 
-		  					   "hdpi" => array(31, 34, 11, 37, 19, 22), 
-		  					   "xhdpi" => array(41, 45, 15, 49, 25, 29), 
-		  					   "xxhdpi" => array(61, 67, 22, 73, 37, 43));
-	
 		  // load picture
 		  $edittext_img =  $this->loadTransparentPNG($image_name, $size);
 		 
@@ -26,7 +20,6 @@
 		  // add nine patch  
 		  $nine_img =  $this->loadTransparentPNG("nine_patch.png", $size);
 		  	
-		  //$edittext_img = $this->drawNinePatch($edittext_img, $image_name, $size, $ninepatch);
 		  $result = $this->create_dest_image($image_name, $size);
 	    
 		  imagecopy($result[0], $edittext_img, 0, 0, 0, 0, $result[1], $result[2]);
@@ -51,7 +44,7 @@
   		parent:: __construct("textfield_default_holo_{{holo}}.9.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {			   
+    function generate_image($color, $size, $holo, $kitkat) {			   
 	  $image_name = "textfield_default_holo_".$holo.".9.png";
 	
 	  // load picture
@@ -77,7 +70,7 @@
   		parent:: __construct("textfield_activated_holo_{{holo}}.9.png", $ctx);
   	} 
   	
-  	function generate_image($color, $size, $holo) {
+  	function generate_image($color, $size, $holo, $kitkat) {
   	  $this->generate_image_with_name("textfield_activated_holo.png", $color, $size, $holo);
     }
   }
@@ -93,7 +86,7 @@
   		parent:: __construct("textfield_focused_holo_{{holo}}.9.png", $ctx);
   	}
   	
-    function generate_image($color, $size, $holo) {
+    function generate_image($color, $size, $holo, $kitkat) {
       $this->generate_image_with_name("textfield_focused_holo.png", $color, $size, $holo);
     }
   }
