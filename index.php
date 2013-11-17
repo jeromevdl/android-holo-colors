@@ -43,14 +43,14 @@
 	<!-- Share This -->
 	<script type="text/javascript">var switchTo5x=true;</script>
 	<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-	<script type="text/javascript">stLight.options({publisher: "ed3a7034-081d-4179-9fad-3ea83de87da2"}); </script>
+	<script type="text/javascript">stLight.options({publisher: "ed3a7034-081d-4179-9fad-3ea83de87da2", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
 
 	<script type="text/javascript">
-            
-            function positFix() {
-                $('#ads').css("left", $('#main-container').offset().left + $('#main-container').width() + 20);
-            }
-    </script>
+			
+		function positFix() {
+			$('#ads').css("left", $('#main-container').offset().left + $('#main-container').width() + 20);
+		}
+	</script>
 
 </head>
   <body>
@@ -522,10 +522,14 @@
 				<span class='st_twitter_hcount' displayText='Tweet'></span>
 				<span class='st_plusone_hcount' displayText='Google +1'></span>
 				<span class='st_googleplus_hcount' displayText='Google +'></span>
+				<span class='st_yammer_hcount' displayText='Yammer'></span>
+				<span class='st_sharethis_hcount' displayText='ShareThis'></span>
 				<span class='st_facebook_hcount' displayText='Facebook'></span>
 				<span class='st_linkedin_hcount' displayText='LinkedIn'></span>
-				<span class='st_yammer_hcount' displayText='Yammer'></span>
+				<span class='st_viadeo_hcount' displayText='Viadeo'></span>
 				<span class='st_delicious_hcount' displayText='Delicious'></span>
+				<span class='st_tumblr_hcount' displayText='Tumblr'></span>
+				<span class='st_reddit_hcount' displayText='Reddit'></span>
 				<span class='st_email_hcount' displayText='Email'></span>
 			</div>
 		</div>
