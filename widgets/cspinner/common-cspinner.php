@@ -106,20 +106,26 @@
 	  $rgb = $this->hex2RGB($color);
 	  imagefilter($button_img, IMG_FILTER_COLORIZE, $rgb['red'], $rgb['green'], $rgb['blue']);
 	  
-	  // load picture
-	  $back_img = $this->loadTransparentPNG("spinner_pressed_holo.png", $size);
+	  if ($kitkat) {
+		  // background
+		  $back_img = $this->loadTransparentPNG("spinner_pressed_holo_".$holo."_am.9.png", $size);	
+		    
+	  } else {
+		  // background
+		  $back_img = $this->loadTransparentPNG("spinner_pressed_holo.png", $size);
 	 
-	  // update colors
-	  imagefilter($back_img, IMG_FILTER_COLORIZE, $rgb['red'], $rgb['green'], $rgb['blue']);
-	  
+		  // update colors
+		  imagefilter($back_img, IMG_FILTER_COLORIZE, $rgb['red'], $rgb['green'], $rgb['blue']);
+	  }
+
 	  // add nine patch
 	  $border_img =  $this->loadTransparentPNG("spinner_nine_patch.png", $size);
-	  
+  
 	  $result = $this->create_dest_image($image_name, $size);
-	  
+  
 	  imagecopy($result[0], $button_img, 0, 0, 0, 0, $result[1], $result[2]);  
 	  imagecopy($result[0], $back_img, 0, 0, 0, 0, $result[1], $result[2]);
-  	  imagecopy($result[0], $border_img, 0, 0, 0, 0, $result[1], $result[2]);
+	  imagecopy($result[0], $border_img, 0, 0, 0, 0, $result[1], $result[2]);
 	  
 	  // output to browser
 	  if (isset($_GET['action']) && $_GET['action'] == 'display') {
