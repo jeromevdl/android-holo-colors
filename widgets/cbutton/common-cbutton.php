@@ -134,7 +134,12 @@
   	}
   	
     function generate_image($color, $size, $holo, $kitkat) {			   
-	  $image_name = "btn_default_pressed_holo.png";
+	  
+	  if ($kitkat) {
+	  	  $image_name = "btn_default_pressed_holo_".$holo.".png";
+	  } else {
+		  $image_name = "btn_default_pressed_holo.png";
+	  }
 	
 	  // load picture
 	  $button_img = $this->loadTransparentPNG($image_name, $size);
