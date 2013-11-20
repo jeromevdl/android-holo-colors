@@ -27,9 +27,20 @@ Components available
 * List Selector
 * Fast Scroll
 * Switch
+* Switch Jelly Bean
 
 Release note
 ------------
+__Nov 18, 2013; version 2.1.1__: Add Kitkat assets for colored button and colored spinner
+
+__Nov 16, 2013; version 2.1__: Add Kitkat assets (20% darker touched components)
+
+__Nov 13, 2013; version 2.0__: Add XXHDPI assets for all widgets
+
+__Nov 13, 2013; version 1.10__: Add Optical Bounds ("red nine patch")
+
+__Nov 03, 2013; version 1.9__: Adding Swtich Jelly Bean component
+
 __Dec 12, 2012; version 1.8.1__: Bug Fixes
 
 __Nov 30, 2012; version 1.8__: Enable Swich component (without styles, only pictures)
