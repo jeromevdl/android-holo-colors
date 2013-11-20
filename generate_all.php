@@ -324,10 +324,6 @@
     $stylev8 .= '      <item name="android:background">@drawable/spinner_background_holo_'.$holo.'</item>'."\n";
     $stylev8 .= '      <item name="android:dropDownSelector">@drawable/list_selector_holo_'.$holo.'</item>'."\n";
     $stylev8 .= '  </style>'."\n\n";
-    
-    $stylev8 .= '  <style name="Spinner'.$name.'.DropDown">'."\n";
-    $stylev8 .= '      <item name="android:spinnerMode">dropdown</item>'."\n";
-    $stylev8 .= '  </style>'."\n\n";
 
 	$stylev8 .= '  <style name="SpinnerDropDownItem'.$name.'" parent="android:Widget.DropDownItem.Spinner">'."\n";
     $stylev8 .= '      <item name="android:checkMark">@drawable/btn_radio_holo_'.$holo.'</item>'."\n";
@@ -337,8 +333,8 @@
 	$style8_available = true;
     
     $themev11 .= '    <item name="android:dropDownSpinnerStyle">@style/Spinner'.$name.'</item>'."\n\n";
+    
     $themev8 .= '    <item name="android:spinnerStyle">@style/Spinner'.$name.'</item>'."\n\n";
-    $themev8 .= '    <item name="android:dropDownSpinnerStyle">@style/Spinner'.$name.'.DropDown</item>'."\n\n";
     $themev8 .= '    <item name="android:spinnerDropDownItemStyle">@style/SpinnerDropDownItem'.$name.'</item>'."\n\n";
   } 
   
@@ -367,32 +363,10 @@
     $stylev11 .= '      <item name="tabLayout">@layout/tab_indicator_holo</item>'."\n";
     $stylev11 .= '  </style>'."\n\n";
 
-    $stylev11 .= '  <style name="Tab'.$name.'" parent="@android:style/Widget.ActionBar.TabView">'."\n";
-    $stylev11 .= '      <item name="android:paddingLeft">16dip</item>'."\n";
-    $stylev11 .= '      <item name="android:paddingRight">16dip</item>'."\n";
-    $stylev11 .= '      <item name="android:background">@drawable/tab_indicator_holo</item>'."\n";
-    $stylev11 .= '      <item name="android:layout_width">0dip</item>'."\n";
-    $stylev11 .= '      <item name="android:layout_weight">1</item>'."\n";
-    $stylev11 .= '      <item name="android:minWidth">80dip</item>'."\n";
-    $stylev11 .= '  </style>'."\n\n";
-    
-    $stylev11 .= '  <style name="TabText'.$name.'">'."\n";
-    if ($holo == "dark") {
-    	$stylev11 .= '	  <item name="android:textColor">#ffffff</item>'."\n";
-    } else {
-    	$stylev11 .= '	  <item name="android:textColor">#000000</item>'."\n";
-    }
-    $stylev11 .= '      <item name="android:textSize">12sp</item>'."\n";
-    $stylev11 .= '      <item name="android:textStyle">bold</item>'."\n";
-    $stylev11 .= '      <item name="android:textAllCaps">true</item>'."\n";
-    $stylev11 .= '      <item name="android:ellipsize">marquee</item>'."\n";
-    $stylev11 .= '      <item name="android:maxLines">2</item>'."\n";
-    $stylev11 .= '      <item name="android:maxWidth">180dip</item>'."\n";
-    $stylev11 .= '  </style>'."\n\n";
-    
     $style11_available = true;
-    
+   
     $stylev8 .= '  <style name="Tab'.$name.'">'."\n";
+   	$stylev8 .= '      <item name="android:gravity">center_horizontal</item>'."\n";
     $stylev8 .= '      <item name="android:paddingLeft">16dip</item>'."\n";
     $stylev8 .= '      <item name="android:paddingRight">16dip</item>'."\n";
     $stylev8 .= '      <item name="android:background">@drawable/tab_indicator_holo</item>'."\n";
@@ -409,7 +383,7 @@
     }
     $stylev8 .= '      <item name="android:textSize">12sp</item>'."\n";
     $stylev8 .= '      <item name="android:textStyle">bold</item>'."\n";
-    $stylev8 .= '      <item name="android:textAllCaps">true</item>'."\n";
+    $stylev8 .= '      <!-- v14 <item name="android:textAllCaps">true</item> -->'."\n";
     $stylev8 .= '      <item name="android:ellipsize">marquee</item>'."\n";
     $stylev8 .= '      <item name="android:maxLines">2</item>'."\n";
     $stylev8 .= '      <item name="android:maxWidth">180dip</item>'."\n";
@@ -417,6 +391,7 @@
     
     $style8_available = true;
         
+	$themev8 .= '    <item name="android:tabWidgetStyle">@style/TabWidget'.$name.'</item>'."\n\n";
 	$themev11 .= '    <item name="android:tabWidgetStyle">@style/TabWidget'.$name.'</item>'."\n\n";
   }
  
