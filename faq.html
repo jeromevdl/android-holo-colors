@@ -1,68 +1,89 @@
+<!--
+  Copyright 2013 Android Holo Colors by Jérôme Van Der Linden
+  Copyright 2010 Android Asset Studio by Google Inc
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>F.A.Q.</title>
-    
+
     <link rel="stylesheet" href="include/lib/cssreset-3.4.1.min.css">
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:regular,medium,thin,italic,mediumitalic,bold"
+          title="roboto">
     <link rel="stylesheet" href="include/css/studio.css">
     <link rel="stylesheet" href="include/lib/spectrum/spectrum-assetstudio.css">
-    
+
     <script src="include/lib/jquery.min.js"></script>
-    
+
     <!-- Analytics -->
     <script type="text/javascript">
-	
-	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', 'UA-34362324-1']);
-	  _gaq.push(['_trackPageview']);
-	
-	  (function() {
-	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  })();
-	
-	</script>
-	
-	<script type="text/javascript">
-            
-            function positFix() {
-                $('#ads').css("left", $('#main-container').offset().left + $('#main-container').width() + 20);
-            }
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-34362324-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+
     </script>
-    
+
+    <script type="text/javascript">
+
+        function positFix() {
+            $('#ads').css("left", $('#main-container').offset().left + $('#main-container').width() + 20);
+        }
+    </script>
+
     <!-- Share This -->
-	<script type="text/javascript">var switchTo5x=true;</script>
-	<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-	<script type="text/javascript">stLight.options({publisher: "ed3a7034-081d-4179-9fad-3ea83de87da2"}); </script>
-    
+    <script type="text/javascript">var switchTo5x = true;</script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">stLight.options({publisher: "ed3a7034-081d-4179-9fad-3ea83de87da2"}); </script>
+
     <style>
-      .faq {
-      	padding-top : 20px;
-      }
-      
-      .faq a {
-      	font-weight:bold;
-      }
+        .faq {
+            padding-top: 20px;
+        }
+
+        .faq a {
+            font-weight: bold;
+        }
     </style>
-    
+
 </head>
-  <body>
-    <div id="main-container">
-      <div id="header">
+<body>
+<div id="main-container">
+    <div id="header">
         <h1>Android Holo Colors Generator</h1>
-      </div>
-      <div id="page-header">
-      	<div id="breadcrumb">
-          <p>
-      	    <a href="index.php">&lt;&lt; Home</a>
-      	  </p>
-      	</div>
+    </div>
+    <div id="page-header">
+        <div id="breadcrumb">
+            <p>
+                <a href="index.php">&lt;&lt; Home</a>
+            </p>
+        </div>
         <p id="page-intro">
-          <ul>
+        <ul>
             <li><a href="#many-pictures">Why does it genereate so many pictures ?</a></li>
             <li><a href="#ldpi">Why the low density (ldpi) is not generated ?</a></li>
             <li><a href="#progressbar">Why the ProgressBar is not with my color ?</a></li>
@@ -72,82 +93,131 @@
             <li><a href="#holoeverywhere">Is it possible to combine Holo Colors with HoloEverywhere ?</a></li>
             <li><a href="#donate">How to help you to improve the generator ?</a></li>
             <li><a href="#ads">Why has there ads ?</a></li>
-          </ul>
+        </ul>
         </p>
         <br/>
-        <p>&gt;&gt; The question you have is not here, please <a href="https://github.com/jeromevdl/android-holo-colors/issues" target="_blank">report an issue</a>.
 
-      </div>
-      <div id="inputs">
-       <p class="faq"><a name="many-pictures">Why does it genereate so many pictures ?</a><br />
-       Android Holo Colors Generator is based upon the default holo theme (in <a href="http://omapzoom.org/?p=platform/frameworks/base.git;a=tree;f=core/res/res;h=a98b2c0f022e44d1dfabf89c46013b3a260c4aa0;hb=HEAD" target="_blank">Android source code</a>) which use as many pictures as there (and even more !). You may remove those you won't use and adjust the styles.xml to unreference those pictures. For example, if you never disable widgets, you can remove the "disabled" pictures. You can also remove density you don't want, for example mdpi. In that case, if a device with medium density use your application, hdpi pictures will be used. As you can see, we do not generate ldpi, to avoid many more pictures (see <a href="#ldpi">Why the low density (ldpi) is not generated ?</a>).</p>
-       
-       <p class="faq"><a name="ldpi">Why the low density (ldpi) is not generated ?</a><br />
-       Android Holo Colors Generator is based upon the default holo theme (in <a href="http://omapzoom.org/?p=platform/frameworks/base.git;a=tree;f=core/res/res;h=a98b2c0f022e44d1dfabf89c46013b3a260c4aa0;hb=HEAD" target="_blank">Android source code</a>) which does not provide any picture for low density devices. Moreover, ldpi represents <a href="http://developer.android.com/about/dashboards/index.html#Screens" target="_blank">less than 2%</a> of the Android Market Share. Finally, if a device is in ldpi, it will use the mdpi or hdpi pictures (<a href="http://developer.android.com/guide/practices/screens_support.html#support" target="_blank">more info</a>).</p>
-       
-       <p class="faq"><a name="progressbar">Why the ProgressBar is not with my color ?</a><br />
-       When using a ProgressBar, the default picture is the rolling ProgressBar. In order to get your pictures, set the following to your ProgresBar : <br /> <code>style="?android:attr/progressBarStyleHorizontal"</code></p>
-       
-       <p class="faq"><a name="overiden-files">On Mac OS, when I copy the folders, it overwrite previous content</a><br />
-       It is the default behavior of Finder. To avoid this, use another tool, for example muCommander or command line : <br><code>ditto origin_folder destination_folder</code></p>
-       
-       <p class="faq"><a name="actionbar">The generator does not provide action bar files, how to get them ?</a><br />
-       There is another website for that. Go to <a href="http://jgilfelt.github.com/android-actionbarstylegenerator/" target="_blank">actionbarstylegenerator</a> to get your action bar pictures.
-       </p>
-       
-       <p class="faq"><a name="tabwidget">How to use TabWidget ?</a><br />
-       You should have a look at <a href="http://developer.android.com/reference/android/support/v4/app/FragmentTabHost.html" target="_blank">google documentation</a> for the basis. To use the custom color, replace the default indicator like this:<br />
-       <code>
-       View tabIndicator = LayoutInflater.from(this).inflate(R.layout.tab_indicator_holo, mTabHost.getTabWidget(), false);
-	   TextView title = (TextView) tabIndicator.findViewById(android.R.id.title);
-	   title.setText("Tab 1");
-	   </code>
-	   </p>
-	   
-	   <p class="faq"><a name="holoeverywhere">Is it possible to combine Holo Colors with HoloEverywhere ?</a><br/>
-	   <a href="https://github.com/Prototik/HoloEverywhere" target="_blank">HoloEverywhere</a> provide the full backport of Android 4.2 widgets to 2.x. You can use both HoloEverywhere and Holo Colors. Clone the Holo Everywhere github project. In the library module, remove the res/values-v11 folder. Place all generated pictures by Holo Colors in your-project/res folder. Build the library and use it as usual, you should have your colored widget. (Ex: <a href="holoeverywhere_red.png">HoloEverywhere Demo with red color</a>)
-       
-       <p class="faq"><a name="donate">How to help you to improve the generator ?</a><br/>
-       You can help by submitting your enhancement <a href="https://github.com/jeromevdl/android-holo-colors/issues" target="_blank">requests</a> or with a donation : <br /><center>
-       <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-		<input type="hidden" name="cmd" value="_s-xclick">
-		<input type="hidden" name="hosted_button_id" value="XQSBX55A2Z46U">
-		<input type="image" src="support-button.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-		<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
-		</form>
-		</center>
-		</p>
+        <p>&gt;&gt; The question you have is not here, please <a
+                href="https://github.com/jeromevdl/android-holo-colors/issues" target="_blank">report an issue</a>.
 
-		<p class="faq"><a name="ads">Why has there ads ?</a><br/>
-		Android Holo Colors is totally free, but I need to pay the host and domain name. Furthermore, I keep adding features and spending time on it. So Ads and Paypal are necessary to keep this website alive.
-		</p>
-       
-      </div>
-      <div id="footer">
-		<p>Created by <a href="mailto:jeromevdl@android-holo-colors.com">Jérôme Van Der Linden</a>.</p>
-		<p>Built upon the <a href="http://code.google.com/p/android-ui-utils" target="_blank">android-ui-utils</a> asset studio framework created by <a href="http://roman.nurik.net/" target="_blank">Roman Nurik</a>, copyright Google Inc.</p><br/>
-		<p>All generated art is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/" target="_blank">Creative Commons Attribution 3.0 Unported License</a>.</p>
-		<br/><br/>
-			<div align="center" >
-				<span class='st_twitter_hcount' displayText='Tweet'></span>
-				<span class='st_plusone_hcount' displayText='Google +1'></span>
-				<span class='st_googleplus_hcount' displayText='Google +'></span>
-				<span class='st_facebook_hcount' displayText='Facebook'></span>
-				<span class='st_linkedin_hcount' displayText='LinkedIn'></span>
-				<span class='st_yammer_hcount' displayText='Yammer'></span>
-				<span class='st_delicious_hcount' displayText='Delicious'></span>
-				<span class='st_email_hcount' displayText='Email'></span>
-			</div>
-		</div>
-   </div>
-   
-    <div id="ads" style="position: fixed; top: 25px;">
-     	<script type="text/javascript"><!--
-amazon_ad_tag = "andholcol-20"; amazon_ad_width = "160"; amazon_ad_height = "600"; amazon_ad_logo = "hide"; amazon_ad_link_target = "new"; amazon_color_border = "33B5E5"; amazon_color_link = "33B5E5"; amazon_color_price = "FF8800"; amazon_color_logo = "FFFFFF";//--></script>
-<script type="text/javascript" src="http://ir-na.amazon-adsystem.com/s/ads.js"></script>
-	</div>
-	<script>
-      positFix();
-    </script>
- </body>
+    </div>
+    <div id="inputs">
+        <p class="faq"><a name="many-pictures">Why does it genereate so many pictures ?</a><br/>
+            Android Holo Colors Generator is based upon the default holo theme (in <a
+                    href="http://omapzoom.org/?p=platform/frameworks/base.git;a=tree;f=core/res/res;h=a98b2c0f022e44d1dfabf89c46013b3a260c4aa0;hb=HEAD"
+                    target="_blank">Android source code</a>) which use as many pictures as there (and even more !). You
+            may remove those you won't use and adjust the styles.xml to unreference those pictures. For example, if you
+            never disable widgets, you can remove the "disabled" pictures. You can also remove density you don't want,
+            for example mdpi. In that case, if a device with medium density use your application, hdpi pictures will be
+            used. As you can see, we do not generate ldpi, to avoid many more pictures (see <a href="#ldpi">Why the low
+                density (ldpi) is not generated ?</a>).</p>
+
+        <p class="faq"><a name="ldpi">Why the low density (ldpi) is not generated ?</a><br/>
+            Android Holo Colors Generator is based upon the default holo theme (in <a
+                    href="http://omapzoom.org/?p=platform/frameworks/base.git;a=tree;f=core/res/res;h=a98b2c0f022e44d1dfabf89c46013b3a260c4aa0;hb=HEAD"
+                    target="_blank">Android source code</a>) which does not provide any picture for low density devices.
+            Moreover, ldpi represents <a href="http://developer.android.com/about/dashboards/index.html#Screens"
+                                         target="_blank">less than 2%</a> of the Android Market Share. Finally, if a
+            device is in ldpi, it will use the mdpi or hdpi pictures (<a
+                    href="http://developer.android.com/guide/practices/screens_support.html#support" target="_blank">more
+                info</a>).</p>
+
+        <p class="faq"><a name="progressbar">Why the ProgressBar is not with my color ?</a><br/>
+            When using a ProgressBar, the default picture is the rolling ProgressBar. In order to get your pictures, set
+            the following to your ProgresBar : <br/> <code>style="?android:attr/progressBarStyleHorizontal"</code></p>
+
+        <p class="faq"><a name="overiden-files">On Mac OS, when I copy the folders, it overwrite previous
+            content</a><br/>
+            It is the default behavior of Finder. To avoid this, use another tool, for example muCommander or command
+            line : <br><code>ditto origin_folder destination_folder</code></p>
+
+        <p class="faq"><a name="actionbar">The generator does not provide action bar files, how to get them ?</a><br/>
+            There is another website for that. Go to <a
+                    href="http://jgilfelt.github.com/android-actionbarstylegenerator/" target="_blank">actionbarstylegenerator</a>
+            to get your action bar pictures.
+        </p>
+
+        <p class="faq"><a name="tabwidget">How to use TabWidget ?</a><br/>
+            You should have a look at <a
+                    href="http://developer.android.com/reference/android/support/v4/app/FragmentTabHost.html"
+                    target="_blank">google documentation</a> for the basis. To use the custom color, replace the default
+            indicator like this:<br/>
+            <code>
+                View tabIndicator = LayoutInflater.from(this).inflate(R.layout.tab_indicator_holo,
+                mTabHost.getTabWidget(), false);
+                TextView title = (TextView) tabIndicator.findViewById(android.R.id.title);
+                title.setText("Tab 1");
+            </code>
+        </p>
+
+        <p class="faq"><a name="holoeverywhere">Is it possible to combine Holo Colors with HoloEverywhere ?</a><br/>
+            <a href="https://github.com/Prototik/HoloEverywhere" target="_blank">HoloEverywhere</a> provide the full
+            backport of Android 4.2 widgets to 2.x. You can use both HoloEverywhere and Holo Colors. Clone the Holo
+            Everywhere github project. In the library module, remove the res/values-v11 folder. Place all generated
+            pictures by Holo Colors in your-project/res folder. Build the library and use it as usual, you should have
+            your colored widget. (Ex: <a href="holoeverywhere_red.png">HoloEverywhere Demo with red color</a>)
+
+        <p class="faq"><a name="donate">How to help you to improve the generator ?</a><br/>
+            You can help by submitting your enhancement <a
+                    href="https://github.com/jeromevdl/android-holo-colors/issues" target="_blank">requests</a> or with
+            a donation : <br/>
+        <center>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" name="hosted_button_id" value="XQSBX55A2Z46U">
+                <input type="image" src="support-button.png" border="0" name="submit"
+                       alt="PayPal - The safer, easier way to pay online!">
+                <img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
+            </form>
+        </center>
+        </p>
+
+        <p class="faq"><a name="ads">Why has there ads ?</a><br/>
+            Android Holo Colors is totally free, but I need to pay the host and domain name. Furthermore, I keep adding
+            features and spending time on it. So Ads and Paypal are necessary to keep this website alive.
+        </p>
+
+    </div>
+    <div id="footer">
+        <p>Created by <a href="mailto:jeromevdl@android-holo-colors.com">Jérôme Van Der Linden</a>.</p>
+
+        <p>Built upon the <a href="http://code.google.com/p/android-ui-utils" target="_blank">android-ui-utils</a> asset
+            studio framework created by <a href="http://roman.nurik.net/" target="_blank">Roman Nurik</a>, copyright
+            Google Inc.</p><br/>
+
+        <p>All generated art is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/"
+                                                    target="_blank">Creative Commons Attribution 3.0 Unported
+            License</a>.</p>
+        <br/><br/>
+
+        <div align="center">
+            <span class='st_twitter_hcount' displayText='Tweet'></span>
+            <span class='st_plusone_hcount' displayText='Google +1'></span>
+            <span class='st_googleplus_hcount' displayText='Google +'></span>
+            <span class='st_facebook_hcount' displayText='Facebook'></span>
+            <span class='st_linkedin_hcount' displayText='LinkedIn'></span>
+            <span class='st_yammer_hcount' displayText='Yammer'></span>
+            <span class='st_delicious_hcount' displayText='Delicious'></span>
+            <span class='st_email_hcount' displayText='Email'></span>
+        </div>
+    </div>
+</div>
+
+<div id="ads" style="position: fixed; top: 25px;">
+    <script type="text/javascript"><!--
+    amazon_ad_tag = "andholcol-20";
+    amazon_ad_width = "160";
+    amazon_ad_height = "600";
+    amazon_ad_logo = "hide";
+    amazon_ad_link_target = "new";
+    amazon_color_border = "33B5E5";
+    amazon_color_link = "33B5E5";
+    amazon_color_price = "FF8800";
+    amazon_color_logo = "FFFFFF";//--></script>
+    <script type="text/javascript" src="http://ir-na.amazon-adsystem.com/s/ads.js"></script>
+</div>
+<script>
+    positFix();
+</script>
+</body>
 </html>

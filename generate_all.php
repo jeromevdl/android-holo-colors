@@ -1,4 +1,22 @@
 <?
+
+/**
+ * Copyright 2013 Android Holo Colors by Jérôme Van Der Linden
+ * Copyright 2010 Android Asset Studio by Google Inc
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 session_start();
 if (!isset($_SESSION['id'])) {
     $_SESSION = array();
@@ -92,7 +110,7 @@ if ((isset($edittext) && $edittext == true)) {
     copy_directory("widgets/edittext/res/", $folder . "/res/", $holo, $lower_name);
 
     $stylev8 .= '  <style name="EditText' . $name . '" parent="android:Widget.EditText">' . "\n";
-    $stylev8 .= '	  <item name="android:background">@drawable/'.$lower_name.'_edit_text_holo_' . $holo . '</item>' . "\n";
+    $stylev8 .= '	  <item name="android:background">@drawable/' . $lower_name . '_edit_text_holo_' . $holo . '</item>' . "\n";
     // TODO replace with selector
     if ($holo == "dark") {
         $stylev8 .= '	  <item name="android:textColor">#ffffff</item>' . "\n";
@@ -103,7 +121,7 @@ if ((isset($edittext) && $edittext == true)) {
 
     $style8_available = true;
 
-    $themev11 .= '    <item name="android:editTextBackground">@drawable/'.$lower_name.'_edit_text_holo_' . $holo . '</item>' . "\n\n";
+    $themev11 .= '    <item name="android:editTextBackground">@drawable/' . $lower_name . '_edit_text_holo_' . $holo . '</item>' . "\n\n";
     $themev8 .= '    <item name="android:editTextStyle">@style/EditText' . $name . '</item>' . "\n\n";
 
 }
@@ -134,13 +152,13 @@ if (isset($autocomplete) && $autocomplete == true) {
     } else {
         $stylev11 .= '  <style name="AutoCompleteTextView' . $name . '" parent="android:Widget.Holo.Light.AutoCompleteTextView">' . "\n";
     }
-    $stylev11 .= '      <item name="android:dropDownSelector">@drawable/'.$lower_name.'_list_selector_holo_' . $holo . '</item>' . "\n";
-    $stylev11 .= '	    <item name="android:background">@drawable/'.$lower_name.'_edit_text_holo_' . $holo . '</item>' . "\n";
+    $stylev11 .= '      <item name="android:dropDownSelector">@drawable/' . $lower_name . '_list_selector_holo_' . $holo . '</item>' . "\n";
+    $stylev11 .= '	    <item name="android:background">@drawable/' . $lower_name . '_edit_text_holo_' . $holo . '</item>' . "\n";
     $stylev11 .= '  </style>' . "\n\n";
 
     $stylev8 .= '  <style name="AutoCompleteTextView' . $name . '" parent="android:Widget.AutoCompleteTextView">' . "\n";
-    $stylev8 .= '      <item name="android:dropDownSelector">@drawable/'.$lower_name.'_list_selector_holo_' . $holo . '</item>' . "\n";
-    $stylev8 .= '	  <item name="android:background">@drawable/'.$lower_name.'_edit_text_holo_' . $holo . '</item>' . "\n";
+    $stylev8 .= '      <item name="android:dropDownSelector">@drawable/' . $lower_name . '_list_selector_holo_' . $holo . '</item>' . "\n";
+    $stylev8 .= '	  <item name="android:background">@drawable/' . $lower_name . '_edit_text_holo_' . $holo . '</item>' . "\n";
     // TODO replace with selector
     if ($holo == "dark") {
         $stylev8 .= '	  <item name="android:textColor">#ffffff</item>' . "\n";
@@ -168,12 +186,12 @@ if (isset($checkbox) && $checkbox == true) {
     copy_directory("widgets/checkbox/res/", $folder . "/res/", $holo, $lower_name);
 
     $stylev8 .= '  <style name="CheckBox' . $name . '" parent="android:Widget.CompoundButton.CheckBox">' . "\n";
-    $stylev8 .= '      <item name="android:button">@drawable/'.$lower_name.'_btn_check_holo_' . $holo . '</item>' . "\n";
+    $stylev8 .= '      <item name="android:button">@drawable/' . $lower_name . '_btn_check_holo_' . $holo . '</item>' . "\n";
     $stylev8 .= '  </style>' . "\n\n";
 
     $style8_available = true;
 
-    $themev11 .= '    <item name="android:listChoiceIndicatorMultiple">@drawable/'.$lower_name.'_btn_check_holo_' . $holo . '</item>' . "\n\n";
+    $themev11 .= '    <item name="android:listChoiceIndicatorMultiple">@drawable/' . $lower_name . '_btn_check_holo_' . $holo . '</item>' . "\n\n";
     $themev8 .= '    <item name="android:checkboxStyle">@style/CheckBox' . $name . '</item>' . "\n\n";
 }
 
@@ -192,12 +210,12 @@ if ((isset($radio) && $radio == true) || ((isset($spinner) && $spinner == true) 
 
     if (isset($radio) && $radio == true) {
         $stylev8 .= '  <style name="RadioButton' . $name . '" parent="android:Widget.CompoundButton.RadioButton">' . "\n";
-        $stylev8 .= '      <item name="android:button">@drawable/'.$lower_name.'_btn_radio_holo_' . $holo . '</item>' . "\n";
+        $stylev8 .= '      <item name="android:button">@drawable/' . $lower_name . '_btn_radio_holo_' . $holo . '</item>' . "\n";
         $stylev8 .= '  </style>' . "\n\n";
 
         $style8_available = true;
 
-        $themev11 .= '    <item name="android:listChoiceIndicatorSingle">@drawable/'.$lower_name.'_btn_radio_holo_' . $holo . '</item>' . "\n\n";
+        $themev11 .= '    <item name="android:listChoiceIndicatorSingle">@drawable/' . $lower_name . '_btn_radio_holo_' . $holo . '</item>' . "\n\n";
         $themev8 .= '    <item name="android:radioButtonStyle">@style/RadioButton' . $name . '</item>' . "\n\n";
     }
 }
@@ -226,28 +244,28 @@ if ((isset($button) && $button == true) || (isset($cbutton) && $cbutton == true)
 
     if ($holo == "dark") {
         $stylev11 .= '  <style name="Button' . $name . '" parent="android:Widget.Holo.Button">' . "\n";
-        $stylev11 .= '	  <item name="android:background">@drawable/'.$lower_name.'_btn_default_holo_dark</item>' . "\n";
+        $stylev11 .= '	  <item name="android:background">@drawable/' . $lower_name . '_btn_default_holo_dark</item>' . "\n";
         $stylev11 .= '  </style>' . "\n\n";
 
         $stylev11 .= '  <style name="ImageButton' . $name . '" parent="android:Widget.Holo.ImageButton">' . "\n";
-        $stylev11 .= '	  <item name="android:background">@drawable/'.$lower_name.'_btn_default_holo_dark</item>' . "\n";
+        $stylev11 .= '	  <item name="android:background">@drawable/' . $lower_name . '_btn_default_holo_dark</item>' . "\n";
         $stylev11 .= '  </style>' . "\n\n";
 
         $button_image = "btn_default_holo_dark";
     } else {
         $stylev11 .= '  <style name="Button' . $name . '" parent="android:Widget.Holo.Light.Button">' . "\n";
-        $stylev11 .= '	  <item name="android:background">@drawable/'.$lower_name.'_btn_default_holo_light</item>' . "\n";
+        $stylev11 .= '	  <item name="android:background">@drawable/' . $lower_name . '_btn_default_holo_light</item>' . "\n";
         $stylev11 .= '  </style>' . "\n\n";
 
         $stylev11 .= '  <style name="ImageButton' . $name . '" parent="android:Widget.Holo.Light.ImageButton">' . "\n";
-        $stylev11 .= '	  <item name="android:background">@drawable/'.$lower_name.'_btn_default_holo_light</item>' . "\n";
+        $stylev11 .= '	  <item name="android:background">@drawable/' . $lower_name . '_btn_default_holo_light</item>' . "\n";
         $stylev11 .= '  </style>' . "\n\n";
 
         $button_image = "btn_default_holo_light";
     }
 
     $stylev8 .= '  <style name="Button' . $name . '" parent="android:Widget.Button">' . "\n";
-    $stylev8 .= '	  <item name="android:background">@drawable/'.$lower_name.'_' . $button_image . '</item>' . "\n";
+    $stylev8 .= '	  <item name="android:background">@drawable/' . $lower_name . '_' . $button_image . '</item>' . "\n";
     $stylev8 .= '	  <item name="android:minHeight">48dip</item>' . "\n";
     $stylev8 .= '	  <item name="android:minWidth">64dip</item>' . "\n";
     // TODO replace with selector
@@ -259,7 +277,7 @@ if ((isset($button) && $button == true) || (isset($cbutton) && $cbutton == true)
     $stylev8 .= '  </style>' . "\n\n";
 
     $stylev8 .= '  <style name="ImageButton' . $name . '" parent="android:Widget.ImageButton">' . "\n";
-    $stylev8 .= '	  <item name="android:background">@drawable/'.$lower_name.'_' . $button_image . '</item>' . "\n";
+    $stylev8 .= '	  <item name="android:background">@drawable/' . $lower_name . '_' . $button_image . '</item>' . "\n";
     $stylev8 .= '  </style>' . "\n\n";
 
     $style11_available = true;
@@ -311,23 +329,23 @@ if ((isset($spinner) && $spinner == true) || (isset($cspinner) && $cspinner == t
 
     if ($holo == "dark") {
         $stylev11 .= '  <style name="Spinner' . $name . '" parent="android:Widget.Holo.Spinner">' . "\n";
-        $stylev11 .= '      <item name="android:background">@drawable/'.$lower_name.'_spinner_background_holo_' . $holo . '</item>' . "\n";
-        $stylev11 .= '      <item name="android:dropDownSelector">@drawable/'.$lower_name.'_list_selector_holo_' . $holo . '</item>' . "\n";
+        $stylev11 .= '      <item name="android:background">@drawable/' . $lower_name . '_spinner_background_holo_' . $holo . '</item>' . "\n";
+        $stylev11 .= '      <item name="android:dropDownSelector">@drawable/' . $lower_name . '_list_selector_holo_' . $holo . '</item>' . "\n";
         $stylev11 .= '  </style>' . "\n\n";
     } else {
         $stylev11 .= '  <style name="Spinner' . $name . '" parent="android:Widget.Holo.Light.Spinner">' . "\n";
-        $stylev11 .= '      <item name="android:background">@drawable/'.$lower_name.'_spinner_background_holo_' . $holo . '</item>' . "\n";
-        $stylev11 .= '      <item name="android:dropDownSelector">@drawable/'.$lower_name.'_list_selector_holo_' . $holo . '</item>' . "\n";
+        $stylev11 .= '      <item name="android:background">@drawable/' . $lower_name . '_spinner_background_holo_' . $holo . '</item>' . "\n";
+        $stylev11 .= '      <item name="android:dropDownSelector">@drawable/' . $lower_name . '_list_selector_holo_' . $holo . '</item>' . "\n";
         $stylev11 .= '  </style>' . "\n\n";
     }
 
     $stylev8 .= '  <style name="Spinner' . $name . '" parent="android:Widget.Spinner">' . "\n";
-    $stylev8 .= '      <item name="android:background">@drawable/'.$lower_name.'_spinner_background_holo_' . $holo . '</item>' . "\n";
-    $stylev8 .= '      <item name="android:dropDownSelector">@drawable/'.$lower_name.'_list_selector_holo_' . $holo . '</item>' . "\n";
+    $stylev8 .= '      <item name="android:background">@drawable/' . $lower_name . '_spinner_background_holo_' . $holo . '</item>' . "\n";
+    $stylev8 .= '      <item name="android:dropDownSelector">@drawable/' . $lower_name . '_list_selector_holo_' . $holo . '</item>' . "\n";
     $stylev8 .= '  </style>' . "\n\n";
 
     $stylev8 .= '  <style name="SpinnerDropDownItem' . $name . '" parent="android:Widget.DropDownItem.Spinner">' . "\n";
-    $stylev8 .= '      <item name="android:checkMark">@drawable/'.$lower_name.'_btn_radio_holo_' . $holo . '</item>' . "\n";
+    $stylev8 .= '      <item name="android:checkMark">@drawable/' . $lower_name . '_btn_radio_holo_' . $holo . '</item>' . "\n";
     $stylev8 .= '  </style>' . "\n";
 
     $style11_available = true;
@@ -361,7 +379,7 @@ if (isset($tab) && $tab == true) {
     $stylev11 .= '      <item name="android:showDividers">middle</item>' . "\n";
     $stylev11 .= '      <item name="android:dividerPadding">8dip</item>' . "\n";
     $stylev11 .= '      <item name="android:measureWithLargestChild">true</item>' . "\n";
-    $stylev11 .= '      <item name="tabLayout">@layout/'.$lower_name.'_tab_indicator_holo</item>' . "\n";
+    $stylev11 .= '      <item name="tabLayout">@layout/' . $lower_name . '_tab_indicator_holo</item>' . "\n";
     $stylev11 .= '  </style>' . "\n\n";
 
     $style11_available = true;
@@ -370,7 +388,7 @@ if (isset($tab) && $tab == true) {
     $stylev8 .= '      <item name="android:gravity">center_horizontal</item>' . "\n";
     $stylev8 .= '      <item name="android:paddingLeft">16dip</item>' . "\n";
     $stylev8 .= '      <item name="android:paddingRight">16dip</item>' . "\n";
-    $stylev8 .= '      <item name="android:background">@drawable/'.$lower_name.'_tab_indicator_holo</item>' . "\n";
+    $stylev8 .= '      <item name="android:background">@drawable/' . $lower_name . '_tab_indicator_holo</item>' . "\n";
     $stylev8 .= '      <item name="android:layout_width">0dip</item>' . "\n";
     $stylev8 .= '      <item name="android:layout_weight">1</item>' . "\n";
     $stylev8 .= '      <item name="android:minWidth">80dip</item>' . "\n";
@@ -425,13 +443,13 @@ if (isset($progressbar) && $progressbar == true) {
     } else {
         $stylev11 .= '  <style name="ProgressBar' . $name . '" parent="android:Widget.Holo.Light.ProgressBar.Horizontal">' . "\n";
     }
-    $stylev11 .= '      <item name="android:progressDrawable">@drawable/'.$lower_name.'_progress_horizontal_holo_' . $holo . '</item>' . "\n";
-    $stylev11 .= '      <item name="android:indeterminateDrawable">@drawable/'.$lower_name.'_progress_indeterminate_horizontal_holo_' . $holo . '</item>' . "\n";
+    $stylev11 .= '      <item name="android:progressDrawable">@drawable/' . $lower_name . '_progress_horizontal_holo_' . $holo . '</item>' . "\n";
+    $stylev11 .= '      <item name="android:indeterminateDrawable">@drawable/' . $lower_name . '_progress_indeterminate_horizontal_holo_' . $holo . '</item>' . "\n";
     $stylev11 .= '  </style>' . "\n\n";
 
     $stylev8 .= '  <style name="ProgressBar' . $name . '" parent="android:Widget.ProgressBar.Horizontal">' . "\n";
-    $stylev8 .= '      <item name="android:progressDrawable">@drawable/'.$lower_name.'_progress_horizontal_holo_' . $holo . '</item>' . "\n";
-    $stylev8 .= '      <item name="android:indeterminateDrawable">@drawable/'.$lower_name.'_progress_indeterminate_horizontal_holo_' . $holo . '</item>' . "\n";
+    $stylev8 .= '      <item name="android:progressDrawable">@drawable/' . $lower_name . '_progress_horizontal_holo_' . $holo . '</item>' . "\n";
+    $stylev8 .= '      <item name="android:indeterminateDrawable">@drawable/' . $lower_name . '_progress_indeterminate_horizontal_holo_' . $holo . '</item>' . "\n";
     $stylev8 .= '      <item name="android:minHeight">16dip</item>' . "\n";
     $stylev8 .= '      <item name="android:maxHeight">16dip</item>' . "\n";
     $stylev8 .= '  </style>' . "\n\n";
@@ -459,17 +477,17 @@ if (isset($seekbar) && $seekbar == true) {
     } else {
         $stylev11 .= '  <style name="SeekBar' . $name . '" parent="android:Widget.Holo.Light.SeekBar">' . "\n";
     }
-    $stylev11 .= '      <item name="android:progressDrawable">@drawable/'.$lower_name.'_scrubber_progress_horizontal_holo_' . $holo . '</item>' . "\n";
-    $stylev11 .= '      <item name="android:indeterminateDrawable">@drawable/'.$lower_name.'_scrubber_progress_horizontal_holo_' . $holo . '</item>' . "\n";
-    $stylev11 .= '      <item name="android:thumb">@drawable/'.$lower_name.'_scrubber_control_selector_holo_' . $holo . '</item>' . "\n";
+    $stylev11 .= '      <item name="android:progressDrawable">@drawable/' . $lower_name . '_scrubber_progress_horizontal_holo_' . $holo . '</item>' . "\n";
+    $stylev11 .= '      <item name="android:indeterminateDrawable">@drawable/' . $lower_name . '_scrubber_progress_horizontal_holo_' . $holo . '</item>' . "\n";
+    $stylev11 .= '      <item name="android:thumb">@drawable/' . $lower_name . '_scrubber_control_selector_holo_' . $holo . '</item>' . "\n";
     $stylev11 .= '  </style>' . "\n\n";
 
     $stylev8 .= '  <style name="SeekBar' . $name . '" parent="android:Widget.SeekBar">' . "\n";
-    $stylev8 .= '      <item name="android:progressDrawable">@drawable/'.$lower_name.'_scrubber_progress_horizontal_holo_' . $holo . '</item>' . "\n";
-    $stylev8 .= '      <item name="android:indeterminateDrawable">@drawable/'.$lower_name.'_scrubber_progress_horizontal_holo_' . $holo . '</item>' . "\n";
+    $stylev8 .= '      <item name="android:progressDrawable">@drawable/' . $lower_name . '_scrubber_progress_horizontal_holo_' . $holo . '</item>' . "\n";
+    $stylev8 .= '      <item name="android:indeterminateDrawable">@drawable/' . $lower_name . '_scrubber_progress_horizontal_holo_' . $holo . '</item>' . "\n";
     $stylev8 .= '      <item name="android:minHeight">13dip</item>' . "\n";
     $stylev8 .= '      <item name="android:maxHeight">13dip</item>' . "\n";
-    $stylev8 .= '      <item name="android:thumb">@drawable/'.$lower_name.'_scrubber_control_selector_holo_' . $holo . '</item>' . "\n";
+    $stylev8 .= '      <item name="android:thumb">@drawable/' . $lower_name . '_scrubber_control_selector_holo_' . $holo . '</item>' . "\n";
     $stylev8 .= '      <item name="android:thumbOffset">16dip</item>' . "\n";
     $stylev8 .= '      <item name="android:paddingLeft">16dip</item>' . "\n";
     $stylev8 .= '      <item name="android:paddingRight">16dip</item>' . "\n";
@@ -498,13 +516,13 @@ if (isset($ratingbar) && $ratingbar == true) {
     } else {
         $stylev11 .= '  <style name="RatingBar' . $name . '" parent="android:Widget.Holo.Light.RatingBar">' . "\n";
     }
-    $stylev11 .= '      <item name="android:progressDrawable">@drawable/'.$lower_name.'_ratingbar_full_holo_' . $holo . '</item>' . "\n";
-    $stylev11 .= '      <item name="android:indeterminateDrawable">@drawable/'.$lower_name.'_ratingbar_full_holo_' . $holo . '</item>' . "\n";
+    $stylev11 .= '      <item name="android:progressDrawable">@drawable/' . $lower_name . '_ratingbar_full_holo_' . $holo . '</item>' . "\n";
+    $stylev11 .= '      <item name="android:indeterminateDrawable">@drawable/' . $lower_name . '_ratingbar_full_holo_' . $holo . '</item>' . "\n";
     $stylev11 .= '  </style>' . "\n\n";
 
     $stylev8 .= '  <style name="RatingBar' . $name . '" parent="android:Widget.RatingBar">' . "\n";
-    $stylev8 .= '      <item name="android:progressDrawable">@drawable/'.$lower_name.'_ratingbar_full_holo_' . $holo . '</item>' . "\n";
-    $stylev8 .= '      <item name="android:indeterminateDrawable">@drawable/'.$lower_name.'_ratingbar_full_holo_' . $holo . '</item>' . "\n";
+    $stylev8 .= '      <item name="android:progressDrawable">@drawable/' . $lower_name . '_ratingbar_full_holo_' . $holo . '</item>' . "\n";
+    $stylev8 .= '      <item name="android:indeterminateDrawable">@drawable/' . $lower_name . '_ratingbar_full_holo_' . $holo . '</item>' . "\n";
     $stylev8 .= '  </style>' . "\n\n";
 
     $style11_available = true;
@@ -530,13 +548,13 @@ if (isset($ratingstarbig) && $ratingstarbig == true) {
     } else {
         $stylev11 .= '  <style name="RatingBarBig' . $name . '" parent="android:Widget.Holo.Light.RatingBar.Indicator">' . "\n";
     }
-    $stylev11 .= '      <item name="android:progressDrawable">@drawable/'.$lower_name.'_ratingbar_holo_' . $holo . '</item>' . "\n";
-    $stylev11 .= '      <item name="android:indeterminateDrawable">@drawable/'.$lower_name.'_ratingbar_holo_' . $holo . '</item>' . "\n";
+    $stylev11 .= '      <item name="android:progressDrawable">@drawable/' . $lower_name . '_ratingbar_holo_' . $holo . '</item>' . "\n";
+    $stylev11 .= '      <item name="android:indeterminateDrawable">@drawable/' . $lower_name . '_ratingbar_holo_' . $holo . '</item>' . "\n";
     $stylev11 .= '  </style>' . "\n\n";
 
     $stylev8 .= '  <style name="RatingBarBig' . $name . '">' . "\n";
-    $stylev8 .= '      <item name="android:progressDrawable">@drawable/'.$lower_name.'_ratingbar_holo_' . $holo . '</item>' . "\n";
-    $stylev8 .= '      <item name="android:indeterminateDrawable">@drawable/'.$lower_name.'_ratingbar_holo_' . $holo . '</item>' . "\n";
+    $stylev8 .= '      <item name="android:progressDrawable">@drawable/' . $lower_name . '_ratingbar_holo_' . $holo . '</item>' . "\n";
+    $stylev8 .= '      <item name="android:indeterminateDrawable">@drawable/' . $lower_name . '_ratingbar_holo_' . $holo . '</item>' . "\n";
     $stylev8 .= '      <item name="android:minHeight">35dip</item>' . "\n";
     $stylev8 .= '      <item name="android:maxHeight">35dip</item>' . "\n";
     $stylev8 .= '  </style>' . "\n\n";
@@ -565,13 +583,13 @@ if (isset($ratingstarsmall) && $ratingstarsmall == true) {
     } else {
         $stylev11 .= '  <style name="RatingBarSmall' . $name . '" parent="android:Widget.Holo.Light.RatingBar.Small">' . "\n";
     }
-    $stylev11 .= '      <item name="android:progressDrawable">@drawable/'.$lower_name.'_ratingbar_small_holo_' . $holo . '</item>' . "\n";
-    $stylev11 .= '      <item name="android:indeterminateDrawable">@drawable/'.$lower_name.'_ratingbar_small_holo_' . $holo . '</item>' . "\n";
+    $stylev11 .= '      <item name="android:progressDrawable">@drawable/' . $lower_name . '_ratingbar_small_holo_' . $holo . '</item>' . "\n";
+    $stylev11 .= '      <item name="android:indeterminateDrawable">@drawable/' . $lower_name . '_ratingbar_small_holo_' . $holo . '</item>' . "\n";
     $stylev11 .= '  </style>' . "\n\n";
 
     $stylev8 .= '  <style name="RatingBarSmall' . $name . '">' . "\n";
-    $stylev8 .= '      <item name="android:progressDrawable">@drawable/'.$lower_name.'_ratingbar_small_holo_' . $holo . '</item>' . "\n";
-    $stylev8 .= '      <item name="android:indeterminateDrawable">@drawable/'.$lower_name.'_ratingbar_small_holo_' . $holo . '</item>' . "\n";
+    $stylev8 .= '      <item name="android:progressDrawable">@drawable/' . $lower_name . '_ratingbar_small_holo_' . $holo . '</item>' . "\n";
+    $stylev8 .= '      <item name="android:indeterminateDrawable">@drawable/' . $lower_name . '_ratingbar_small_holo_' . $holo . '</item>' . "\n";
     $stylev8 .= '      <item name="android:minHeight">16dip</item>' . "\n";
     $stylev8 .= '      <item name="android:maxHeight">16dip</item>' . "\n";
     $stylev8 .= '  </style>' . "\n\n";
@@ -599,11 +617,11 @@ if (isset($toggle) && $toggle == true) {
     } else {
         $stylev11 .= '  <style name="Toggle' . $name . '" parent="android:Widget.Holo.Light.Button.Toggle">' . "\n";
     }
-    $stylev11 .= '      <item name="android:background">@drawable/'.$lower_name.'_btn_toggle_holo_' . $holo . '</item>' . "\n";
+    $stylev11 .= '      <item name="android:background">@drawable/' . $lower_name . '_btn_toggle_holo_' . $holo . '</item>' . "\n";
     $stylev11 .= '  </style>' . "\n\n";
 
     $stylev8 .= '  <style name="Toggle' . $name . '" parent="android:Widget.Button.Toggle">' . "\n";
-    $stylev8 .= '      <item name="android:background">@drawable/'.$lower_name.'_btn_toggle_holo_' . $holo . '</item>' . "\n";
+    $stylev8 .= '      <item name="android:background">@drawable/' . $lower_name . '_btn_toggle_holo_' . $holo . '</item>' . "\n";
     $stylev8 .= '      <item name="android:minHeight">48dip</item>' . "\n";
     if ($holo == "dark") {
         // TODO : replace with selector
@@ -631,15 +649,15 @@ if ((isset($list) && $list == true)) {
 
     copy_directory("widgets/list/res/", $folder . "/res/", $holo, $lower_name);
 
-    $themev11 .= '    <item name="android:listChoiceBackgroundIndicator">@drawable/'.$lower_name.'_list_selector_holo_' . $holo . '</item>' . "\n\n";
-    $themev11 .= '    <item name="android:activatedBackgroundIndicator">@drawable/'.$lower_name.'_activated_background_holo_' . $holo . '</item>' . "\n\n";
+    $themev11 .= '    <item name="android:listChoiceBackgroundIndicator">@drawable/' . $lower_name . '_list_selector_holo_' . $holo . '</item>' . "\n\n";
+    $themev11 .= '    <item name="android:activatedBackgroundIndicator">@drawable/' . $lower_name . '_activated_background_holo_' . $holo . '</item>' . "\n\n";
 
     $stylev8 .= '  <style name="ListView' . $name . '" parent="android:Widget.ListView">' . "\n";
-    $stylev8 .= '      <item name="android:listSelector">@drawable/'.$lower_name.'_list_selector_holo_' . $holo . '</item>' . "\n";
+    $stylev8 .= '      <item name="android:listSelector">@drawable/' . $lower_name . '_list_selector_holo_' . $holo . '</item>' . "\n";
     $stylev8 .= '  </style>' . "\n\n";
 
     $stylev8 .= '  <style name="ListView' . $name . '.White" parent="android:Widget.ListView.White">' . "\n";
-    $stylev8 .= '      <item name="android:listSelector">@drawable/'.$lower_name.'_list_selector_holo_' . $holo . '</item>' . "\n";
+    $stylev8 .= '      <item name="android:listSelector">@drawable/' . $lower_name . '_list_selector_holo_' . $holo . '</item>' . "\n";
     $stylev8 .= '  </style>' . "\n\n";
 
     $themev8 .= '    <item name="android:listViewStyle">@style/ListView' . $name . '</item>' . "\n\n";
@@ -671,7 +689,7 @@ if (isset($fastscroll) && $fastscroll == true) {
 
     copy_directory("widgets/fastscroll/res/", $folder . "/res/", $holo, $lower_name, false);
 
-    $themev11 .= '    <item name="android:fastScrollThumbDrawable">@drawable/'.$lower_name.'_fastscroll_thumb_holo</item>' . "\n\n";
+    $themev11 .= '    <item name="android:fastScrollThumbDrawable">@drawable/' . $lower_name . '_fastscroll_thumb_holo</item>' . "\n\n";
 
     // not available in v8
 }
@@ -722,15 +740,15 @@ if (isset($numberpicker) && $numberpicker == true) {
     $stylev8 .= '      <item name="android:fadingEdge">vertical</item>">' . "\n";
     $stylev8 .= '      <item name="android:fadingEdgeLength">50dip</item>">' . "\n";
     $stylev8 .= '      <item name="solidColor">@android:color/transparent</item>">' . "\n";
-    $stylev8 .= '      <item name="selectionDivider">@drawable/'.$lower_name.'_numberpicker_selection_divider</item>' . "\n";
+    $stylev8 .= '      <item name="selectionDivider">@drawable/' . $lower_name . '_numberpicker_selection_divider</item>' . "\n";
     $stylev8 .= '      <item name="selectionDividerHeight">2dip</item>">' . "\n";
     $stylev8 .= '      <item name="internalLayout">@layout/number_picker_with_selector_wheel</item>' . "\n";
     $stylev8 .= '      <item name="internalMinWidth">64dip</item>">' . "\n";
     $stylev8 .= '      <item name="internalMaxHeight">180dip</item>">' . "\n";
     if ($holo == "dark") {
-        $stylev8 .= '      <item name="virtualButtonPressedDrawable">@drawable/'.$lower_name.'_item_background_holo_dark</item>' . "\n";
+        $stylev8 .= '      <item name="virtualButtonPressedDrawable">@drawable/' . $lower_name . '_item_background_holo_dark</item>' . "\n";
     } else {
-        $stylev8 .= '      <item name="virtualButtonPressedDrawable">@drawable/'.$lower_name.'_item_background_holo_light</item>' . "\n";
+        $stylev8 .= '      <item name="virtualButtonPressedDrawable">@drawable/' . $lower_name . '_item_background_holo_light</item>' . "\n";
     }
     $stylev8 .= '  </style>' . "\n\n";
 
@@ -965,7 +983,7 @@ function Zip($source, $destination, $name)
                         $exact_filename = strrchr($filename, "/");
                         if ($exact_filename) {
                             if (strstr($exact_filename, "attrs.xml") || strstr($exact_filename, "dimens.xml")) {
-                                $exact_filename_with_theme = str_replace(".xml", "_".$name.".xml", $exact_filename);
+                                $exact_filename_with_theme = str_replace(".xml", "_" . $name . ".xml", $exact_filename);
                             } else {
                                 $exact_filename_with_theme = str_replace("/", "/" . $name . "_", $exact_filename);
                             }
