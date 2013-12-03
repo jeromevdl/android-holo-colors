@@ -49,6 +49,8 @@ License
 
 Release note
 ------------
+__Dec 04, 2013; version 2.2__: Add Navigation Drawer component
+
 __Nov 18, 2013; version 2.1.1__: Add Kitkat assets for colored button and colored spinner
 
 __Nov 16, 2013; version 2.1__: Add Kitkat assets (20% darker touched components)
