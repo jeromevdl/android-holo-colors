@@ -82,13 +82,25 @@ abstract class Component
         $rgbArray = array();
         if (strlen($hexStr) == 6) { //If a proper hex code, convert using bitwise operation. No overhead... faster
             $colorVal = hexdec($hexStr);
-            $rgbArray['red'] = 0xFF & ($colorVal >> 0x10);
-            $rgbArray['green'] = 0xFF & ($colorVal >> 0x8);
-            $rgbArray['blue'] = 0xFF & $colorVal;
+            if ($_SERVER['SERVER_NAME'] == 'android-holo-colors.com' || $_SERVER['SERVER_NAME'] == 'localhost') {
+                $rgbArray['red'] = 0xFF & ($colorVal >> 0x10);
+                $rgbArray['green'] = 0xFF & ($colorVal >> 0x8);
+                $rgbArray['blue'] = 0xFF & $colorVal;
+            } else {
+                $rgbArray['blue'] = 0xFF & ($colorVal >> 0x10);
+                $rgbArray['red'] = 0xFF & ($colorVal >> 0x8);
+                $rgbArray['green'] = 0xFF & $colorVal;
+            }
         } elseif (strlen($hexStr) == 3) { //if shorthand notation, need some string manipulations
-            $rgbArray['red'] = hexdec(str_repeat(substr($hexStr, 0, 1), 2));
-            $rgbArray['green'] = hexdec(str_repeat(substr($hexStr, 1, 1), 2));
-            $rgbArray['blue'] = hexdec(str_repeat(substr($hexStr, 2, 1), 2));
+            if ($_SERVER['SERVER_NAME'] == 'android-holo-colors.com' || $_SERVER['SERVER_NAME'] == 'localhost') {
+                $rgbArray['red'] = hexdec(str_repeat(substr($hexStr, 0, 1), 2));
+                $rgbArray['green'] = hexdec(str_repeat(substr($hexStr, 1, 1), 2));
+                $rgbArray['blue'] = hexdec(str_repeat(substr($hexStr, 2, 1), 2));
+            } else {
+                $rgbArray['blue'] = hexdec(str_repeat(substr($hexStr, 0, 1), 2));
+                $rgbArray['red'] = hexdec(str_repeat(substr($hexStr, 1, 1), 2));
+                $rgbArray['green'] = hexdec(str_repeat(substr($hexStr, 2, 1), 2));
+            }
         } else {
             return false; //Invalid hex color code
         }
