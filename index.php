@@ -735,6 +735,22 @@ include('common.php');
     <br/>
 </div>
 
+
+<div id="block-output-navdrawer" class="bloc-output">
+    Navigation drawer:
+    <table class="bloc-output-table">
+        <tr>
+            <td>ic_navigation_drawer</td>
+        </tr>
+        <tr>
+            <td>
+                <div id="output-navdrawer"></div>
+            </td>
+        </tr>
+    </table>
+    <br/>
+</div>
+
 </div>
 
 <div id="footer">
@@ -827,6 +843,7 @@ var components = {
     'ratingstarsmall': 1, 'ratingstarsmall-half': 1,
     'search': 1, 'search-right': 1,
     //'numberpicker':1,
+    'navdrawer': 1,
     'switch': 1, 'switch-pressed': 1, 'switch-bg': 1,
     'switchjb': 1, 'switchjb-pressed': 1, 'switchjb-bg': 1,
     'fastscroll': 1, 'fastscroll-pressed': 1,
@@ -943,7 +960,10 @@ function downloadFile() {
         url += '&tab=true';
         okForDownload = true
     }
-
+    if (values['navdrawer']) {
+        url += '&navdrawer=true';
+        okForDownload = true
+    }
     //alert(url);
 
     if (okForDownload) {
@@ -1194,6 +1214,7 @@ var form = new studio.forms.Form('holocomponents', {
          onText: 'Yes'
          }),
          */
+
         /*
          new studio.forms.BooleanField('numberpicker', {
          title: 'Numberpicker',
@@ -1203,6 +1224,7 @@ var form = new studio.forms.Form('holocomponents', {
          onText: 'Yes'
          }),
          */
+
         new studio.forms.BooleanField('switch', {
             title: 'Switch',
             helpText: '<b>Deprecated</b>. Use Switch Jelly Bean below.',
@@ -1218,6 +1240,13 @@ var form = new studio.forms.Form('holocomponents', {
             offText: 'No',
             onText: 'Yes'
         }),
+
+        new studio.forms.BooleanField('navdrawer', {
+            title: 'Navigation Drawer',
+            defaultValue: false,
+            offText: 'No',
+            onText: 'Yes'
+        })
 
     ]
 });

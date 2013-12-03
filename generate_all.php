@@ -56,6 +56,7 @@ $switch = $_GET['switch'];
 $switchjb = $_GET['switchjb'];
 $autocomplete = $_GET['autocomplete'];
 $tab = $_GET['tab'];
+$navdrawer = $_GET['navdrawer'];
 
 $style = '<?xml version="1.0" encoding="utf-8"?>' . "\n\n";
 $style .= "<!-- Generated with http://android-holo-colors.com -->\n";
@@ -808,6 +809,16 @@ if (isset($switch) && $switch == true) {
     $themev14 .= "  </style>\n\n</resources>";
     $stylev14 .= "</resources>";
     */
+}
+
+// ============== navigation drawer =================== //
+if ((isset($navdrawer) && $navdrawer == true)) {
+    require_once('widgets/navdrawer/common-navdrawer.php');
+    $logger->debug("generate navdrawer");
+
+    foreach ($navdrawer_classes as $clazz) {
+        generateImageOnDisk($clazz, $color, $holo, $kitkat, "widgets/navdrawer/");
+    }
 }
 
 
