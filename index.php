@@ -1015,6 +1015,12 @@ function regenerate() {
     }
 
     $('#header').css('background-color', values['color'].color);
+    $('input[type="radio"]:checked+label').css('background-color', values['color'].color);
+    $('input[type="radio"]:checked+label').css('border-color', values['color'].color);
+    $('input[type="radio"]:not(:checked)+label').css('background-color', "#eee");
+    $('input[type="radio"]:not(:checked)+label').css('border-color', "#ccc");
+    $('.form-button').css('background-color', values['color'].color);
+    $('.form-button').css('border-color', values['color'].color);
 
     if (values['theme'] == 'light' || values['theme'] == 'light_dark_action_bar')
         $('#header').css('color', '#fff');
@@ -1022,8 +1028,12 @@ function regenerate() {
         $('#header').css('color', '#000');
 }
 
+var compatStyleField;
 var form = new studio.forms.Form('holocomponents', {
     onChange: function (field) {
+        var values = form.getValues();
+        compatStyleField.setEnabled(values['minsdk'] == 'old');
+
         regenerate();
     },
     fields: [
@@ -1036,16 +1046,28 @@ var form = new studio.forms.Form('holocomponents', {
             title: 'Color',
             defaultValue: '#33b5e5'
         }),
-        /*
-         new studio.forms.EnumField('style', {
-         title: 'Style compatibility',
-         buttons: true,
-         options: [
-         { id: 'holo', title: 'Holo' },
-         { id: 'compat', title: 'AppCompat' }
-         ],
-         defaultValue: 'holo'
-         }), */
+
+        new studio.forms.EnumField('minsdk', {
+            title: 'Min SDK Version',
+            helpText: 'Min SDK supported by your app (if >= 11, will only generate holo resources)',
+            buttons: true,
+            options: [
+                { id: 'old', title: '< 11' },
+                { id: 'holo', title: '>= 11' }
+            ],
+            defaultValue: 'old'
+        }),
+
+        (compatStyleField = new studio.forms.EnumField('style', {
+            title: 'Style compatibility',
+            buttons: true,
+            options: [
+                { id: 'old', title: 'Plain Old' },
+                { id: 'compat', title: 'AppCompat' }
+            ],
+            defaultValue: 'compat'
+        })),
+
         new studio.forms.EnumField('theme', {
             title: 'Theme',
             buttons: true,
