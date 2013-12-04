@@ -2,6 +2,11 @@
 
 Website is available here: http://android-holo-colors.com/
 
+Disclaimer
+----------
+Early December, Android Holo Colors has been cloned to a new project by Tine Kondo. This guy did not have the courage to contact me before doing this. He also copied ActionBar Style Generator from Jeff Gilfelt without contacting him.
+Holo Colors is open source and will remain open source but I encourage everyone to censor Tine Kondo new tool. Open source does not mean stealing or plagiarism. Many hours have been spent on creating each widgets, I cannot admit such a reuse of my work.
+
 Overview
 --------
 The Android Holo Colors Generator allows you to easily create Android components such as editext or spinner with your own colours for your Android application. It will generate all necessary nine patch assets plus associated XML drawables and styles which you can copy straight into your project.
@@ -28,6 +33,7 @@ Components available
 * Fast Scroll
 * Switch
 * Switch Jelly Bean
+* Navigation Drawer
 
 License
 -------
