@@ -8,6 +8,9 @@ The Android Holo Colors Generator allows you to easily create Android components
 
 ![Android Holo Colors](http://android-holo-colors.com/preview2.png)
 
+Sample application available on play store (<a href="https://github.com/jeromevdl/android-holo-colors-sample">source code on github</a>) :
+<a href="https://play.google.com/store/apps/details?id=fr.vdl.androidholocolors"><img alt="Android app on Google Play" src="https://developer.android.com/images/brand/en_app_rgb_wo_45.png" /></a>
+
 Components available
 --------------------
 * EditText
