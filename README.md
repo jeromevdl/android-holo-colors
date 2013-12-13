@@ -6,7 +6,7 @@ Overview
 --------
 The Android Holo Colors Generator allows you to easily create Android components such as editext or spinner with your own colours for your Android application. It will generate all necessary nine patch assets plus associated XML drawables and styles which you can copy straight into your project.
 
-![Android Holo Colors](http://android-holo-colors.com/preview2.png)
+![Android Holo Colors](https://github.com/jeromevdl/android-holo-colors-sample/blob/master/screenshot.png?raw=true)
 
 Sample application available on play store (<a href="https://github.com/jeromevdl/android-holo-colors-sample">source code on github</a>) :
 <a href="https://play.google.com/store/apps/details?id=fr.vdl.androidholocolors"><img alt="Android app on Google Play" src="https://developer.android.com/images/brand/en_app_rgb_wo_45.png" /></a>
