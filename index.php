@@ -865,15 +865,13 @@ function downloadFile() {
     var values = form.getValues();
     var color = values['color'].color;
     if (color.charAt(0) == '#') {
-
         color = color.substr(1, 6);
-
     }
 
     var kitkat = values['kitkat'];
     var kitkatint = kitkat ? 1 : 0;
 
-    var url = 'generate_all.php?color=' + color + '&holo=' + values['theme'] + '&name=' + values['name'] + '&kitkat=' + kitkatint;
+    var url = 'generate_all.php?color=' + color + '&holo=' + values['theme'] + '&name=' + values['name'].replace(/\s+/g, '') + '&kitkat=' + kitkatint + "&minsdk=" + values['minsdk'] + "&compat=" + values['compat'] ;
     var okForDownload = false;
     if (values['edittext']) {
         url += '&edittext=true';
@@ -987,7 +985,7 @@ function dogenerate(comp, density, color) {
         }
         var kitkat = values['kitkat'];
         var kitkatint = kitkat ? 1 : 0;
-        $('#out-' + comp + '-' + density).attr('src', "widgets/" + component + "/" + component + ".php?color=" + color + "&size=" + density + "&holo=" + theme + "&action=display&component=" + comp + "&kitkat=" + kitkatint);
+        $('#out-' + comp + '-' + density).attr('src', "widgets/" + component + "/" + component + ".php?color=" + color + "&size=" + density + "&holo=" + theme + "&kitkat=" + kitkatint + "&action=display&component=" + comp );
         $('#out-' + comp + '-' + density).css('display', 'inline-block');
         $('#block-output-' + comp).css('display', 'inline-block');
     } else {
@@ -1058,11 +1056,13 @@ var form = new studio.forms.Form('holocomponents', {
             defaultValue: 'old'
         }),
 
-        (compatStyleField = new studio.forms.EnumField('style', {
-            title: 'Style compatibility',
+        (compatStyleField = new studio.forms.EnumField('compat', {
+            title: 'Compatibility',
+            helpText: 'With None, no library is needed but AppCompat is recommended for a best Holo support',
             buttons: true,
             options: [
-                { id: 'old', title: 'Plain Old' },
+                { id: 'old', title: 'None' },
+                { id: 'abs', title: 'Sherlock' },
                 { id: 'compat', title: 'AppCompat' }
             ],
             defaultValue: 'compat'

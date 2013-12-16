@@ -30,10 +30,13 @@ Logger::configure('log4php.xml');
 $logger = Logger::getLogger("generate_all");
 
 $name = $_GET['name'];
+$name = preg_replace('/\s+/', '', $name);
 $lower_name = strtolower($name);
 $color = $_GET['color'];
 $holo = $_GET['holo'];
 $kitkat = $_GET['kitkat'];
+$minsdk = $_GET['minsdk'];
+$compat = $_GET['compat'];
 
 $edittext = $_GET['edittext'];
 $checkbox = $_GET['checkbox'];
@@ -69,16 +72,41 @@ $style8_available = false;
 $style11_available = false;
 $style14_available = false;
 
+
 if ($holo == 'light') {
-    $themev11 = $style . '  <style name="' . $name . '" parent="android:Theme.Holo.Light">' . "\n\n";
-    $themev8 = $style . '  <style name="' . $name . '" parent="android:Theme.Light">' . "\n\n";
+    if ($minsdk  == 'old' && $compat == 'compat') {
+        $themev11 = $style . '  <style name="' . $name . '" parent="Theme.AppCompat.Light">' . "\n\n";
+        $themev8 = $style . '  <style name="' . $name . '" parent="Theme.AppCompat.Light">' . "\n\n";
+    } else if ($minsdk  == 'old' && $compat == 'abs') {
+        $themev11 = $style . '  <style name="' . $name . '" parent="android:Theme.Holo.Light">' . "\n\n";
+        $themev8 = $style . '  <style name="' . $name . '" parent="Theme.Sherlock.Light">' . "\n\n";
+    } else {
+        $themev11 = $style . '  <style name="' . $name . '" parent="android:Theme.Holo.Light">' . "\n\n";
+        $themev8 = $style . '  <style name="' . $name . '" parent="android:Theme.Light">' . "\n\n";
+    }
 } else if ($holo == 'light_dark_action_bar') {
-    $themev11 = $style . '  <style name="' . $name . '" parent="android:Theme.Holo.Light.DarkActionBar">' . "\n\n";
-    $themev8 = $style . '  <style name="' . $name . '" parent="android:Theme.Light">' . "\n\n";
+    if ($minsdk  == 'old' && $compat == 'compat') {
+        $themev11 = $style . '  <style name="' . $name . '" parent="Theme.AppCompat.Light.DarkActionBar">' . "\n\n";
+        $themev8 = $style . '  <style name="' . $name . '" parent="Theme.AppCompat.Light.DarkActionBar">' . "\n\n";
+    } else if ($minsdk  == 'old' && $compat == 'abs') {
+        $themev11 = $style . '  <style name="' . $name . '" parent="android:Theme.Holo.Light.DarkActionBar">' . "\n\n";
+        $themev8 = $style . '  <style name="' . $name . '" parent="Theme.Sherlock.Light.DarkActionBar">' . "\n\n";
+    } else {
+        $themev11 = $style . '  <style name="' . $name . '" parent="android:Theme.Holo.Light.DarkActionBar">' . "\n\n";
+        $themev8 = $style . '  <style name="' . $name . '" parent="android:Theme.Light">' . "\n\n";
+    }
     $holo = "light";
 } else {
-    $themev11 = $style . '  <style name="' . $name . '" parent="android:Theme.Holo">' . "\n\n";
-    $themev8 = $style . '  <style name="' . $name . '" parent="android:Theme.Black">' . "\n\n";
+    if ($minsdk  == 'old' && $compat == 'compat') {
+        $themev11 = $style . '  <style name="' . $name . '" parent="Theme.AppCompat">' . "\n\n";
+        $themev8 = $style . '  <style name="' . $name . '" parent="Theme.AppCompat">' . "\n\n";
+    } else if ($minsdk  == 'old' && $compat == 'abs') {
+        $themev11 = $style . '  <style name="' . $name . '" parent="android:Theme.Holo">' . "\n\n";
+        $themev8 = $style . '  <style name="' . $name . '" parent="Theme.Sherlock">' . "\n\n";
+    } else {
+        $themev11 = $style . '  <style name="' . $name . '" parent="android:Theme.Holo">' . "\n\n";
+        $themev8 = $style . '  <style name="' . $name . '" parent="android:Theme.Black">' . "\n\n";
+    }
 }
 
 // empty input
@@ -97,7 +125,7 @@ date_default_timezone_set('UTC');
 $date = date("Ymd");
 $folder = getcwd() . "/generated/" . $date . "/" . $_SESSION['id'];
 
-generateFolders($date);
+generateFolders($date, $minsdk);
 
 // ============== edittext =================== //
 if ((isset($edittext) && $edittext == true)) {
@@ -372,47 +400,37 @@ if (isset($tab) && $tab == true) {
     $content = str_replace("%%HoloColors%%", $name, file_get_contents($folder . "/res/layout/tab_indicator_holo.xml"));
     file_put_contents($folder . "/res/layout/tab_indicator_holo.xml", $content);
 
-    $stylev11 .= '  <style name="TabWidget' . $name . '" parent="@android:style/Widget.TabWidget">' . "\n";
-    $stylev11 .= '      <item name="android:tabStripLeft">@null</item>' . "\n";
-    $stylev11 .= '      <item name="android:tabStripRight">@null</item>' . "\n";
-    $stylev11 .= '      <item name="android:tabStripEnabled">false</item>' . "\n";
-    $stylev11 .= '      <item name="android:divider">?android:attr/dividerVertical</item>' . "\n";
-    $stylev11 .= '      <item name="android:showDividers">middle</item>' . "\n";
-    $stylev11 .= '      <item name="android:dividerPadding">8dip</item>' . "\n";
-    $stylev11 .= '      <item name="android:measureWithLargestChild">true</item>' . "\n";
-    $stylev11 .= '      <item name="tabLayout">@layout/' . $lower_name . '_tab_indicator_holo</item>' . "\n";
-    $stylev11 .= '  </style>' . "\n\n";
+    $styletab .= '  <style name="Tab' . $name . '">' . "\n";
+    $styletab .= '      <item name="android:gravity">center_horizontal</item>' . "\n";
+    $styletab .= '      <item name="android:paddingLeft">16dip</item>' . "\n";
+    $styletab .= '      <item name="android:paddingRight">16dip</item>' . "\n";
+    $styletab .= '      <item name="android:background">@drawable/' . $lower_name . '_tab_indicator_holo</item>' . "\n";
+    $styletab .= '      <item name="android:layout_width">0dip</item>' . "\n";
+    $styletab .= '      <item name="android:layout_weight">1</item>' . "\n";
+    $styletab .= '      <item name="android:minWidth">80dip</item>' . "\n";
+    $styletab .= '  </style>' . "\n\n";
 
-    $style11_available = true;
-
-    $stylev8 .= '  <style name="Tab' . $name . '">' . "\n";
-    $stylev8 .= '      <item name="android:gravity">center_horizontal</item>' . "\n";
-    $stylev8 .= '      <item name="android:paddingLeft">16dip</item>' . "\n";
-    $stylev8 .= '      <item name="android:paddingRight">16dip</item>' . "\n";
-    $stylev8 .= '      <item name="android:background">@drawable/' . $lower_name . '_tab_indicator_holo</item>' . "\n";
-    $stylev8 .= '      <item name="android:layout_width">0dip</item>' . "\n";
-    $stylev8 .= '      <item name="android:layout_weight">1</item>' . "\n";
-    $stylev8 .= '      <item name="android:minWidth">80dip</item>' . "\n";
-    $stylev8 .= '  </style>' . "\n\n";
-
-    $stylev8 .= '  <style name="TabText' . $name . '">' . "\n";
+    $styletab .= '  <style name="TabText' . $name . '">' . "\n";
     if ($holo == "dark") {
-        $stylev8 .= '	  <item name="android:textColor">#ffffff</item>' . "\n";
+        $styletab .= '	  <item name="android:textColor">#ffffff</item>' . "\n";
     } else {
-        $stylev8 .= '	  <item name="android:textColor">#000000</item>' . "\n";
+        $styletab .= '	  <item name="android:textColor">#000000</item>' . "\n";
     }
-    $stylev8 .= '      <item name="android:textSize">12sp</item>' . "\n";
-    $stylev8 .= '      <item name="android:textStyle">bold</item>' . "\n";
-    $stylev8 .= '      <!-- v14 <item name="android:textAllCaps">true</item> -->' . "\n";
-    $stylev8 .= '      <item name="android:ellipsize">marquee</item>' . "\n";
-    $stylev8 .= '      <item name="android:maxLines">2</item>' . "\n";
-    $stylev8 .= '      <item name="android:maxWidth">180dip</item>' . "\n";
-    $stylev8 .= '  </style>' . "\n\n";
+    $styletab .= '      <item name="android:textSize">12sp</item>' . "\n";
+    $styletab .= '      <item name="android:textStyle">bold</item>' . "\n";
+    $styletab .= '      <!-- v14 <item name="android:textAllCaps">true</item> -->' . "\n";
+    $styletab .= '      <item name="android:ellipsize">marquee</item>' . "\n";
+    $styletab .= '      <item name="android:maxLines">2</item>' . "\n";
+    $styletab .= '      <item name="android:maxWidth">180dip</item>' . "\n";
+    $styletab .= '  </style>' . "\n\n";
 
-    $style8_available = true;
-
-    $themev8 .= '    <item name="android:tabWidgetStyle">@style/TabWidget' . $name . '</item>' . "\n\n";
-    $themev11 .= '    <item name="android:tabWidgetStyle">@style/TabWidget' . $name . '</item>' . "\n\n";
+    if ($minsdk == 'holo') {
+        $stylev11 .= $styletab;
+        $style11_available = true;
+    } else {
+        $stylev8 .= $styletab;
+        $style8_available = true;
+    }
 }
 
 
@@ -831,22 +849,33 @@ $themev8 .= "  </style>\n\n</resources>";
 $stylev8 .= "</resources>";
 
 
-$theme_file = "generated/" . $date . "/" . $_SESSION['id'] . "/res/values-v11/themes_" . $lower_name . ".xml";
-@file_put_contents($theme_file, $themev11);
+if ($minsdk == 'holo') {
+    $theme_file = "generated/" . $date . "/" . $_SESSION['id'] . "/res/values/themes_" . $lower_name . ".xml";
+    @file_put_contents($theme_file, $themev11);
+} else {
+    $theme_file = "generated/" . $date . "/" . $_SESSION['id'] . "/res/values-v11/themes_" . $lower_name . ".xml";
+    @file_put_contents($theme_file, $themev11);
 
-$theme_file = "generated/" . $date . "/" . $_SESSION['id'] . "/res/values/themes_" . $lower_name . ".xml";
-@file_put_contents($theme_file, $themev8);
+    $theme_file = "generated/" . $date . "/" . $_SESSION['id'] . "/res/values/themes_" . $lower_name . ".xml";
+    @file_put_contents($theme_file, $themev8);
+}
 
-if ($style8_available == true) {
+
+if ($style8_available == true && $minsdk != 'holo') {
     $style_file = "generated/" . $date . "/" . $_SESSION['id'] . "/res/values/styles_" . $lower_name . ".xml";
     @file_put_contents($style_file, $stylev8);
 }
 
 if ($style11_available == true) {
-    $style_file = "generated/" . $date . "/" . $_SESSION['id'] . "/res/values-v11/styles_" . $lower_name . ".xml";
+    if ($minsdk == 'holo') {
+        $style_file = "generated/" . $date . "/" . $_SESSION['id'] . "/res/values/styles_" . $lower_name . ".xml";
+    } else {
+        $style_file = "generated/" . $date . "/" . $_SESSION['id'] . "/res/values-v11/styles_" . $lower_name . ".xml";
+    }
     @file_put_contents($style_file, $stylev11);
 }
 
+/*
 if ($style14_available == true) {
     $values14 = "generated/" . $date . "/" . $_SESSION['id'] . "/res/values-v14";
     if (file_exists($values14) == FALSE) {
@@ -858,6 +887,7 @@ if ($style14_available == true) {
     $style_file = "generated/" . $date . "/" . $_SESSION['id'] . "/res/values-v14/styles_" . $lower_name . ".xml";
     @file_put_contents($style_file, $stylev14);
 }
+*/
 
 // ============== ZIP ====================== //
 $zipname = getcwd() . "/generated/" . $date . "/" . $_SESSION['id'] . ".zip";
@@ -902,7 +932,7 @@ function generateImageOnDisk($clazz, $color, $holo, $kitkat = false, $ctx = "")
  * Generate folders for xml styles
  *
  **********************************/
-function generateFolders($date)
+function generateFolders($date, $minsdk)
 {
     $drawable = getcwd() . "/generated/" . $date . "/" . $_SESSION['id'] . "/res/drawable";
     $layout = getcwd() . "/generated/" . $date . "/" . $_SESSION['id'] . "/res/layout";
@@ -928,9 +958,11 @@ function generateFolders($date)
     if (file_exists($values) == FALSE) {
         mkdir($values, 0777, true);
     }
-    $values11 = getcwd() . "/generated/" . $date . "/" . $_SESSION['id'] . "/res/values-v11";
-    if (file_exists($values11) == FALSE) {
-        mkdir($values11, 0777, true);
+    if ($minsdk != 'holo') {
+        $values11 = getcwd() . "/generated/" . $date . "/" . $_SESSION['id'] . "/res/values-v11";
+        if (file_exists($values11) == FALSE) {
+            mkdir($values11, 0777, true);
+        }
     }
 }
 
