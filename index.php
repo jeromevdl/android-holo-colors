@@ -152,6 +152,29 @@ include('common.php');
     <br/>
 </div>
 
+<div id="block-output-text_handle" class="bloc-output">
+    Text Select Handle :
+    <table class="bloc-output-table">
+        <tr>
+            <td>text_select_handle_left</td>
+            <td>text_select_handle_middle</td>
+            <td>text_select_handle_right</td>
+        </tr>
+        <tr>
+            <td>
+                <div id="output-text_handle-left"></div>
+            </td>
+            <td>
+                <div id="output-text_handle"></div>
+            </td>
+            <td>
+                <div id="output-text_handle-right"></div>
+            </td>
+        </tr>
+    </table>
+    <br/>
+</div>
+
 <div id="block-output-button" class="bloc-output">
     Button :
     <table class="bloc-output-table">
@@ -826,6 +849,7 @@ $(studio.checkBrowser);
 var densities = {'xxhdpi': 1, 'xhdpi': 1, 'hdpi': 1, 'mdpi': 1};
 var components = {
     'edittext': 1, 'edittext-focus': 1, 'edittext-activated': 1,
+    'text_handle': 1, 'text_handle-left': 1, 'text_handle-right': 1,
     'button': 1, 'button-pressed': 1, 'button-focus': 1, 'button-disabled-focus': 1,
     'kbutton': 1, 'kbutton-pressed': 1, 'kbutton-focus': 1, 'kbutton-disabled-focus': 1,
     'cbutton': 1, 'cbutton-pressed': 1, 'cbutton-focus': 1, 'cbutton-disabled-focus': 1,
@@ -871,10 +895,14 @@ function downloadFile() {
     var kitkat = values['kitkat'];
     var kitkatint = kitkat ? 1 : 0;
 
-    var url = 'generate_all.php?color=' + color + '&holo=' + values['theme'] + '&name=' + values['name'].replace(/\s+/g, '') + '&kitkat=' + kitkatint + "&minsdk=" + values['minsdk'] + "&compat=" + values['compat'] ;
+    var url = 'generate_all.php?color=' + color + '&holo=' + values['theme'] + '&name=' + values['name'].replace(/\s+/g, '') + '&kitkat=' + kitkatint + "&minsdk=" + values['minsdk'] + "&compat=" + values['compat'];
     var okForDownload = false;
     if (values['edittext']) {
         url += '&edittext=true';
+        okForDownload = true
+    }
+    if (values['text_handle']) {
+        url += '&text_handle=true';
         okForDownload = true
     }
     if (values['autocomplete']) {
@@ -985,7 +1013,7 @@ function dogenerate(comp, density, color) {
         }
         var kitkat = values['kitkat'];
         var kitkatint = kitkat ? 1 : 0;
-        $('#out-' + comp + '-' + density).attr('src', "widgets/" + component + "/" + component + ".php?color=" + color + "&size=" + density + "&holo=" + theme + "&kitkat=" + kitkatint + "&action=display&component=" + comp );
+        $('#out-' + comp + '-' + density).attr('src', "widgets/" + component + "/" + component + ".php?color=" + color + "&size=" + density + "&holo=" + theme + "&kitkat=" + kitkatint + "&action=display&component=" + comp);
         $('#out-' + comp + '-' + density).css('display', 'inline-block');
         $('#block-output-' + comp).css('display', 'inline-block');
     } else {
@@ -1031,7 +1059,6 @@ var form = new studio.forms.Form('holocomponents', {
     onChange: function (field) {
         var values = form.getValues();
         compatStyleField.setEnabled(values['minsdk'] == 'old');
-
         regenerate();
     },
     fields: [
@@ -1094,6 +1121,13 @@ var form = new studio.forms.Form('holocomponents', {
 
         new studio.forms.BooleanField('edittext', {
             title: 'EditText',
+            defaultValue: false,
+            offText: 'No',
+            onText: 'Yes'
+        }),
+
+        new studio.forms.BooleanField('text_handle', {
+            title: 'Text Select Handle',
             defaultValue: false,
             offText: 'No',
             onText: 'Yes'

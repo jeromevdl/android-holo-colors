@@ -39,6 +39,7 @@ $minsdk = $_GET['minsdk'];
 $compat = $_GET['compat'];
 
 $edittext = $_GET['edittext'];
+$text_handle = $_GET['text_handle'];
 $checkbox = $_GET['checkbox'];
 $radio = $_GET['radio'];
 $button = $_GET['button'];
@@ -72,35 +73,41 @@ $style8_available = false;
 $style11_available = false;
 $style14_available = false;
 
+$themev11 = $style . '  <style name="' . $name . '" parent="@style/_' . $name . '"/>' . "\n\n";
+$themev9 = $style . '  <style name="' . $name . '" parent="@style/_' . $name . '">' . "\n\n";
+$themev8 = $style . '  <style name="' . $name . '" parent="@style/_' . $name . '"/>' . "\n\n";
+
+$themev8_available = ($minsdk == 'old');
+$themev9_available = (isset($text_handle) && $text_handle == true);
 
 if ($holo == 'light') {
-    if ($minsdk  == 'old' && $compat == 'compat') {
-        $themev11 = $style . '  <style name="' . $name . '" parent="Theme.AppCompat.Light">' . "\n\n";
-        $themev8 = $style . '  <style name="' . $name . '" parent="Theme.AppCompat.Light">' . "\n\n";
-    } else if ($minsdk  == 'old' && $compat == 'abs') {
-        $themev11 = $style . '  <style name="' . $name . '" parent="android:Theme.Holo.Light">' . "\n\n";
-        $themev8 = $style . '  <style name="' . $name . '" parent="Theme.Sherlock.Light">' . "\n\n";
+    if ($minsdk == 'old' && $compat == 'compat') {
+        $themev11 .= '  <style name="_' . $name . '" parent="Theme.AppCompat.Light">' . "\n\n";
+        $themev8 .= '  <style name="_' . $name . '" parent="Theme.AppCompat.Light">' . "\n\n";
+    } else if ($minsdk == 'old' && $compat == 'abs') {
+        $themev11 .= '  <style name="_' . $name . '" parent="android:Theme.Holo.Light">' . "\n\n";
+        $themev8 .= '  <style name="_' . $name . '" parent="Theme.Sherlock.Light">' . "\n\n";
     } else {
-        $themev11 = $style . '  <style name="' . $name . '" parent="android:Theme.Holo.Light">' . "\n\n";
-        $themev8 = $style . '  <style name="' . $name . '" parent="android:Theme.Light">' . "\n\n";
+        $themev11 .= '  <style name="_' . $name . '" parent="android:Theme.Holo.Light">' . "\n\n";
+        $themev8 .= '  <style name="_' . $name . '" parent="android:Theme.Light">' . "\n\n";
     }
 } else if ($holo == 'light_dark_action_bar') {
-    if ($minsdk  == 'old' && $compat == 'compat') {
-        $themev11 = $style . '  <style name="' . $name . '" parent="Theme.AppCompat.Light.DarkActionBar">' . "\n\n";
-        $themev8 = $style . '  <style name="' . $name . '" parent="Theme.AppCompat.Light.DarkActionBar">' . "\n\n";
-    } else if ($minsdk  == 'old' && $compat == 'abs') {
-        $themev11 = $style . '  <style name="' . $name . '" parent="android:Theme.Holo.Light.DarkActionBar">' . "\n\n";
-        $themev8 = $style . '  <style name="' . $name . '" parent="Theme.Sherlock.Light.DarkActionBar">' . "\n\n";
+    if ($minsdk == 'old' && $compat == 'compat') {
+        $themev11 .= '  <style name="_' . $name . '" parent="Theme.AppCompat.Light.DarkActionBar">' . "\n\n";
+        $themev8 .= '  <style name="_' . $name . '" parent="Theme.AppCompat.Light.DarkActionBar">' . "\n\n";
+    } else if ($minsdk == 'old' && $compat == 'abs') {
+        $themev11 .= '  <style name="_' . $name . '" parent="android:Theme.Holo.Light.DarkActionBar">' . "\n\n";
+        $themev8 .= '  <style name="_' . $name . '" parent="Theme.Sherlock.Light.DarkActionBar">' . "\n\n";
     } else {
-        $themev11 = $style . '  <style name="' . $name . '" parent="android:Theme.Holo.Light.DarkActionBar">' . "\n\n";
-        $themev8 = $style . '  <style name="' . $name . '" parent="android:Theme.Light">' . "\n\n";
+        $themev11 .= '  <style name="_' . $name . '" parent="android:Theme.Holo.Light.DarkActionBar">' . "\n\n";
+        $themev8 .= '  <style name="_' . $name . '" parent="android:Theme.Light">' . "\n\n";
     }
     $holo = "light";
 } else {
-    if ($minsdk  == 'old' && $compat == 'compat') {
+    if ($minsdk == 'old' && $compat == 'compat') {
         $themev11 = $style . '  <style name="' . $name . '" parent="Theme.AppCompat">' . "\n\n";
         $themev8 = $style . '  <style name="' . $name . '" parent="Theme.AppCompat">' . "\n\n";
-    } else if ($minsdk  == 'old' && $compat == 'abs') {
+    } else if ($minsdk == 'old' && $compat == 'abs') {
         $themev11 = $style . '  <style name="' . $name . '" parent="android:Theme.Holo">' . "\n\n";
         $themev8 = $style . '  <style name="' . $name . '" parent="Theme.Sherlock">' . "\n\n";
     } else {
@@ -125,10 +132,10 @@ date_default_timezone_set('UTC');
 $date = date("Ymd");
 $folder = getcwd() . "/generated/" . $date . "/" . $_SESSION['id'];
 
-generateFolders($date, $minsdk);
+generateFolders($date, $themev8_available, $themev9_available);
 
 // ============== edittext =================== //
-if ((isset($edittext) && $edittext == true)) {
+if (isset($edittext) && $edittext == true) {
     require_once('widgets/edittext/common-edittext.php');
     $logger->debug("generate edittext");
 
@@ -153,6 +160,27 @@ if ((isset($edittext) && $edittext == true)) {
     $themev11 .= '    <item name="android:editTextBackground">@drawable/' . $lower_name . '_edit_text_holo_' . $holo . '</item>' . "\n\n";
     $themev8 .= '    <item name="android:editTextStyle">@style/EditText' . $name . '</item>' . "\n\n";
 
+}
+
+// ================= text_handle ================= //
+if (isset($text_handle) && $text_handle == true) {
+    require_once('widgets/text_handle/common-text_handle.php');
+    $logger->debug("generate text handle");
+
+    foreach ($text_handle_classes as $clazz) {
+        generateImageOnDisk($clazz, $color, $holo, $kitkat, "widgets/text_handle/");
+    }
+
+    $themev11 .= '    <item name="android:textSelectHandleLeft">@drawable/' . $lower_name . '_text_select_handle_left</item>' . "\n";
+    $themev11 .= '    <item name="android:textSelectHandleRight">@drawable/' . $lower_name . '_text_select_handle_right</item>' . "\n";
+    $themev11 .= '    <item name="android:textSelectHandle">@drawable/' . $lower_name . '_text_select_handle_middle</item>' . "\n\n";
+
+    $themev9 .= '    <item name="android:textSelectHandleLeft">@drawable/' . $lower_name . '_text_select_handle_left</item>' . "\n";
+    $themev9 .= '    <item name="android:textSelectHandleRight">@drawable/' . $lower_name . '_text_select_handle_right</item>' . "\n";
+    $themev9 .= '    <item name="android:textSelectHandle">@drawable/' . $lower_name . '_text_select_handle_middle</item>' . "\n\n";
+
+    // TODO : also change the color of the highlight : <item name="android:textColorHighlight">#FFFF9200</item>
+    // Create a TextAppearance for all texts
 }
 
 // ============== autocomplete =================== //
@@ -848,6 +876,7 @@ $stylev11 .= "</resources>";
 $themev8 .= "  </style>\n\n</resources>";
 $stylev8 .= "</resources>";
 
+$themev9 .= "  </style>\n\n</resources>";
 
 if ($minsdk == 'holo') {
     $theme_file = "generated/" . $date . "/" . $_SESSION['id'] . "/res/values/themes_" . $lower_name . ".xml";
@@ -858,8 +887,12 @@ if ($minsdk == 'holo') {
 
     $theme_file = "generated/" . $date . "/" . $_SESSION['id'] . "/res/values/themes_" . $lower_name . ".xml";
     @file_put_contents($theme_file, $themev8);
-}
 
+    if ($themev9_available) {
+        $theme_file = "generated/" . $date . "/" . $_SESSION['id'] . "/res/values-v9/themes_" . $lower_name . ".xml";
+        @file_put_contents($theme_file, $themev9);
+    }
+}
 
 if ($style8_available == true && $minsdk != 'holo') {
     $style_file = "generated/" . $date . "/" . $_SESSION['id'] . "/res/values/styles_" . $lower_name . ".xml";
@@ -932,7 +965,7 @@ function generateImageOnDisk($clazz, $color, $holo, $kitkat = false, $ctx = "")
  * Generate folders for xml styles
  *
  **********************************/
-function generateFolders($date, $minsdk)
+function generateFolders($date, $themev8_available, $themev9_available)
 {
     $drawable = getcwd() . "/generated/" . $date . "/" . $_SESSION['id'] . "/res/drawable";
     $layout = getcwd() . "/generated/" . $date . "/" . $_SESSION['id'] . "/res/layout";
@@ -958,12 +991,20 @@ function generateFolders($date, $minsdk)
     if (file_exists($values) == FALSE) {
         mkdir($values, 0777, true);
     }
-    if ($minsdk != 'holo') {
+    if ($themev8_available) {
         $values11 = getcwd() . "/generated/" . $date . "/" . $_SESSION['id'] . "/res/values-v11";
         if (file_exists($values11) == FALSE) {
             mkdir($values11, 0777, true);
         }
+
+        if ($themev9_available) {
+            $values9 = getcwd() . "/generated/" . $date . "/" . $_SESSION['id'] . "/res/values-v9";
+            if (file_exists($values9) == FALSE) {
+                mkdir($values9, 0777, true);
+            }
+        }
     }
+
 }
 
 /**********************************
