@@ -14,6 +14,7 @@ Sample application available on play store (<a href="https://github.com/jeromevd
 Components available
 --------------------
 * EditText
+* Text Select Handle
 * Autocomplete
 * Button
 * Colored Button
@@ -22,6 +23,7 @@ Components available
 * Spinner
 * Colored Spinner
 * ProgressBar
+* Indeterminate ProgressBar
 * SeekBar
 * RatingBar
 * RatingBar Small
@@ -53,6 +55,10 @@ License
 
 Release note
 ------------
+__Dec 18, 2013; version 3.1__: Add Text Select Handle component
+
+__Dec 16, 2013; version 3.0__: Add support for AppCompat and Actionbar Sherlock themes
+
 __Dec 04, 2013; version 2.2__: Add Navigation Drawer component
 
 __Nov 18, 2013; version 2.1.1__: Add Kitkat assets for colored button and colored spinner
