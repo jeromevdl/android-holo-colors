@@ -62,6 +62,11 @@ $autocomplete = $_GET['autocomplete'];
 $tab = $_GET['tab'];
 $navdrawer = $_GET['navdrawer'];
 
+if (strlen($color) == 3) {
+    $color2 = $color[0] . $color[0] . $color[1] . $color[1] . $color[2] . $color[2];
+    $color = $color2;
+}
+
 $style = '<?xml version="1.0" encoding="utf-8"?>' . "\n\n";
 $style .= "<!-- Generated with http://android-holo-colors.com -->\n";
 $style .= '<resources xmlns:android="http://schemas.android.com/apk/res/android">' . "\n\n";
@@ -171,16 +176,16 @@ if (isset($text_handle) && $text_handle == true) {
         generateImageOnDisk($clazz, $color, $holo, $kitkat, "widgets/text_handle/");
     }
 
+    $themev11 .= '    <item name="android:textColorHighlight">#99' . $color . '</item>' . "\n";
     $themev11 .= '    <item name="android:textSelectHandleLeft">@drawable/' . $lower_name . '_text_select_handle_left</item>' . "\n";
     $themev11 .= '    <item name="android:textSelectHandleRight">@drawable/' . $lower_name . '_text_select_handle_right</item>' . "\n";
     $themev11 .= '    <item name="android:textSelectHandle">@drawable/' . $lower_name . '_text_select_handle_middle</item>' . "\n\n";
 
+    $themev8 .= '    <item name="android:textColorHighlight">#99' . $color . '</item>' . "\n\n";
     $themev9 .= '    <item name="android:textSelectHandleLeft">@drawable/' . $lower_name . '_text_select_handle_left</item>' . "\n";
     $themev9 .= '    <item name="android:textSelectHandleRight">@drawable/' . $lower_name . '_text_select_handle_right</item>' . "\n";
     $themev9 .= '    <item name="android:textSelectHandle">@drawable/' . $lower_name . '_text_select_handle_middle</item>' . "\n\n";
 
-    // TODO : also change the color of the highlight : <item name="android:textColorHighlight">#FFFF9200</item>
-    // Create a TextAppearance for all texts
 }
 
 // ============== autocomplete =================== //
