@@ -1128,6 +1128,7 @@ var form = new studio.forms.Form('holocomponents', {
 
         new studio.forms.BooleanField('text_handle', {
             title: 'Text Select Handle',
+            helpText: 'And Text Highlight Color',
             defaultValue: false,
             offText: 'No',
             onText: 'Yes'
