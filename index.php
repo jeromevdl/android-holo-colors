@@ -806,39 +806,17 @@ include('common.php');
 </div>
 
 <div id="ads" style="position: fixed; top: 25px;">
-    <?
-    $random = rand(1, 3);
-    if ($random == 1) {
-        ?>
-        <script type="text/javascript"><!--
-            amazon_ad_tag = "andholcol-20";
-            amazon_ad_width = "160";
-            amazon_ad_height = "600";
-            amazon_ad_logo = "hide";
-            amazon_ad_link_target = "new";
-            amazon_color_border = "33B5E5";
-            amazon_color_link = "33B5E5";
-            amazon_color_price = "FF8800";
-            amazon_color_logo = "FFFFFF";//--></script>
-        <script type="text/javascript" src="http://ir-na.amazon-adsystem.com/s/ads.js"></script>
-    <?
-    } else if ($random == 2) {
-        ?>
-        <iframe
-            src="http://rcm-na.amazon-adsystem.com/e/cm?t=andholcol-20&o=1&p=14&l=ur1&category=wireless&banner=086F8PMGCMQPQVEZKT82&f=ifr"
-            width="160" height="600" scrolling="no" border="0" marginwidth="0" style="border:none;"
-            frameborder="0"></iframe>
-    <?
-    } else {
-        ?>
-        <SCRIPT charset="utf-8" type="text/javascript"
-                src="http://ws-na.amazon-adsystem.com/widgets/q?rt=tf_cw&ServiceVersion=20070822&MarketPlace=US&ID=V20070822%2FUS%2Fandholcol-20%2F8010%2F9530d7a5-6901-4bd4-a108-e6dd2de5dbf4&Operation=GetScriptTemplate"></SCRIPT>
-        <NOSCRIPT><A
-                HREF="http://ws-na.amazon-adsystem.com/widgets/q?rt=tf_cw&ServiceVersion=20070822&MarketPlace=US&ID=V20070822%2FUS%2Fandholcol-20%2F8010%2F9530d7a5-6901-4bd4-a108-e6dd2de5dbf4&Operation=NoScript">Amazon.com
-                Widgets</A></NOSCRIPT>
-    <?
-    }
-    ?>
+    <script type="text/javascript"><!--
+        google_ad_client = "ca-pub-9027316204077186";
+        /* android-holo-colors */
+        google_ad_slot = "9681771262";
+        google_ad_width = 120;
+        google_ad_height = 600;
+        //-->
+    </script>
+    <script type="text/javascript"
+            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+    </script>
     <br/><a href="faq.html#ads">Why ads ?</a>
 </div>
 
@@ -895,7 +873,7 @@ function downloadFile() {
     var kitkat = values['kitkat'];
     var kitkatint = kitkat ? 1 : 0;
 
-    var url = 'generate_all.php?color=' + color + '&holo=' + values['theme'] + '&name=' + values['name'].replace(/\s+/g, '') + '&kitkat=' + kitkatint + "&minsdk=" + values['minsdk'] + "&compat=" + values['compat'];
+    var url = 'generate_all.php?origin=web&color=' + color + '&holo=' + values['theme'] + '&name=' + values['name'].replace(/\s+/g, '') + '&kitkat=' + kitkatint + "&minsdk=" + values['minsdk'] + "&compat=" + values['compat'];
     var okForDownload = false;
     if (values['edittext']) {
         url += '&edittext=true';
