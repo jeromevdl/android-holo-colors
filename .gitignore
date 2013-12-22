@@ -10,6 +10,7 @@
 # Logs and databases #
 ######################
 *.log
+database.php
 
 # OS generated files #
 ######################
@@ -23,3 +24,8 @@ ehthumbs.db
 Thumbs.db
 
 generated
+
+# IDE
+########
+*.iml
+.idea

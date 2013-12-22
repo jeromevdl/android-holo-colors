@@ -29,6 +29,7 @@ include_once('include/php/log4php/Logger.php');
 Logger::configure('log4php.xml');
 $logger = Logger::getLogger("generate_all");
 
+
 $name = $_GET['name'];
 $name = preg_replace('/\s+/', '', $name);
 $lower_name = strtolower($name);
@@ -61,6 +62,14 @@ $switchjb = $_GET['switchjb'];
 $autocomplete = $_GET['autocomplete'];
 $tab = $_GET['tab'];
 $navdrawer = $_GET['navdrawer'];
+
+$origin = $_GET['origin'];
+// TODO : temporary while plugin is not updated with origin
+if (!isset($origin)) {
+    $origin = "idea";
+}
+include_once("database.php");
+update_stats($origin);
 
 if (strlen($color) == 3) {
     $color2 = $color[0] . $color[0] . $color[1] . $color[1] . $color[2] . $color[2];
