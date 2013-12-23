@@ -1288,6 +1288,9 @@ var form = new studio.forms.Form('holocomponents', {
 
 form.createUI($('#inputs-form').get(0));
 </script>
+<a href="https://github.com/jeromevdl/android-holo-colors-idea-plugin" target="_blank" title="IntelliJ / Android Studio Plugin">
+<img style="position: absolute; top: 0; left: 0; border: 0;" src="plugin.png" alt="Available as IntelliJ plugin">
+</a>
 <iframe id="frame_download" width="0" height="0" style="display:none"></iframe>
 </body>
 </html>
