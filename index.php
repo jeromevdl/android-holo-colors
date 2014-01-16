@@ -1068,7 +1068,8 @@ var form = new studio.forms.Form('holocomponents', {
             options: [
                 { id: 'old', title: 'None' },
                 { id: 'abs', title: 'Sherlock' },
-                { id: 'compat', title: 'AppCompat' }
+                { id: 'compat', title: 'AppCompat' },
+                { id: 'holoeverywhere', title: 'HoloEverywhere' }
             ],
             defaultValue: 'compat'
         })),
