@@ -93,11 +93,15 @@ $themev8 = $style . '  <style name="' . $name . '" parent="@style/_' . $name . '
 
 $themev8_available = ($minsdk == 'old');
 $themev9_available = (isset($text_handle) && $text_handle == true);
+$themev11_available = true;
 
 if ($holo == 'light') {
     if ($minsdk == 'old' && $compat == 'compat') {
         $themev11 .= '  <style name="_' . $name . '" parent="Theme.AppCompat.Light">' . "\n\n";
         $themev8 .= '  <style name="_' . $name . '" parent="Theme.AppCompat.Light">' . "\n\n";
+    } else if ($minsdk == 'old' && $compat == 'holoeverywhere') {
+        $themev11_available = false; $style11_available = false;
+        $themev8 .= '  <style name="_' . $name . '" parent="Holo.Theme.Light">' . "\n\n";
     } else if ($minsdk == 'old' && $compat == 'abs') {
         $themev11 .= '  <style name="_' . $name . '" parent="android:Theme.Holo.Light">' . "\n\n";
         $themev8 .= '  <style name="_' . $name . '" parent="Theme.Sherlock.Light">' . "\n\n";
@@ -109,6 +113,9 @@ if ($holo == 'light') {
     if ($minsdk == 'old' && $compat == 'compat') {
         $themev11 .= '  <style name="_' . $name . '" parent="Theme.AppCompat.Light.DarkActionBar">' . "\n\n";
         $themev8 .= '  <style name="_' . $name . '" parent="Theme.AppCompat.Light.DarkActionBar">' . "\n\n";
+    } else if ($minsdk == 'old' && $compat == 'holoeverywhere') {
+        $themev11_available = false; $style11_available = false;
+        $themev8 .= '  <style name="_' . $name . '" parent="Holo.Theme.Light.DarkActionBar">' . "\n\n";
     } else if ($minsdk == 'old' && $compat == 'abs') {
         $themev11 .= '  <style name="_' . $name . '" parent="android:Theme.Holo.Light.DarkActionBar">' . "\n\n";
         $themev8 .= '  <style name="_' . $name . '" parent="Theme.Sherlock.Light.DarkActionBar">' . "\n\n";
@@ -121,6 +128,9 @@ if ($holo == 'light') {
     if ($minsdk == 'old' && $compat == 'compat') {
         $themev11 = $style . '  <style name="' . $name . '" parent="Theme.AppCompat">' . "\n\n";
         $themev8 = $style . '  <style name="' . $name . '" parent="Theme.AppCompat">' . "\n\n";
+    } else if ($minsdk == 'old' && $compat == 'holoeverywhere') {
+        $themev11_available = false; $style11_available = false;
+        $themev8 = $style . '  <style name="' . $name . '" parent="Holo.Theme">' . "\n\n";
     } else if ($minsdk == 'old' && $compat == 'abs') {
         $themev11 = $style . '  <style name="' . $name . '" parent="android:Theme.Holo">' . "\n\n";
         $themev8 = $style . '  <style name="' . $name . '" parent="Theme.Sherlock">' . "\n\n";
@@ -146,7 +156,7 @@ date_default_timezone_set('UTC');
 $date = date("Ymd");
 $folder = getcwd() . "/generated/" . $date . "/" . $_SESSION['id'];
 
-generateFolders($date, $themev8_available, $themev9_available);
+generateFolders($date, $themev8_available, $themev9_available, $themev11_available);
 
 // ============== edittext =================== //
 if (isset($edittext) && $edittext == true) {
@@ -896,8 +906,10 @@ if ($minsdk == 'holo') {
     $theme_file = "generated/" . $date . "/" . $_SESSION['id'] . "/res/values/themes_" . $lower_name . ".xml";
     @file_put_contents($theme_file, $themev11);
 } else {
-    $theme_file = "generated/" . $date . "/" . $_SESSION['id'] . "/res/values-v11/themes_" . $lower_name . ".xml";
-    @file_put_contents($theme_file, $themev11);
+    if($themev11_available) {
+        $theme_file = "generated/" . $date . "/" . $_SESSION['id'] . "/res/values-v11/themes_" . $lower_name . ".xml";
+        @file_put_contents($theme_file, $themev11);
+    }
 
     $theme_file = "generated/" . $date . "/" . $_SESSION['id'] . "/res/values/themes_" . $lower_name . ".xml";
     @file_put_contents($theme_file, $themev8);
@@ -979,7 +991,7 @@ function generateImageOnDisk($clazz, $color, $holo, $kitkat = false, $ctx = "")
  * Generate folders for xml styles
  *
  **********************************/
-function generateFolders($date, $themev8_available, $themev9_available)
+function generateFolders($date, $themev8_available, $themev9_available, $themev11_available)
 {
     $drawable = getcwd() . "/generated/" . $date . "/" . $_SESSION['id'] . "/res/drawable";
     $layout = getcwd() . "/generated/" . $date . "/" . $_SESSION['id'] . "/res/layout";
@@ -1006,9 +1018,11 @@ function generateFolders($date, $themev8_available, $themev9_available)
         mkdir($values, 0777, true);
     }
     if ($themev8_available) {
-        $values11 = getcwd() . "/generated/" . $date . "/" . $_SESSION['id'] . "/res/values-v11";
-        if (file_exists($values11) == FALSE) {
-            mkdir($values11, 0777, true);
+        if($themev11_available) {
+            $values11 = getcwd() . "/generated/" . $date . "/" . $_SESSION['id'] . "/res/values-v11";
+            if (file_exists($values11) == FALSE) {
+                mkdir($values11, 0777, true);
+            }
         }
 
         if ($themev9_available) {
