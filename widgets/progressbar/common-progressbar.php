@@ -74,7 +74,7 @@ class ProgressBarPrimary extends Component
         imagefilter($seekbar_img, IMG_FILTER_COLORIZE, $rgb['red'], $rgb['green'], $rgb['blue']);
 
         // add nine patch
-        $seekbar_nine_patch = $this->loadTransparentPNG("progress_primary_nine_patch.png", $size);
+        $seekbar_nine_patch = $this->loadTransparentPNG("progress_primary_nine_patch_" . $holo . ".png", $size);
 
         $result = $this->create_dest_image($image_name, $size);
 
