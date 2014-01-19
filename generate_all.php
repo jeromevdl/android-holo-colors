@@ -100,7 +100,8 @@ if ($holo == 'light') {
         $themev11 .= '  <style name="_' . $name . '" parent="Theme.AppCompat.Light">' . "\n\n";
         $themev8 .= '  <style name="_' . $name . '" parent="Theme.AppCompat.Light">' . "\n\n";
     } else if ($minsdk == 'old' && $compat == 'holoeverywhere') {
-        $themev11_available = false; $style11_available = false;
+        $themev11_available = false;
+        $style11_available = false;
         $themev8 .= '  <style name="_' . $name . '" parent="Holo.Theme.Light">' . "\n\n";
     } else if ($minsdk == 'old' && $compat == 'abs') {
         $themev11 .= '  <style name="_' . $name . '" parent="android:Theme.Holo.Light">' . "\n\n";
@@ -114,7 +115,8 @@ if ($holo == 'light') {
         $themev11 .= '  <style name="_' . $name . '" parent="Theme.AppCompat.Light.DarkActionBar">' . "\n\n";
         $themev8 .= '  <style name="_' . $name . '" parent="Theme.AppCompat.Light.DarkActionBar">' . "\n\n";
     } else if ($minsdk == 'old' && $compat == 'holoeverywhere') {
-        $themev11_available = false; $style11_available = false;
+        $themev11_available = false;
+        $style11_available = false;
         $themev8 .= '  <style name="_' . $name . '" parent="Holo.Theme.Light.DarkActionBar">' . "\n\n";
     } else if ($minsdk == 'old' && $compat == 'abs') {
         $themev11 .= '  <style name="_' . $name . '" parent="android:Theme.Holo.Light.DarkActionBar">' . "\n\n";
@@ -129,7 +131,8 @@ if ($holo == 'light') {
         $themev11 = $style . '  <style name="' . $name . '" parent="Theme.AppCompat">' . "\n\n";
         $themev8 = $style . '  <style name="' . $name . '" parent="Theme.AppCompat">' . "\n\n";
     } else if ($minsdk == 'old' && $compat == 'holoeverywhere') {
-        $themev11_available = false; $style11_available = false;
+        $themev11_available = false;
+        $style11_available = false;
         $themev8 = $style . '  <style name="' . $name . '" parent="Holo.Theme">' . "\n\n";
     } else if ($minsdk == 'old' && $compat == 'abs') {
         $themev11 = $style . '  <style name="' . $name . '" parent="android:Theme.Holo">' . "\n\n";
@@ -157,6 +160,7 @@ $date = date("Ymd");
 $folder = getcwd() . "/generated/" . $date . "/" . $_SESSION['id'];
 
 generateFolders($date, $themev8_available, $themev9_available, $themev11_available);
+
 
 // ============== edittext =================== //
 if (isset($edittext) && $edittext == true) {
@@ -906,7 +910,7 @@ if ($minsdk == 'holo') {
     $theme_file = "generated/" . $date . "/" . $_SESSION['id'] . "/res/values/themes_" . $lower_name . ".xml";
     @file_put_contents($theme_file, $themev11);
 } else {
-    if($themev11_available) {
+    if ($themev11_available) {
         $theme_file = "generated/" . $date . "/" . $_SESSION['id'] . "/res/values-v11/themes_" . $lower_name . ".xml";
         @file_put_contents($theme_file, $themev11);
     }
@@ -947,6 +951,14 @@ if ($style14_available == true) {
     @file_put_contents($style_file, $stylev14);
 }
 */
+
+$color_file = "generated/" . $date . "/" . $_SESSION['id'] . "/res/values/colors_" . $lower_name . ".xml";
+$color_content = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" . "\n";
+$color_content .= "<resources>" . "\n";
+$color_content .= "    <color name=\"" . $lower_name . "_color\">#" . $color . "</color>" . "\n";
+$color_content .= "</resources>" . "\n";
+@file_put_contents($color_file, $color_content);
+
 
 // ============== ZIP ====================== //
 $zipname = getcwd() . "/generated/" . $date . "/" . $_SESSION['id'] . ".zip";
@@ -1018,7 +1030,7 @@ function generateFolders($date, $themev8_available, $themev9_available, $themev1
         mkdir($values, 0777, true);
     }
     if ($themev8_available) {
-        if($themev11_available) {
+        if ($themev11_available) {
             $values11 = getcwd() . "/generated/" . $date . "/" . $_SESSION['id'] . "/res/values-v11";
             if (file_exists($values11) == FALSE) {
                 mkdir($values11, 0777, true);
