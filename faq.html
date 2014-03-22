@@ -86,11 +86,11 @@
         <ul>
             <li><a href="#many-pictures">Why does it genereate so many pictures ?</a></li>
             <li><a href="#ldpi">Why the low density (ldpi) is not generated ?</a></li>
+            <li><a href="#opticalBoundsCrash">My application crash on gingerbread or froyo when adding optical bounds (red borders).</a></li>
             <li><a href="#progressbar">Why the ProgressBar is not with my color ?</a></li>
             <li><a href="#overiden-files">On Mac OS, when I copy the folders, it overwrite previous content</a></li>
             <li><a href="#actionbar">The generator does not provide action bar files, how to get them ?</a></li>
             <li><a href="#tabwidget">How to use TabWidget ?</a></li>
-            <li><a href="#holoeverywhere">Is it possible to combine Holo Colors with HoloEverywhere ?</a></li>
             <li><a href="#donate">How to help you to improve the generator ?</a></li>
             <li><a href="#ads">Why has there ads ?</a></li>
         </ul>
@@ -121,6 +121,13 @@
             device is in ldpi, it will use the mdpi or hdpi pictures (<a
                     href="http://developer.android.com/guide/practices/screens_support.html#support" target="_blank">more
                 info</a>).</p>
+
+        <p class="faq"><a name="opticalBoundsCrash">My application crash on gingerbread or froyo when adding optical bounds (red borders).</a><br/>
+            Indeed, Google introduced a new PNG processor in gradle plugin 0.9.1 (see <a href="http://tools.android.com/tech-docs/new-build-system" target="_blank">documentation</a>).
+            This PNG processor does not crunch the png as before, so that application crash at runtime (see this <a href="https://code.google.com/p/android/issues/detail?id=67376" target="_blank">issue</a>).
+            The solution is to use the old png processor in your gradle build (when using 0.9.+) : <br/> <code>android.aaptOptions.useAaptPngCruncher = true</code> <br/>
+            Thanks to <a href="https://github.com/JavierSP1209">Javier Silva</a> for this <a href="https://github.com/jeromevdl/android-holo-colors/issues/89">solution</a>.
+        </p>
 
         <p class="faq"><a name="progressbar">Why the ProgressBar is not with my color ?</a><br/>
             When using a ProgressBar, the default picture is the rolling ProgressBar. In order to get your pictures, set
