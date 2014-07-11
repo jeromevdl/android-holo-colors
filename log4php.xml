@@ -1,6 +1,6 @@
 <configuration xmlns="http://logging.apache.org/log4php/">
     <appender name="myAppender" class="LoggerAppenderFile">
-        <param name="file" value="/Users/jva/Developpement/php/android-holo-colors/logs/myLog.log" />
+        <param name="file" value="/home/vdl/logs/android-holo-colors/android-holo-colors.log" />
     </appender>
     <root>
         <level value="WARN" />
