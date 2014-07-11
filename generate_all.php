@@ -68,6 +68,7 @@ $origin = $_GET['origin'];
 if (!isset($origin)) {
     $origin = "idea";
 }
+
 include_once("database.php");
 update_stats($origin);
 
