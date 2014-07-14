@@ -11,6 +11,7 @@
 ######################
 *.log
 database.php
+cleanup.php
 
 # OS generated files #
 ######################
