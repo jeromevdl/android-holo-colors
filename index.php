@@ -865,6 +865,14 @@ for (var component in components) {
 
 function downloadFile() {
     var values = form.getValues();
+
+    var name = values['name'];
+    var pattern = /^[^0-9_][a-zA-Z0-9_]*$/;
+    if (pattern.test(name) == false) {
+        alert('The theme name should contains only letters, numbers and underscore (_). It should start with a letter.');
+        return;
+    }
+
     var color = values['color'].color;
     if (color.charAt(0) == '#') {
         color = color.substr(1, 6);
@@ -873,7 +881,7 @@ function downloadFile() {
     var kitkat = values['kitkat'];
     var kitkatint = kitkat ? 1 : 0;
 
-    var url = 'generate_all.php?origin=web&color=' + color + '&holo=' + values['theme'] + '&name=' + values['name'].replace(/\s+/g, '') + '&kitkat=' + kitkatint + "&minsdk=" + values['minsdk'] + "&compat=" + values['compat'];
+    var url = 'generate_all.php?origin=web&color=' + color + '&holo=' + values['theme'] + '&name=' + name.replace(/\s+/g, '') + '&kitkat=' + kitkatint + "&minsdk=" + values['minsdk'] + "&compat=" + values['compat'];
     var okForDownload = false;
     if (values['edittext']) {
         url += '&edittext=true';
