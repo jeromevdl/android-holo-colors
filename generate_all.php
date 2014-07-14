@@ -628,7 +628,7 @@ if (isset($ratingstarbig) && $ratingstarbig == true) {
     $stylev11 .= '      <item name="android:indeterminateDrawable">@drawable/' . $lower_name . '_ratingbar_holo_' . $holo . '</item>' . "\n";
     $stylev11 .= '  </style>' . "\n\n";
 
-    $stylev8 .= '  <style name="RatingBarBig' . $name . '">' . "\n";
+    $stylev8 .= '  <style name="RatingBarBig' . $name . '" parent="android:Widget.RatingBar">' . "\n";
     $stylev8 .= '      <item name="android:progressDrawable">@drawable/' . $lower_name . '_ratingbar_holo_' . $holo . '</item>' . "\n";
     $stylev8 .= '      <item name="android:indeterminateDrawable">@drawable/' . $lower_name . '_ratingbar_holo_' . $holo . '</item>' . "\n";
     $stylev8 .= '      <item name="android:minHeight">35dip</item>' . "\n";
@@ -663,7 +663,7 @@ if (isset($ratingstarsmall) && $ratingstarsmall == true) {
     $stylev11 .= '      <item name="android:indeterminateDrawable">@drawable/' . $lower_name . '_ratingbar_small_holo_' . $holo . '</item>' . "\n";
     $stylev11 .= '  </style>' . "\n\n";
 
-    $stylev8 .= '  <style name="RatingBarSmall' . $name . '">' . "\n";
+    $stylev8 .= '  <style name="RatingBarSmall' . $name . '" parent="android:Widget.RatingBar">' . "\n";
     $stylev8 .= '      <item name="android:progressDrawable">@drawable/' . $lower_name . '_ratingbar_small_holo_' . $holo . '</item>' . "\n";
     $stylev8 .= '      <item name="android:indeterminateDrawable">@drawable/' . $lower_name . '_ratingbar_small_holo_' . $holo . '</item>' . "\n";
     $stylev8 .= '      <item name="android:minHeight">16dip</item>' . "\n";
