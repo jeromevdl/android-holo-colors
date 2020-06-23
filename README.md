@@ -1,6 +1,4 @@
-![Android Holo Colors logo](http://android-holo-colors.com/H-256.png)
-
-Website is available here: http://android-holo-colors.com/
+# This project is not maintained anymore. Holo Colors doesn't make sense since the introduction of Material Design and the ability to set the primary color, secondary color...
 
 Overview
 --------
